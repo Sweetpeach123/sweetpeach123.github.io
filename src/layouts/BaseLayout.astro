@@ -6,11 +6,13 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  bodyClass?: string;
 }
 
 const {
   title = 'Perfect Pavers of Palm Beach',
   description = 'Premium paver driveways, pool decks, patios and outdoor living across Palm Beach County. State Licensed Building Contractor, ICPI certified, 35+ years in South Florida.',
+  bodyClass = '',
 } = Astro.props;
 ---
 <!doctype html>
@@ -25,7 +27,7 @@ const {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
-<body>
+<body class={bodyClass}>
   <Header />
   <slot />
   <Footer />
