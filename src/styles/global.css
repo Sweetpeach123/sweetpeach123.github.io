@@ -19,7 +19,6 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacin
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
-body.wide .wrap{max-width:1600px}
 .eyebrow{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-dark)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;border-radius:2px;transition:.25s;cursor:pointer;border:1px solid transparent}
 .btn-brass{background:var(--brass);color:#fff}
@@ -47,11 +46,11 @@ nav.menu a span{font-size:8px;vertical-align:middle;color:var(--muted)}
 nav.menu a:hover{color:var(--brass-dark)}
 .menu-item{position:relative;height:88px;display:flex;align-items:center}
 .menu-item>a{display:inline-flex;align-items:center;gap:6px}
-.menu-item .caret{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.menu-item .caret{transition:transform .52s cubic-bezier(.16,1,.3,1)}
 .menu-item:hover .caret{transform:rotate(180deg)}
-.drop{position:absolute;top:100%;left:0;padding-top:5px;opacity:0;visibility:hidden;transition:opacity .42s cubic-bezier(.16,1,.3,1),visibility .42s;z-index:60;pointer-events:none}
+.drop{position:absolute;top:100%;left:0;padding-top:5px;opacity:0;visibility:hidden;transition:opacity .66s cubic-bezier(.16,1,.3,1),visibility .66s;z-index:60;pointer-events:none}
 .drop--right{left:auto;right:0}
-.drop-inner{min-width:268px;background:var(--ivory);border:1px solid var(--line);border-radius:6px;box-shadow:0 26px 64px rgba(35,35,31,.16);padding:12px;transform:translateY(14px) scale(.985);transform-origin:top center;opacity:0;transition:transform .46s cubic-bezier(.16,1,.3,1),opacity .4s cubic-bezier(.16,1,.3,1)}
+.drop-inner{min-width:268px;background:var(--ivory);border:1px solid var(--line);border-radius:6px;box-shadow:0 26px 64px rgba(35,35,31,.16);padding:12px;transform:translateY(14px) scale(.985);transform-origin:top center;opacity:0;transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .62s cubic-bezier(.16,1,.3,1)}
 .menu-item:hover .drop,.menu-item:focus-within .drop{opacity:1;visibility:visible;pointer-events:auto}
 .menu-item:hover .drop-inner,.menu-item:focus-within .drop-inner{transform:translateY(0) scale(1);opacity:1}
 nav.menu .drop ul{list-style:none}
