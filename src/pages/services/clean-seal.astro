@@ -1,0 +1,46 @@
+---
+import ServiceTemplate from '../../components/ServiceTemplate.astro';
+
+const data = {
+  seoTitle: 'Paver Cleaning & Sealing in Palm Beach County · Perfect Pavers of Palm Beach',
+  seoDescription: 'Professional paver cleaning, re-sanding, and sealing across Palm Beach County. Restore color, lock joints, and protect driveways, pool decks, and patios. Free assessment.',
+  name: 'Paver cleaning and sealing',
+  crumb: 'Clean & seal',
+  eyebrow: 'Clean & seal · Palm Beach County',
+  h1: 'Bring tired pavers',
+  h1em: 'back to life.',
+  lede: 'Pavers that have faded, grown weeds, or lost their joint sand do not need replacing. A proper clean, re-sand, and seal makes them look new and protects them for years.',
+  heroImg: '/images/svc-cleanseal.jpg',
+  heroAlt: 'Paver cleaning and sealing at a Palm Beach home',
+  heroLabel: 'Clean & seal · Palm Beach',
+  intro: [
+    'Florida is hard on pavers. Sun fades the color, rain and ants wash the sand out of the joints, weeds take hold, and tires and stains mark the surface. None of that means the pavers are finished, it means they are due for service.',
+    'A full clean and seal does three things: it deep-cleans the surface, replaces the joint sand that keeps pavers locked together and stable, and seals the whole surface to lock in color and resist stains, weeds, and washout.',
+    'We do not rush it. We let the surface dry fully before re-sanding, and we will tell you honestly if the timing is wrong, for example if other work is planned that would undo a fresh seal.',
+  ],
+  benefits: [
+    { k: 'Restores color', h: 'Looks new again', p: 'Cleaning and sealing brings faded reds and browns back to life and makes the whole surface look freshly installed.' },
+    { k: 'Locks it down', h: 'Re-sanded joints', p: 'Replacing the joint sand keeps pavers stable and interlocked, instead of loose, shifting, and full of weeds.' },
+    { k: 'Protects', h: 'Resists stains', p: 'A proper seal helps the surface shrug off tire marks, stains, weeds, and sand washout from Florida rain.' },
+  ],
+  included: [
+    'Deep cleaning and pressure washing of the surface',
+    'Weed and stain treatment in the joints and on the pavers',
+    'Full drying time before any re-sanding, never rushed',
+    'Fresh polymeric joint sand to lock and stabilize pavers',
+    'Quality sealant to protect color and resist stains',
+    'Honest advice if the timing is not right for sealing',
+    'Uniformed crews and a tidy site, start to finish',
+  ],
+  includedNote: 'If rain interrupts the job, we come back and finish at no charge. We recommend cleaning and sealing every 12 to 18 months to keep the surface protected and looking its best.',
+  materials: ['Cleaning only (pressure wash)', 'Cleaning plus re-sanding', 'Full service: clean, re-sand, and seal'],
+  faqs: [
+    { q: 'Do I need to replace pavers that look faded or weedy?', a: 'Usually not. Faded color, weeds in the joints, and washed-out sand are exactly what cleaning, re-sanding, and sealing fix. Replacement is rarely necessary unless pavers are broken or the base has failed.' },
+    { q: 'How often should pavers be cleaned and sealed?', a: 'Every 12 to 18 months in South Florida is a good rhythm. The sun, rain, and ants work against the joints and color, and regular service keeps the surface stable and looking new.' },
+    { q: 'What if it rains during the job?', a: 'If rain interrupts the work, we come back and finish at no additional charge. We also let the surface dry fully before re-sanding rather than rushing it, which is what makes the seal last.' },
+    { q: 'Will you tell me if I should wait?', a: 'Yes. If other work is planned that would undo a fresh seal, such as roofing or nearby construction, we will tell you honestly and recommend waiting. We would rather do it once, at the right time.' },
+    { q: 'What does cleaning and sealing cost?', a: 'It depends on the surface, its condition, and which service level you choose, so the assessment and written estimate are free and itemized. Financing through Wisetack and Jobber is available.' },
+  ],
+};
+---
+<ServiceTemplate {...data} />
