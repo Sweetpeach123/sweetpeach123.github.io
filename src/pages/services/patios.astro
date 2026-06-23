@@ -1,0 +1,46 @@
+---
+import ServiceTemplate from '../../components/ServiceTemplate.astro';
+
+const data = {
+  seoTitle: 'Paver Patios in Palm Beach County · Perfect Pavers of Palm Beach',
+  seoDescription: 'Custom paver patios across Palm Beach County for year-round outdoor living, built on a proper base with drainage and edge restraints. Free on-site visit and samples.',
+  name: 'Paver patios',
+  crumb: 'Patios',
+  eyebrow: 'Paver patios · Palm Beach County',
+  h1: 'A patio built for',
+  h1em: 'year-round living.',
+  lede: 'In Florida there is no off-season. We build paver patios for quiet mornings with coffee and for the parties you will host on them for years.',
+  heroImg: '/images/svc-patios.webp',
+  heroAlt: 'Travertine paver patio at a Palm Beach home',
+  heroLabel: 'Paver patio · Palm Beach',
+  intro: [
+    'A patio is where a Florida home actually lives. With no winter to close it down, the surface gets used every month of the year, so it has to handle sun, rain, and constant foot traffic without fading or cracking.',
+    'Pavers give you design freedom that poured concrete cannot. Patterns, borders, and color blends let the patio match the architecture of the home, and the same units make it easy to tie in a future outdoor kitchen, fire feature, or walkway.',
+    'Underneath, the work is the same standard we hold everywhere: a compacted base, edge restraints, and a controlled slope so rain drains off the surface and away from the house instead of pooling where you sit.',
+  ],
+  benefits: [
+    { k: 'Year-round', h: 'Used every month', p: 'No off-season in Florida means the patio earns its keep all year. We build it to take daily use and weather without fading or cracking.' },
+    { k: 'Design freedom', h: 'Match your home', p: 'Patterns, borders, and color blends let the patio suit your architecture, and the same pavers tie into kitchens, walls, and walkways later.' },
+    { k: 'Low maintenance', h: 'Easy to live with', p: 'Pavers resist cracking, clean up easily, and any single unit can be lifted and reset. An occasional clean and seal keeps them looking new.' },
+  ],
+  included: [
+    'Proper excavation and a compacted 4 to 6 inch rock base',
+    'Edge restraints to hold the pattern and stop spreading',
+    'Controlled slope and drainage away from the home',
+    'Pattern, border, and material design with samples at your door',
+    'Clean transitions to existing walkways, decks, and thresholds',
+    'Permits and HOA approval handled for you',
+    'Daily cleanup, final walkthrough, and our workmanship warranty',
+  ],
+  includedNote: 'A low door threshold limits how high the patio can sit, or water can reach the house. We set the finished height and slope so the patio sheds water safely away from the home.',
+  materials: ['Concrete pavers', 'Travertine', 'Porcelain pavers', 'Brick pavers'],
+  faqs: [
+    { q: 'How long does a paver patio take?', a: 'Most patios are completed within a few days of starting on site, depending on size, pattern, and prep. We come out within one to two days of your call and send a written estimate in 24 to 48 hours.' },
+    { q: 'Can you match my home’s style?', a: 'Yes. We design the pattern, border, and color to suit your architecture and bring real material samples to your home so you can see them in your own light before deciding.' },
+    { q: 'Can you add a fire pit or outdoor kitchen later?', a: 'Absolutely. Because a patio is built from individual pavers, it ties cleanly into an outdoor kitchen, fire feature, seating wall, or walkway, whether now or down the road.' },
+    { q: 'Do pavers get too hot for bare feet?', a: 'Lighter colors and natural stone like travertine stay cooler in the sun than dark concrete. We will steer you toward materials that suit how you plan to use the space.' },
+    { q: 'What does a paver patio cost?', a: 'It depends on size, material, and design, so the on-site visit and written estimate are free and itemized line by line. Financing through Wisetack and Jobber is available.' },
+  ],
+};
+---
+<ServiceTemplate {...data} />

@@ -121,7 +121,7 @@ section.block{padding:104px 0}
 .area h2{color:var(--ivory);font-size:46px}
 .cities{columns:2;column-gap:30px;margin-top:8px}
 .cities li{list-style:none;padding:11px 0;border-bottom:1px solid var(--line-light);font-size:15px;font-weight:300;break-inside:avoid}
-.cities li::before{content:'—';color:var(--brass);margin-right:12px}
+.cities li::before{content:'·';color:var(--brass);margin-right:12px}
 
 .fin{text-align:center}
 .fin .pill{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark);border:1px solid var(--brass);border-radius:40px;padding:8px 20px;margin-bottom:24px}

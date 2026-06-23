@@ -1,0 +1,46 @@
+---
+import ServiceTemplate from '../../components/ServiceTemplate.astro';
+
+const data = {
+  seoTitle: 'Paver Driveways in Palm Beach County · Perfect Pavers of Palm Beach',
+  seoDescription: 'Custom paver driveways across Palm Beach County, built on a proper rock base with drainage and edge restraints. Permits and HOA handled. Free on-site visit and samples.',
+  name: 'Paver driveways',
+  crumb: 'Driveways',
+  eyebrow: 'Paver driveways · Palm Beach County',
+  h1: 'A driveway worth',
+  h1em: 'pulling up to.',
+  lede: 'It is the first thing you see coming home, and the first thing your guests notice. We build paver driveways engineered for Florida, from the rock base up.',
+  heroImg: '/images/svc-driveways.webp',
+  heroAlt: 'Paver driveway at a Palm Beach home',
+  heroLabel: 'Paver driveway · Palm Beach',
+  intro: [
+    'A driveway takes more weight and more sun than any other surface on your property. Poured concrete cracks as the Florida ground shifts, and once it cracks there is no clean fix. Pavers flex with the ground, and any single paver can be lifted and reset without leaving a patchwork scar.',
+    'Done right, a paver driveway also lifts the whole front of the home. It frames the entrance, raises curb appeal, and adds real resale value, which matters because a buyer forms an opinion before they ever reach the door.',
+    'Florida has its own rules. A driveway replacement can trigger local drainage requirements, and a low door threshold means the new surface cannot sit too high or water finds its way inside. We know the Palm Beach municipalities, pull the permits, and build the slope so water runs away from your home, not toward it.',
+  ],
+  benefits: [
+    { k: 'Curb appeal', h: 'Raises the whole home', p: 'The driveway frames your entrance and is the first thing buyers judge. Pavers read as premium where concrete and asphalt read as builder-grade.' },
+    { k: 'No cracking', h: 'Flexes with the ground', p: 'Concrete cracks as Florida soil shifts. Interlocking pavers move with it and stay intact for decades.' },
+    { k: 'Spot-repairable', h: 'Fix one, not all', p: 'Lift and reset a single paver after a root, a leak repair, or a stain. No visible patch, no tearing out the whole slab.' },
+  ],
+  included: [
+    'Proper excavation to the correct depth',
+    'Compacted 4 to 6 inch rock base for South Florida soil',
+    'Edge restraints to stop shifting and spreading',
+    'Controlled slope and drainage away from the home',
+    'Permits and HOA approval handled for you',
+    'Wet-cutting to keep dust down, with daily site cleanup',
+    'Final walkthrough and our workmanship warranty',
+  ],
+  includedNote: 'In some Palm Beach municipalities a driveway replacement can require a swale or drainage upgrade, and a low door threshold limits how high the surface can sit. We handle the permits and build to local code.',
+  materials: ['Concrete pavers', 'Brick pavers', 'Porcelain pavers', 'Travertine', 'Permeable systems'],
+  faqs: [
+    { q: 'Will pavers crack like my concrete driveway?', a: 'No. Concrete is a single rigid slab, so when the ground shifts it cracks. A paver driveway is made of individual units over a compacted base, so it flexes with the ground and stays intact. If anything ever needs attention, we lift and reset the affected pavers with no visible patch.' },
+    { q: 'Do you handle permits and HOA approval?', a: 'Yes. We pull the required permits and prepare what your HOA needs for approval before we order material. In Palm Beach County a driveway can also involve local drainage or swale requirements, which we manage as part of the job.' },
+    { q: 'How long does a paver driveway take?', a: 'Most residential driveways are completed within a few days of starting on site, depending on size and prep. We come out for the on-site visit within one to two days of your call, then provide a written estimate in 24 to 48 hours.' },
+    { q: 'Can you match or upgrade my existing driveway?', a: 'We build a proper base rather than laying over failing concrete, which is what makes the result last. We can match an existing look or help you upgrade the pattern, color, and material.' },
+    { q: 'What does a paver driveway cost?', a: 'It depends on size, material, and site prep, which is exactly why the on-site visit and written estimate are free and itemized. Financing through Wisetack and Jobber is available so the budget does not decide the timeline.' },
+  ],
+};
+---
+<ServiceTemplate {...data} />
