@@ -1,10 +1,21 @@
 ---
-const nav = [
-  { label: 'Residential', href: '/residential', caret: true },
-  { label: 'Commercial', href: '/commercial' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'About', href: '/about', caret: true },
-  { label: 'Service Areas', href: '/service-areas' },
+const services = [
+  { label: 'Driveways', href: '/services/driveways' },
+  { label: 'Walkways', href: '/services/walkways' },
+  { label: 'Patios', href: '/services/patios' },
+  { label: 'Pool decks', href: '/services/pool-decks' },
+  { label: 'Outdoor living', href: '/services/outdoor-living' },
+  { label: 'Retaining & seating walls', href: '/services/retaining-seating-walls' },
+  { label: 'Natural stone', href: '/services/natural-stone' },
+  { label: 'Clean & seal', href: '/services/clean-seal' },
+];
+const about = [
+  { label: 'Why choose Perfect Pavers', href: '/about/why-choose-us' },
+  { label: 'Our process', href: '/about/our-process' },
+  { label: 'Service areas', href: '/service-areas' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Careers', href: '/careers' },
+  { label: 'FAQs', href: '/faqs' },
 ];
 ---
 <div class="util">
@@ -25,9 +36,28 @@ const nav = [
       <div class="sub">of Palm Beach</div>
     </a>
     <nav class="menu">
-      {nav.map((item) => (
-        <a href={item.href}>{item.label}{item.caret && <span> ▾</span>}</a>
-      ))}
+      <div class="menu-item">
+        <a href="/#services">Residential <span class="caret">▾</span></a>
+        <div class="drop">
+          <div class="drop-inner">
+            <ul>
+              {services.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a href="/commercial">Commercial</a>
+      <a href="/portfolio">Portfolio</a>
+      <div class="menu-item">
+        <a href="/about/why-choose-us">About <span class="caret">▾</span></a>
+        <div class="drop drop--right">
+          <div class="drop-inner">
+            <ul>
+              {about.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
     <div class="nav-right">
       <a class="nav-phone" href="tel:+19547791855">(954) 779-1855</a>

@@ -40,10 +40,22 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,241,231,.92);backdro
 .brand{line-height:1}
 .brand .mark{font-family:var(--serif);font-size:25px;font-weight:600;letter-spacing:.02em}
 .brand .sub{font-family:var(--sans);font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--brass-dark);margin-top:3px}
-nav.menu{display:flex;gap:34px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
+nav.menu{display:flex;gap:34px;align-items:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
 nav.menu a{position:relative;padding:6px 0;color:var(--ink)}
 nav.menu a span{font-size:8px;vertical-align:middle;color:var(--muted)}
 nav.menu a:hover{color:var(--brass-dark)}
+.menu-item{position:relative;height:88px;display:flex;align-items:center}
+.menu-item>a{display:inline-flex;align-items:center;gap:6px}
+.menu-item .caret{transition:transform .2s}
+.menu-item:hover .caret{transform:rotate(180deg)}
+.drop{position:absolute;top:100%;left:0;padding-top:14px;opacity:0;visibility:hidden;transition:opacity .18s;z-index:60;pointer-events:none}
+.drop--right{left:auto;right:0}
+.drop-inner{min-width:250px;background:var(--ivory);border:1px solid var(--line);border-radius:4px;box-shadow:0 20px 46px rgba(35,35,31,.14);padding:10px;transform:translateY(6px);transition:transform .18s}
+.menu-item:hover .drop,.menu-item:focus-within .drop{opacity:1;visibility:visible;pointer-events:auto}
+.menu-item:hover .drop-inner,.menu-item:focus-within .drop-inner{transform:translateY(0)}
+nav.menu .drop ul{list-style:none}
+nav.menu .drop a{display:block;padding:11px 16px;font-size:13px;letter-spacing:.02em;text-transform:none;font-weight:400;color:var(--ink);border-radius:3px;white-space:nowrap}
+nav.menu .drop a:hover{background:var(--ivory-2);color:var(--brass-dark)}
 .nav-right{display:flex;align-items:center;gap:22px}
 .nav-phone{font-size:14px;letter-spacing:.08em;font-weight:400}
 .nav-phone b{font-weight:500}
