@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfect Pavers of Palm Beach — mockup v2 (darker)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1EEE8;--bg-2:#E7E1D6;
+    --ink:#15171A;--ink-2:#1F2226;
+    --bronze:#BF9A5C;--bronze-d:#9C7B41;
+    --text:#1B1C1E;--muted:#75736D;
+    --light:#ECE8E0;--mutedL:rgba(236,232,224,.62);
+    --line:rgba(27,28,30,.14);--lineL:rgba(236,232,224,.18);
+    --serif:'Fraunces',Georgia,serif;--sans:'Jost',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);font-weight:300;line-height:1.7}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+  .eyebrow{font-family:var(--sans);font-weight:500;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--bronze-d)}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;padding:17px 30px;transition:.25s;cursor:pointer;border:1px solid transparent}
+  .btn-brass{background:var(--bronze);color:#15171A}
+  .btn-brass:hover{background:var(--bronze-d);color:#fff}
+  .btn-line{border-color:currentColor}
+  .btn-line:hover{background:var(--bronze);border-color:var(--bronze);color:#15171A}
+  .ph{background:#2A2D31;position:relative;overflow:hidden}
+  .ph.lt{background:#D8D2C6}
+  .ph::after{content:attr(data-label);position:absolute;left:0;right:0;bottom:0;padding:13px 16px;font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mutedL);background:rgba(21,23,26,.55)}
+  .ph.lt::after{color:#4a463c;background:rgba(241,238,232,.7)}
+  .ph i{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:19px;color:rgba(236,232,224,.4)}
+  .ph.lt i{color:rgba(60,55,45,.45)}
+
+  .util{background:#0F1113;color:var(--light)}
+  .util .wrap{display:flex;justify-content:space-between;align-items:center;height:40px;font-size:12px;letter-spacing:.06em}
+  .util .tags{display:flex;gap:26px;opacity:.85}
+  .util .tags i{color:var(--bronze);font-style:normal;margin-right:7px}
+
+  header{position:sticky;top:0;z-index:40;background:rgba(21,23,26,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--lineL)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:86px;color:var(--light)}
+  .brand .mark{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.01em;color:var(--light)}
+  .brand .sub{font-family:var(--sans);font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--bronze);margin-top:3px}
+  nav.menu{display:flex;gap:34px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase}
+  nav.menu a{color:var(--light);opacity:.85} nav.menu a:hover{opacity:1;color:var(--bronze)}
+  .nav-right{display:flex;align-items:center;gap:20px;color:var(--light)}
+  .nav-phone{font-size:14px;letter-spacing:.06em}
+
+  .hero{background:var(--ink);color:var(--light)}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:96px 40px}
+  .hero h1{font-size:80px;color:var(--light)}
+  .hero h1 em{font-style:italic;color:var(--bronze)}
+  .hero p.lede{font-size:18px;color:var(--mutedL);max-width:30em;margin:26px 0 38px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-img{position:relative;min-height:520px}
+  .hero-img .ph{position:absolute;inset:0}
+
+  .trust{background:#0F1113;color:var(--light)}
+  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .trust .cell{padding:38px 28px;border-left:1px solid var(--lineL)}
+  .trust .cell:first-child{border-left:0;padding-left:0}
+  .trust .ic{color:var(--bronze);font-family:var(--serif);font-style:italic;font-size:25px}
+  .trust h4{font-family:var(--sans);font-weight:500;font-size:14.5px;margin:12px 0 5px}
+  .trust p{font-size:12.5px;color:var(--mutedL)}
+
+  section.block{padding:106px 0}
+  .sec-head{max-width:660px;margin-bottom:54px}
+  .sec-head.center{margin:0 auto 54px;text-align:center}
+  .sec-head h2{font-size:50px;margin-top:16px}
+  .sec-num{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--bronze-d)}
+
+  .props{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .props .card{background:var(--bg);padding:44px 38px}
+  .props .k{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--bronze-d)}
+  .props h3{font-size:28px;margin:14px 0 12px}
+  .props p{font-size:15px;color:var(--muted)}
+
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .svc .ph{height:230px;margin-bottom:16px}
+  .svc h3{font-size:23px}
+  .svc .arrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-d);font-weight:500;margin-top:8px;display:inline-flex;gap:8px}
+  .svc:hover .arrow i{transform:translateX(5px)} .svc .arrow i{font-style:normal;transition:.2s}
+
+  .promise{background:var(--ink-2);color:var(--light)}
+  .promise .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;padding:96px 40px}
+  .promise h2{font-size:48px;color:var(--light)}
+  .promise .lede{color:var(--mutedL);margin-top:20px;font-size:17px}
+  .promise ul{list-style:none;display:grid;gap:22px}
+  .promise li{display:grid;grid-template-columns:auto 1fr;gap:18px;padding-bottom:22px;border-bottom:1px solid var(--lineL)}
+  .promise .mk{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--bronze)}
+  .promise b{font-weight:500;font-size:16px} .promise li p{font-size:14px;color:var(--mutedL);margin-top:3px}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:36px}
+  .step .n{font-family:var(--serif);font-size:60px;font-weight:500;color:var(--bronze);border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:18px}
+  .step h3{font-size:22px;margin-bottom:8px} .step p{font-size:14px;color:var(--muted)}
+  .step .tag{display:inline-block;margin-top:12px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--bg-2);padding:5px 11px}
+
+  .portfolio{background:var(--bg-2)}
+  .pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .pf .ph{height:300px;margin-bottom:14px}
+  .pf .loc{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze-d)}
+  .pf h3{font-size:21px;margin-top:4px}
+
+  .reviews .wrap{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;align-items:center}
+  .stars{color:var(--bronze);font-size:22px;letter-spacing:3px}
+  .rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .quote{font-family:var(--serif);font-size:22px;font-style:italic;line-height:1.4}
+  .by{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+
+  .area{background:var(--ink);color:var(--light)}
+  .area .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:96px 40px}
+  .area h2{color:var(--light);font-size:48px}
+  .cities{columns:2;column-gap:30px;margin-top:8px}
+  .cities li{list-style:none;padding:11px 0;border-bottom:1px solid var(--lineL);font-size:15px;break-inside:avoid}
+  .cities li::before{content:'—';color:var(--bronze);margin-right:12px}
+
+  .fin{text-align:center}
+  .fin .pill{display:inline-block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-d);border:1px solid var(--bronze);padding:8px 20px;margin-bottom:24px}
+  .fin h2{font-size:44px;max-width:18em;margin:0 auto 14px} .fin p{color:var(--muted);max-width:34em;margin:0 auto}
+
+  .cta{background:#0F1113;color:var(--light);text-align:center}
+  .cta .wrap{padding:118px 40px}
+  .cta h2{color:var(--light);font-size:62px;max-width:15em;margin:0 auto 14px}
+  .cta p{color:var(--mutedL);max-width:32em;margin:0 auto 36px}
+
+  footer{background:#0A0B0D;color:var(--mutedL)}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding:72px 0 40px}
+  .foot h5{font-family:var(--sans);font-weight:500;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze);margin-bottom:18px}
+  .foot ul{list-style:none} .foot li{padding:6px 0;font-size:14px} .foot li a:hover{color:var(--light)}
+  .foot-bottom{border-top:1px solid var(--lineL);padding:22px 0;font-size:12px;display:flex;justify-content:space-between;opacity:.7}
+  .nap{font-size:14px;line-height:1.9;margin-top:14px} .nap b{color:var(--light);font-weight:400}
+  .sticky-call{display:none}
+
+  @media(max-width:980px){
+    .wrap{padding:0 22px}.util .tags{display:none}nav.menu{display:none}
+    .hero .wrap,.promise .wrap,.area .wrap{grid-template-columns:1fr;gap:34px;padding:60px 22px}
+    .hero h1{font-size:50px}.hero-img{min-height:320px}
+    .trust .wrap{grid-template-columns:1fr 1fr}.trust .cell{border-left:0;border-top:1px solid var(--lineL);padding:24px 0}
+    .props,.services,.steps,.pf-grid,.rev-grid,.reviews .wrap{grid-template-columns:1fr}
+    .reviews .wrap{gap:34px}
+    .sec-head h2,.cta h2,.area h2,.promise h2{font-size:36px}
+    .foot{grid-template-columns:1fr 1fr}section.block{padding:64px 0}
+    .sticky-call{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--bronze);color:#15171A;align-items:center;justify-content:center;gap:10px;height:58px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:14px}
+    body{padding-bottom:58px}
+  }
+</style>
+</head>
+<body>
+
+<div class="util"><div class="wrap">
+  <div class="tags"><span><i>✦</i>State Licensed Building Contractor · CGC#________</span><span><i>✦</i>ICPI Certified</span><span><i>✦</i>35+ years</span></div>
+  <div>By appointment across Palm Beach County · 954-779-1855</div>
+</div></div>
+
+<header><div class="wrap nav">
+  <div class="brand"><div class="mark">Perfect Pavers</div><div class="sub">of Palm Beach</div></div>
+  <nav class="menu"><a href="#">Residential</a><a href="#">Commercial</a><a href="#">Portfolio</a><a href="#">About</a><a href="#">Service Areas</a></nav>
+  <div class="nav-right"><span class="nav-phone">954·779·1855</span><a href="#" class="btn btn-brass">Request a visit</a></div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">Pavers &amp; natural stone · Palm Beach County</div>
+    <h1>Built to stand on <em>for decades.</em></h1>
+    <p class="lede">Driveways, pool decks, and outdoor living for Palm Beach&rsquo;s finest properties &mdash; engineered from the base up by a State Licensed Building Contractor with 35+ years in South Florida.</p>
+    <div class="hero-cta"><a href="#" class="btn btn-brass">Request your on-site visit</a><a href="#" class="btn btn-line">Call 954·779·1855</a></div>
+  </div>
+  <div class="hero-img"><div class="ph" data-label="Your photography — e.g. travertine pool deck, Royal Palm Beach"><i>Owned before / after photography</i></div></div>
+</div></section>
+
+<section class="trust"><div class="wrap">
+  <div class="cell"><div class="ic">✦</div><h4>Proven, not promised</h4><p>35+ years and real, named projects &mdash; no stock photos.</p></div>
+  <div class="cell"><div class="ic">✦</div><h4>Licensed &amp; certified</h4><p>State Licensed Building Contractor (CGC#________) + ICPI.</p></div>
+  <div class="cell"><div class="ic">✦</div><h4>Fully transparent</h4><p>Free visit, full estimate, zero hidden change orders.</p></div>
+  <div class="cell"><div class="ic">✦</div><h4>Built to last</h4><p>Proper base, drainage, restraints &mdash; 5-year upgrade.</p></div>
+</div></div>
+
+<section class="block wrap">
+  <div class="sec-head"><span class="sec-num">01 — Why Palm Beach trusts us</span><h2>A contractor you can actually reach &mdash; before and after the check clears.</h2></div>
+  <div class="props">
+    <div class="card"><div class="k">On your terms</div><h3>On-site in 1&ndash;2 days</h3><p>Most installers take four weeks. We measure and bring real samples to your door within a day or two.</p></div>
+    <div class="card"><div class="k">No surprises</div><h3>One transparent estimate</h3><p>Rock base, drainage, and edge restraints are written in &mdash; not added later.</p></div>
+    <div class="card"><div class="k">Still here later</div><h3>We don&rsquo;t disappear</h3><p>Daily cleanup, stage-by-stage updates, a final walkthrough, and a team that answers years later.</p></div>
+  </div>
+</section>
+
+<section class="block wrap" style="padding-top:0">
+  <div class="sec-head"><span class="sec-num">02 — What we install</span><h2>Seven surfaces, one standard of finish.</h2></div>
+  <div class="services">
+    <div class="svc"><div class="ph" data-label="Driveways"><i>Driveway</i></div><h3>Driveways</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Walkways"><i>Walkway</i></div><h3>Walkways</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Patios"><i>Patio</i></div><h3>Patios</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Pool decks"><i>Pool deck</i></div><h3>Pool decks</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Outdoor living"><i>Outdoor kitchen</i></div><h3>Outdoor living</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Retaining &amp; seating walls"><i>Walls</i></div><h3>Retaining &amp; seating walls</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Natural stone"><i>Travertine</i></div><h3>Natural stone</h3><span class="arrow">Explore <i>→</i></span></div>
+    <div class="svc"><div class="ph" data-label="Clean &amp; seal"><i>Clean &amp; seal</i></div><h3>Clean &amp; seal</h3><span class="arrow">Explore <i>→</i></span></div>
+  </div>
+</section>
+
+<section class="promise"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:var(--bronze)">03 — The Perfect Pavers promise</div>
+    <h2>The honest estimate is the whole pitch.</h2>
+    <p class="lede">For every good contractor in South Florida, there are ten who cut corners on the base, vanish after the deposit, or bury change orders in the fine print. We built the opposite of that.</p>
+    <a href="#" class="btn btn-brass" style="margin-top:30px">See how we price</a>
+  </div>
+  <ul>
+    <li><span class="mk">i.</span><div><b>Free on-site visit &amp; samples</b><p>Most trades charge for the first visit. We bring the showroom to your driveway at no cost.</p></div></li>
+    <li><span class="mk">ii.</span><div><b>Everything included, in writing</b><p>Excavation, 4&ndash;6&Prime; rock base, drainage, restraints &mdash; never billed as &ldquo;extras.&rdquo;</p></div></li>
+    <li><span class="mk">iii.</span><div><b>Warranty you can upgrade to 5 years</b><p>Add extra base and hidden restraints and we extend workmanship coverage to five full years.</p></div></li>
+    <li><span class="mk">iv.</span><div><b>Refer a friend, both win $150</b><p>You receive a $150 check, they receive a $150 discount.</p></div></li>
+  </ul>
+</div></section>
+
+<section class="block wrap">
+  <div class="sec-head center"><span class="sec-num">04 — How it works</span><h2>From first call to final walkthrough.</h2></div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>On-site visit</h3><p>We measure, talk through ideas, and bring material samples to your home.</p><span class="tag">Within 1&ndash;2 days</span></div>
+    <div class="step"><div class="n">02</div><h3>Written estimate</h3><p>A full line-item breakdown &mdash; base, drainage, restraints, materials, labor.</p><span class="tag">In 24&ndash;48 hours</span></div>
+    <div class="step"><div class="n">03</div><h3>Installation</h3><p>Permits and HOA handled, wet-cutting for less dust, daily cleanup.</p><span class="tag">Licensed crew</span></div>
+    <div class="step"><div class="n">04</div><h3>Final walkthrough</h3><p>We review every detail with you, then stand behind it with our warranty.</p><span class="tag">We don&rsquo;t disappear</span></div>
+  </div>
+</section>
+
+<section class="block portfolio"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">05 — Recent work</span><h2>Real Palm Beach projects, named.</h2></div>
+  <div class="pf-grid">
+    <div class="pf"><div class="ph lt" data-label="Before / after"><i>Project photo</i></div><div class="loc">Boca Raton · Travertine</div><h3>Resort-style pool deck</h3></div>
+    <div class="pf"><div class="ph lt" data-label="Before / after"><i>Project photo</i></div><div class="loc">Palm Beach Gardens · Concrete paver</div><h3>Circular motorcourt driveway</h3></div>
+    <div class="pf"><div class="ph lt" data-label="Before / after"><i>Project photo</i></div><div class="loc">Delray Beach · Porcelain</div><h3>Outdoor kitchen &amp; lounge</h3></div>
+  </div>
+  <div style="margin-top:46px"><a href="#" class="btn btn-line">View the full portfolio</a></div>
+</div></section>
+
+<section class="block wrap reviews"><div class="wrap" style="padding:0">
+  <div>
+    <div class="stars">★★★★★</div>
+    <h2 style="font-size:42px;margin-top:14px">What neighbors say</h2>
+    <p style="color:var(--muted);margin-top:14px">Backed by verified Google reviews across Palm Beach County.</p>
+    <a href="#" class="btn btn-line" style="margin-top:24px">Read all reviews</a>
+  </div>
+  <div class="rev-grid">
+    <div><p class="quote">&ldquo;They came out two days after I called, and the price never moved an inch from the estimate.&rdquo;</p><div class="by">Homeowner · West Palm Beach</div></div>
+    <div><p class="quote">&ldquo;The driveway looks like it belongs on a million-dollar property. Neighbors keep asking who did it.&rdquo;</p><div class="by">Homeowner · Boca Raton</div></div>
+  </div>
+</div></section>
+
+<section class="area"><div class="wrap">
+  <div>
+    <div class="eyebrow" style="color:var(--bronze)">06 — Service area</div>
+    <h2>Palm Beach County is all we do.</h2>
+    <p style="color:var(--mutedL);margin-top:18px;max-width:30em">No travel charge to any city we serve. One county, one team, full attention &mdash; and genuine knowledge of local code, from swale requirements to door-threshold drainage.</p>
+  </div>
+  <ul class="cities"><li>West Palm Beach</li><li>Boca Raton</li><li>Boynton Beach</li><li>Delray Beach</li><li>Palm Beach Gardens</li><li>Lake Worth Beach</li><li>Riviera Beach</li><li>Greenacres</li><li>Wellington</li><li>Jupiter</li><li>Atlantis</li><li>Westlake</li></ul>
+</div></section>
+
+<section class="block wrap fin">
+  <div class="pill">Financing available</div>
+  <h2>Don&rsquo;t let the budget decide the timeline.</h2>
+  <p>Flexible monthly financing through Wisetack and Jobber means you can do it right the first time &mdash; full base, proper drainage, the materials you actually want.</p>
+</section>
+
+<section class="cta"><div class="wrap">
+  <div class="eyebrow" style="color:var(--bronze)">Your free on-site visit</div>
+  <h2>Let&rsquo;s walk your property.</h2>
+  <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two &mdash; samples in hand, no charge, no pressure.</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a href="#" class="btn btn-brass">Request a visit</a><a href="#" class="btn btn-line">Call 954·779·1855</a></div>
+</div></section>
+
+<footer><div class="wrap foot">
+  <div>
+    <div class="brand"><div class="mark">Perfect Pavers</div><div class="sub">of Palm Beach</div></div>
+    <div class="nap"><b>Perfect Pavers of South Florida LLC</b><br>Serving Palm Beach County, FL<br><b>954-779-1855</b> · office@perfectpavers.com<br>State Licensed Building Contractor · CGC#________<br>ICPI Certified Installer</div>
+  </div>
+  <div><h5>Residential</h5><ul><li><a href="#">Driveways</a></li><li><a href="#">Walkways</a></li><li><a href="#">Patios</a></li><li><a href="#">Pool decks</a></li><li><a href="#">Outdoor living</a></li><li><a href="#">Retaining &amp; seating walls</a></li><li><a href="#">Natural stone</a></li><li><a href="#">Clean &amp; seal</a></li></ul></div>
+  <div><h5>Company</h5><ul><li><a href="#">Why choose us</a></li><li><a href="#">Our process</a></li><li><a href="#">Portfolio</a></li><li><a href="#">Service areas</a></li><li><a href="#">Financing</a></li><li><a href="#">Commercial</a></li></ul></div>
+  <div><h5>Resources</h5><ul><li><a href="#">Blog</a></li><li><a href="#">FAQs</a></li><li><a href="#">Careers</a></li><li><a href="#">Reviews</a></li><li><a href="#">Contact</a></li></ul></div>
+</div>
+<div class="wrap foot-bottom"><span>© 2026 Perfect Pavers of South Florida LLC · Palm Beach County</span><span>Instagram · Facebook · Google</span></div>
+</footer>
+
+<a href="#" class="sticky-call">✆ &nbsp;Tap to call 954·779·1855</a>
+</body>
+</html>

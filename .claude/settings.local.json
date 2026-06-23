@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.perfectpavers.com)",
+      "mcp__visualize__read_me",
+      "Bash(mkdir -p \"/c/Users/toale/PPPB/images\" && cp \"/c/Users/toale/Downloads/Photo_concrete_vs_pavers_South_Florida.jpg\" \"/c/Users/toale/PPPB/images/hero-before-after.jpg\" && ls -la \"/c/Users/toale/PPPB/images\")",
+      "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(npm -v)",
+      "Bash(git --version)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" http://localhost:4321/)",
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/contact)",
+      "Bash(curl -s http://localhost:4321/contact)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git config *)",
+      "Bash(git -C /c/Users/toale/PPPB rev-parse --is-inside-work-tree)"
+    ]
+  }
+}

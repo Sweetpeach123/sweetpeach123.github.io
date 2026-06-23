@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const steps = [
+  { n: '01', t: 'We review your request', p: 'A member of our team looks over the surface, size and timeline you shared.' },
+  { n: '02', t: 'We call to schedule', p: 'Expect a call within one business day to set a time for your free on-site visit.' },
+  { n: '03', t: 'We visit with samples', p: 'We measure your property and bring real material samples to your door — no charge, no pressure.' },
+];
+---
+<BaseLayout
+  title="Thank You — Perfect Pavers of Palm Beach"
+  description="Thank you for your request. Our team will call within one business day to schedule your free on-site visit.">
+
+  <section class="ty">
+    <div class="wrap ty-inner">
+      <div class="ty-badge"><i>✓</i></div>
+      <div class="eyebrow" style="color:var(--brass)">Request received</div>
+      <h1>Thank you &mdash; we&rsquo;ve <em>got your details.</em></h1>
+      <p class="lede">Your request is in. A member of the Perfect Pavers team will reach out within one business day to schedule your free on-site visit across Palm Beach County.</p>
+
+      <div class="ty-cta">
+        <a href="tel:+19547791855" class="btn btn-brass">Call us now · (954) 779-1855</a>
+        <a href="/portfolio" class="btn btn-ghost">Browse recent projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <div class="sec-head center">
+      <span class="sec-num">What happens next</span>
+      <h2>From here, it&rsquo;s easy.</h2>
+    </div>
+    <div class="ty-steps">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="n">{s.n}</div>
+          <h3>{s.t}</h3>
+          <p>{s.p}</p>
+        </div>
+      ))}
+    </div>
+    <p class="ty-foot">In the meantime, feel free to explore our <a href="/services/driveways">services</a> or read <a href="/reviews">what your neighbors say</a>.</p>
+  </section>
+
+  <style>
+    .ty{background:var(--green);color:var(--ivory);text-align:center;padding:96px 0 86px}
+    .ty-inner{max-width:760px}
+    .ty-badge{width:74px;height:74px;border-radius:50%;border:1px solid var(--brass);display:flex;align-items:center;justify-content:center;margin:0 auto 26px}
+    .ty-badge i{font-style:normal;font-size:30px;color:var(--brass)}
+    .ty h1{color:var(--ivory);font-size:60px;margin-top:14px}
+    .ty h1 em{font-style:italic;color:var(--brass)}
+    .ty .lede{font-weight:300;opacity:.9;font-size:18px;max-width:36em;margin:20px auto 0}
+    .ty-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+    .ty-cta .btn-ghost{color:var(--ivory)}
+
+    .ty-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;max-width:980px;margin:0 auto}
+    .ty-foot{text-align:center;color:var(--muted);font-weight:300;margin-top:54px}
+    .ty-foot a{color:var(--brass-dark);text-decoration:underline}
+
+    @media(max-width:980px){
+      .ty{padding:62px 0 56px}
+      .ty h1{font-size:40px}
+      .ty-steps{grid-template-columns:1fr;gap:26px}
+    }
+  </style>
+
+</BaseLayout>

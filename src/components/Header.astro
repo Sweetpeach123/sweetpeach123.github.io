@@ -1,0 +1,37 @@
+---
+const nav = [
+  { label: 'Residential', href: '/residential', caret: true },
+  { label: 'Commercial', href: '/commercial' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'About', href: '/about', caret: true },
+  { label: 'Service Areas', href: '/service-areas' },
+];
+---
+<div class="util">
+  <div class="wrap">
+    <div class="tags">
+      <span><i>✦</i>State Licensed Building Contractor · CGC#________</span>
+      <span><i>✦</i>ICPI Certified Installer</span>
+      <span><i>✦</i>35+ years in South Florida</span>
+    </div>
+    <div>By appointment across Palm Beach County · <a href="tel:+19547791855">(954) 779-1855</a></div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/">
+      <div class="mark">Perfect Pavers</div>
+      <div class="sub">of Palm Beach</div>
+    </a>
+    <nav class="menu">
+      {nav.map((item) => (
+        <a href={item.href}>{item.label}{item.caret && <span> ▾</span>}</a>
+      ))}
+    </nav>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+19547791855">(954) 779-1855</a>
+      <a href="/contact" class="btn btn-brass">Request a visit</a>
+    </div>
+  </div>
+</header>
