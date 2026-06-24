@@ -15,8 +15,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--ink);background:var(--ivory);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:var(--sans);font-weight:500;line-height:1.08;letter-spacing:-.015em}
-h1 em,h2 em{font-family:var(--serif);font-style:italic;letter-spacing:0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:.005em}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
@@ -32,15 +31,15 @@ img{max-width:100%;display:block}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 
 .util{background:var(--green-deep);color:var(--ivory)}
-.util .wrap{display:flex;justify-content:space-between;align-items:center;height:40px;font-size:12px;letter-spacing:.06em}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;height:56px;font-size:14px;letter-spacing:.06em}
 .util .tags{display:flex;gap:26px;opacity:.9}
 .util .tags span i{color:var(--brass);font-style:normal;margin-right:7px}
 
 header{position:sticky;top:0;z-index:40;background:rgba(246,241,231,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:88px}
 .brand{line-height:1}
-.brand .mark{font-family:var(--sans);font-size:23px;font-weight:500;letter-spacing:.04em}
-.brand .sub{font-family:var(--sans);font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--brass-dark);margin-top:3px}
+.brand .mark{font-family:var(--serif);font-size:31px;font-weight:600;letter-spacing:.02em}
+.brand .sub{font-family:var(--sans);font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--brass-dark);margin-top:4px}
 nav.menu{display:flex;gap:34px;align-items:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
 nav.menu a{position:relative;padding:6px 0;color:var(--ink)}
 nav.menu a span{font-size:8px;vertical-align:middle;color:var(--muted)}
@@ -83,9 +82,9 @@ nav.menu .drop a:hover{background:var(--ivory-2);color:var(--brass-dark)}
 
 section.block{padding:104px 0}
 .sec-head{max-width:640px;margin-bottom:54px}
-.sec-head h2{font-size:48px;margin:16px 0 0}
+.sec-head h2{font-size:56px;margin:16px 0 0}
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
-.sec-num{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--brass-dark)}
+.sec-num{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--brass-dark)}
 
 .props{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .props .card{background:var(--ivory);padding:44px 38px}
@@ -96,7 +95,7 @@ section.block{padding:104px 0}
 .services{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .svc{position:relative}
 .svc .ph{height:230px;margin-bottom:16px}
-.svc .ph::after,.pf .ph::after{display:none}
+.pf .ph::after{display:none}
 .svc h3{font-size:23px}
 .svc .arrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-dark);font-weight:500;margin-top:8px;display:inline-flex;gap:8px;align-items:center}
 .svc .arrow i{font-style:normal;transition:.2s}
