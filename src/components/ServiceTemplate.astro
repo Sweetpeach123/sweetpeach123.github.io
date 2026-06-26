@@ -238,7 +238,7 @@ const jsonLd = [
     </div>
     <div class="materials">
       {matCards.map((m) => m.info
-        ? <button type="button" class="mat mat-btn" data-mat={m.id}>{m.name}<span class="mat-plus">+</span></button>
+        ? <button type="button" class="mat mat-btn" data-mat={m.id}>{m.name}</button>
         : <span class="mat">{m.name}</span>)}
     </div>
   </section>
@@ -378,12 +378,16 @@ const jsonLd = [
     .materials{display:flex;flex-wrap:wrap;gap:12px}
     .mat{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--ink);border:1px solid var(--line);border-radius:40px;padding:10px 24px;background:var(--ivory);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,color .35s ease,box-shadow .35s ease}
     .mat:hover{transform:translateY(-3px);border-color:var(--brass);color:var(--brass-dark);box-shadow:0 10px 26px rgba(35,35,31,.12)}
-    .mat-btn{cursor:pointer;display:inline-flex;align-items:center;gap:9px;line-height:1}
-    .mat-plus{font-family:var(--sans);font-style:normal;font-size:15px;color:var(--brass);transition:transform .35s cubic-bezier(.16,1,.3,1)}
-    .mat-btn:hover .mat-plus{color:var(--brass-dark);transform:rotate(90deg)}
+    .mat-btn{cursor:pointer;line-height:1;animation:matBreathe 2.8s ease-in-out infinite}
+    .mat-btn:hover{animation-play-state:paused;background:var(--green);border-color:var(--green);color:var(--ivory);transform:translateY(-3px) scale(1.03)}
+    @keyframes matBreathe{
+      0%,100%{box-shadow:0 0 0 0 rgba(176,138,79,0);border-color:var(--line)}
+      50%{box-shadow:0 8px 20px rgba(176,138,79,.20);border-color:var(--brass)}
+    }
 
     /* Material modal */
     .mat-overlay{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .28s ease}
+    .mat-overlay[hidden]{display:none}
     .mat-overlay.is-open{opacity:1}
     .mat-backdrop{position:absolute;inset:0;background:rgba(23,30,23,.55);backdrop-filter:blur(3px)}
     .mat-sheet{position:relative;z-index:1;width:100%;max-width:600px;max-height:88vh;background:var(--ivory);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(20,20,16,.4);transform:translateY(18px) scale(.98);transition:transform .32s cubic-bezier(.16,1,.3,1)}
@@ -429,6 +433,7 @@ const jsonLd = [
     @media(prefers-reduced-motion:reduce){
       .mat{transition:none}
       .mat:hover{transform:none}
+      .mat-btn{animation:none}
     }
   </style>
 
