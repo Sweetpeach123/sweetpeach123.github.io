@@ -31,16 +31,16 @@ const reassurance = [
         ))}
       </ul>
 
-      <div class="aside-call">
-        <div class="ac-label">Prefer to talk now?</div>
-        <a href="tel:+19547791855" class="ac-num">(954) 779-1855</a>
-        <div class="ac-meta">By appointment across Palm Beach County</div>
-      </div>
-
       <div class="aside-cred">
         <span><i>✦</i> State Licensed Building Contractor · CGC#________</span>
         <span><i>✦</i> ICPI Certified Installer</span>
         <span><i>✦</i> 35+ years in South Florida</span>
+      </div>
+
+      <div class="aside-call">
+        <div class="ac-label">Prefer to talk now?</div>
+        <a href="tel:+19547791855" class="ac-num">(954) 779-1855</a>
+        <div class="ac-meta">By appointment across Palm Beach County</div>
       </div>
     </aside>
 
@@ -80,7 +80,8 @@ const reassurance = [
     .contact-hero h1 em{font-style:italic;color:var(--brass)}
     .contact-hero .lede{font-weight:300;opacity:.9;max-width:34em;margin-top:18px;font-size:18px}
 
-    .contact-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:60px;align-items:start;padding-top:72px;padding-bottom:104px}
+    .contact-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:60px;align-items:stretch;padding-top:72px;padding-bottom:104px}
+    .contact-aside{display:flex;flex-direction:column}
 
     .reassure{list-style:none;display:grid;gap:30px}
     .reassure li{border-left:2px solid var(--brass);padding-left:22px}
@@ -88,7 +89,7 @@ const reassurance = [
     .reassure h3{font-size:24px;margin:4px 0 8px}
     .reassure p{font-size:14.5px;color:var(--muted);font-weight:300}
 
-    .aside-call{margin-top:44px;padding:28px 30px;background:var(--ivory-2);border-radius:6px}
+    .aside-call{margin-top:auto;padding:28px 30px;background:var(--ivory-2);border-radius:6px}
     .ac-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
     .ac-num{display:inline-block;font-family:var(--serif);font-size:38px;font-weight:600;color:var(--green);margin:6px 0 4px}
     .ac-meta{font-size:13px;color:var(--muted);font-weight:300}
@@ -107,6 +108,7 @@ const reassurance = [
       .contact-hero h1{font-size:42px}
       .contact-grid{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:64px}
       .form-panel{padding:22px 18px 16px}
+      .aside-call{margin-top:34px}
     }
   </style>
 
