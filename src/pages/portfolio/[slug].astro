@@ -23,8 +23,8 @@ export function getStaticPaths() {
       'Cleaned, re-sanded, and sealed for lasting color and grip',
     ],
     gallery: [
-      { src: '/images/pf-coast.jpg', alt: 'Travertine pool terrace overlooking the water at dusk' },
-      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living area with paver flooring beside the pool' },
+      { src: '/images/pf-coast.jpg', alt: 'Travertine pool terrace overlooking the water at dusk', href: '/portfolio/manalapan-oceanfront-pool-terrace', caption: 'Manalapan · Oceanfront pool terrace' },
+      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living area with paver flooring beside the pool', href: '/portfolio/boca-raton-outdoor-kitchen', caption: 'Boca Raton · Outdoor kitchen' },
     ],
   },
   'delray-beach-coastal-patio': {
@@ -47,8 +47,8 @@ export function getStaticPaths() {
       'Polymeric joint sand to resist weeds and washout',
     ],
     gallery: [
-      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living patio with pavers and seating' },
-      { src: '/images/pf-estate.jpg', alt: 'Garden terrace with natural stone paving' },
+      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living patio with pavers and seating', href: '/portfolio/boynton-beach-outdoor-living', caption: 'Boynton Beach · Outdoor living' },
+      { src: '/images/pf-estate.jpg', alt: 'Garden terrace with natural stone paving', href: '/portfolio/palm-beach-estate-terrace', caption: 'Palm Beach · Estate garden terrace' },
     ],
   },
   'west-palm-beach-paver-driveway': {
@@ -71,10 +71,16 @@ export function getStaticPaths() {
       'Permitted and built to West Palm Beach code',
     ],
     gallery: [
-      { src: '/images/pf-estate.jpg', alt: 'Estate entrance with natural stone paving' },
-      { src: '/images/pf-pooldeck.jpg', alt: 'Travertine pool deck at the same property' },
+      { src: '/images/pf-estate.jpg', alt: 'Estate entrance with natural stone paving', href: '/portfolio/palm-beach-estate-terrace', caption: 'Palm Beach · Estate garden terrace' },
+      { src: '/images/pf-pooldeck.jpg', alt: 'Travertine pool deck at the same property', href: '/portfolio/delray-beach-spa-surround', caption: 'Delray Beach · Spa & pool surround' },
     ],
   },
+
+  'manalapan-oceanfront-pool-terrace': { soon: true, city: 'Manalapan', title: 'Oceanfront pool terrace' },
+  'boca-raton-outdoor-kitchen': { soon: true, city: 'Boca Raton', title: 'Outdoor kitchen & entertaining patio' },
+  'boynton-beach-outdoor-living': { soon: true, city: 'Boynton Beach', title: 'Outdoor living & fire feature' },
+  'palm-beach-estate-terrace': { soon: true, city: 'Palm Beach', title: 'Estate garden terrace' },
+  'delray-beach-spa-surround': { soon: true, city: 'Delray Beach', title: 'Spa & pool surround' },
 };
 
   return Object.entries(projects).map(([slug, project]) => ({ params: { slug }, props: { project } }));
@@ -84,7 +90,7 @@ const p = Astro.props.project;
 ---
 <BaseLayout
   title={`${p.title} · ${p.city} · Perfect Pavers`}
-  description={p.intro}>
+  description={p.intro ?? `A Perfect Pavers project in ${p.city}, Palm Beach County — coming soon.`}>
 
   <nav class="crumbs">
     <div class="wrap">
@@ -92,6 +98,19 @@ const p = Astro.props.project;
     </div>
   </nav>
 
+  {p.soon ? (
+    <section class="block wrap proj-soon">
+      <div class="proj-meta">{p.city} · Palm Beach County</div>
+      <h1>{p.title}</h1>
+      <p class="soon-tag">Project coming soon</p>
+      <p class="soon-copy">We&rsquo;re putting this {p.city} project together right now &mdash; full photos and the story behind it are on the way. In the meantime, we&rsquo;d be glad to walk your property and talk through something similar.</p>
+      <div class="soon-cta">
+        <a href="/service-areas" class="btn btn-ghost">Back to service areas</a>
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+      </div>
+    </section>
+  ) : (
+  <Fragment>
   <section class="block wrap proj-head">
     <div class="proj-meta">{p.city} &middot; {p.surface}</div>
     <h1>{p.title}</h1>
@@ -123,7 +142,10 @@ const p = Astro.props.project;
 
   <section class="block wrap proj-gallery">
     {p.gallery.map((g) => (
-      <div class="ph"><img src={g.src} alt={g.alt} width="700" height="520" loading="lazy" decoding="async" /></div>
+      <a class="ph gphoto" href={g.href}>
+        <img src={g.src} alt={g.alt} width="700" height="520" loading="lazy" decoding="async" />
+        <span class="gcap">{g.caption}<span class="garr" aria-hidden="true">→</span></span>
+      </a>
     ))}
   </section>
 
@@ -138,6 +160,8 @@ const p = Astro.props.project;
       </div>
     </div>
   </section>
+  </Fragment>
+  )}
 
   <style>
     .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
@@ -171,9 +195,21 @@ const p = Astro.props.project;
     .spec-cta{margin-top:20px;width:100%;text-align:center}
 
     .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-top:0}
-    .proj-gallery .ph{border-radius:10px;overflow:hidden;height:360px}
-    .proj-gallery .ph img{width:100%;height:100%;object-fit:cover;display:block}
-    .proj-gallery .ph::after{display:none}
+    .gphoto{position:relative;display:block;border-radius:10px;overflow:hidden;height:360px}
+    .gphoto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+    .gphoto::after{display:none}
+    .gphoto:hover img{transform:scale(1.05)}
+    .gcap{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:32px 22px 16px;font-family:var(--sans);font-size:13px;letter-spacing:.06em;color:var(--ivory);background:linear-gradient(to top,rgba(20,25,21,.78),rgba(20,25,21,0))}
+    .garr{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .gphoto:hover .garr{transform:translateX(5px)}
+
+    /* Coming soon */
+    .proj-soon{padding-top:64px;padding-bottom:96px;text-align:center;max-width:none}
+    .proj-soon .proj-meta{margin-bottom:16px}
+    .proj-soon h1{font-size:clamp(34px,4vw,52px);line-height:1.06;margin:0}
+    .soon-tag{display:inline-block;margin:22px 0 0;padding:7px 16px;border:1px solid var(--brass);border-radius:999px;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark)}
+    .soon-copy{max-width:40em;margin:24px auto 0;font-size:17px;color:var(--muted);font-weight:300;line-height:1.7}
+    .soon-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
 
     @media(max-width:980px){
       .proj-grid{grid-template-columns:1fr;gap:34px}
