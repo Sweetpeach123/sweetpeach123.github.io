@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  { q: 'Is the first visit really free?', a: 'Yes. The on-site visit, the measurements, and the material samples we bring to your door are all free, with no obligation. Most trades charge for that first visit — we don’t.' },
+  { q: 'How soon can you come out?', a: 'Usually within 1–2 days. While many installers take four weeks just to show up, we measure your property and bring samples within a day or two.' },
+  { q: 'How long does the estimate take?', a: 'You’ll have a full written estimate within 24–48 hours. The rock base, drainage, and edge restraints are already included — the number we quote is the number you pay.' },
+  { q: 'What areas do you serve?', a: 'All of Palm Beach County, with no additional travel charge to any community in the county. If you’re not sure we reach you, just ask.' },
+  { q: 'Are you licensed and insured?', a: 'Yes. We are a State Licensed Building Contractor and an ICPI Certified Installer, and we carry insurance. That combination is rare among paver crews in Florida, and some communities won’t allow unlicensed contractors on the property.' },
+  { q: 'What warranty do you offer?', a: 'A 1-year workmanship warranty, plus the manufacturer warranties on your materials. You can upgrade the workmanship warranty to 5 years when you add extra rock base and hidden edge restraints — and we recommend it.' },
+  { q: 'Do you handle permits and HOA approval?', a: 'Yes. Because we’re a licensed building contractor, we pull the permits and manage HOA approvals for you, so the work is inspected and done to code.' },
+  { q: 'Is there a minimum project size?', a: 'Yes, our minimum project is around $1,200. It helps us keep our crews focused on doing each job right.' },
+  { q: 'Do you offer financing?', a: 'Yes. We offer financing through Wisetack and Jobber, so you can spread the cost of your project over time.' },
+  { q: 'Why pavers instead of poured or stamped concrete?', a: 'Concrete cracks as Florida ground shifts; pavers flex and stay put. Pavers can be spot-repaired with no visible patch, won’t fade like stamped concrete, add real property value, and help a home sell faster.' },
+  { q: 'What materials do you install?', a: 'Concrete pavers, natural stone such as travertine and limestone, porcelain pavers, interlocking brick pavers, permeable paving systems, and artificial grass.' },
+  { q: 'How often should pavers be cleaned and sealed?', a: 'About every 12–18 months. Our Clean & Seal service handles cleaning, joint re-sanding, and sealing — and if rain interrupts the job, we come back at no charge.' },
+  { q: 'Do you have a referral program?', a: 'We do. Refer a friend and you receive a $150 check, and your friend gets a $150 discount on their project.' },
+];
+---
+<BaseLayout
+  title="FAQs · Perfect Pavers of Palm Beach"
+  description="Answers to common questions about paver installation in Palm Beach County — free estimates, licensing, warranties, permits, financing, materials, and sealing.">
+
+  <nav class="crumbs">
+    <div class="wrap">
+      <a href="/">Home</a> <span>/</span> <a href="/about/why-choose-us">About</a> <span>/</span> <strong>FAQs</strong>
+    </div>
+  </nav>
+
+  <section class="faq-hero">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Questions &amp; answers</div>
+      <h1>The honest <em>answers,</em> up front.</h1>
+      <p class="lede">The same straight answers we give at your kitchen table — about cost, licensing, warranties, and how we build. If your question isn’t here, just ask.</p>
+    </div>
+  </section>
+
+  <section class="block wrap faq-wrap">
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <details class="faq">
+          <summary>
+            <span class="faq-q">{f.q}</span>
+            <span class="faq-ic" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Still have a question?</div>
+      <h2>Ask us directly.</h2>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
+    .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .crumbs a:hover{color:var(--brass-dark)}
+    .crumbs span{margin:0 8px;color:var(--brass)}
+    .crumbs strong{font-weight:500;color:var(--ink)}
+
+    .faq-hero{background:var(--green);color:var(--ivory);padding:78px 0 66px}
+    .faq-hero h1{font-size:58px;line-height:1.06;color:var(--ivory);margin-top:14px}
+    .faq-hero h1 em{font-style:italic;color:var(--brass)}
+    .faq-hero .lede{font-weight:300;opacity:.9;max-width:38em;margin-top:18px;font-size:18px}
+
+    .faq-list{max-width:820px;margin:0 auto;border-top:1px solid var(--line)}
+    .faq{border-bottom:1px solid var(--line)}
+    .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 4px;transition:color .3s}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq-q{font-family:var(--serif);font-size:21px;color:var(--ink);line-height:1.3}
+    .faq summary:hover .faq-q{color:var(--brass-dark)}
+    .faq-ic{position:relative;flex:0 0 auto;width:18px;height:18px}
+    .faq-ic::before,.faq-ic::after{content:'';position:absolute;background:var(--brass);transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .35s}
+    .faq-ic::before{top:8px;left:0;width:18px;height:2px}
+    .faq-ic::after{left:8px;top:0;width:2px;height:18px}
+    .faq[open] .faq-ic::after{transform:scaleY(0);opacity:0}
+    .faq-a{overflow:hidden;padding:0 4px}
+    .faq-a p{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:64ch;padding-bottom:24px;margin-top:-4px}
+    .faq[open] summary .faq-q{color:var(--green)}
+
+    @media(max-width:980px){
+      .faq-hero{padding:56px 0 48px}
+      .faq-hero h1{font-size:38px}
+      .faq-q{font-size:18px}
+    }
+  </style>
+
+</BaseLayout>

@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const steps = [
+  { n: '01', t: 'Your free on-site visit', meta: 'Within 1–2 days', p: 'We come to you — measure the space, listen to how you want to use it, and bring real material samples to your door. No charge, no pressure, and no obligation.' },
+  { n: '02', t: 'One transparent estimate', meta: '24–48 hours', p: 'You receive a full written estimate with the rock base, drainage, and edge restraints already included. The number we quote is the number you pay — no surprise change orders later.' },
+  { n: '03', t: 'Design, material & color', meta: 'Together', p: 'We help you choose the paver, pattern, and color that fits the home and the budget, and answer every question honestly — including when a simpler option is the smarter one.' },
+  { n: '04', t: 'Contract & deposit', meta: 'Your go-ahead', p: 'Everything is put in writing: scope, materials, timeline, and price. A deposit secures your place on the schedule and your material order.' },
+  { n: '05', t: 'Permits & HOA approval', meta: 'We handle it', p: 'As a State Licensed Building Contractor, we pull the permits and manage HOA approvals for you — so the job is done to code and inspected, not done in the dark.' },
+  { n: '06', t: 'Installation, done right', meta: 'On schedule', p: 'A proper excavated base, real drainage, and hidden edge restraints go in first. We wet-cut to reduce dust, clean the site every day, and keep you updated at every stage.' },
+  { n: '07', t: 'Final walkthrough', meta: 'Together', p: 'We walk the finished job with you, make sure every detail is right, and explain how to care for your new surface so it looks its best for years.' },
+  { n: '08', t: 'Warranty & we stay reachable', meta: 'Years later', p: 'You get a workmanship warranty (upgradable to 5 years) plus manufacturer warranties — and a local team that still answers the phone long after the install.' },
+];
+
+const foundations = [
+  { t: 'A proper rock base', p: 'A compacted 4–6 inch base is what keeps a surface flat for decades. It is the part you never see — and the part most corner-cutters skip.' },
+  { t: 'Real drainage & slope', p: 'Heavy rain and sandy Florida soil demand controlled pitch and drainage, so water flows away from your home, never toward it.' },
+  { t: 'Hidden edge restraints', p: 'Edge restraints lock the pavers in place so they don’t spread or shift over time — quietly doing the work that prevents future repairs.' },
+  { t: 'Built to local code', p: 'Swale rules, sidewalk thickness, door-threshold heights — we know the Palm Beach County specifics and build to them every time.' },
+];
+---
+<BaseLayout
+  title="Our Process · How We Build · Perfect Pavers of Palm Beach"
+  description="From a free on-site visit and a transparent written estimate to permits, a properly based installation, and a workmanship warranty — here is exactly how Perfect Pavers builds in Palm Beach County.">
+
+  <nav class="crumbs">
+    <div class="wrap">
+      <a href="/">Home</a> <span>/</span> <a href="/about/why-choose-us">About</a> <span>/</span> <strong>Our process</strong>
+    </div>
+  </nav>
+
+  <section class="proc-hero">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">How we work</div>
+      <h1>From first visit to final <em>walkthrough.</em></h1>
+      <p class="lede">No mystery, no runaround. Here is exactly how a Perfect Pavers project goes — the same honest, step-by-step way we have worked across Palm Beach County for decades.</p>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <div class="sec-head">
+      <span class="sec-num">The journey</span>
+      <h2>Eight clear steps.</h2>
+    </div>
+    <ol class="steps-line">
+      {steps.map((s) => (
+        <li class="step">
+          <div class="step-n">{s.n}</div>
+          <div class="step-body">
+            <div class="step-head"><h3>{s.t}</h3><span class="step-meta">{s.meta}</span></div>
+            <p>{s.p}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="block wrap" style="padding-top:0">
+    <div class="sec-head">
+      <span class="sec-num">Beneath the surface</span>
+      <h2>What makes it last.</h2>
+    </div>
+    <p class="found-intro">A driveway or pool deck is only as good as the work you can&rsquo;t see. This is where we never cut corners.</p>
+    <div class="found-grid">
+      {foundations.map((f) => (
+        <div class="found">
+          <span class="found-mk" aria-hidden="true">✦</span>
+          <h3>{f.t}</h3>
+          <p>{f.p}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Ready to start?</div>
+      <h2>Step one is free.</h2>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
+    .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .crumbs a:hover{color:var(--brass-dark)}
+    .crumbs span{margin:0 8px;color:var(--brass)}
+    .crumbs strong{font-weight:500;color:var(--ink)}
+
+    .proc-hero{background:var(--green);color:var(--ivory);padding:78px 0 66px}
+    .proc-hero h1{font-size:58px;line-height:1.06;color:var(--ivory);margin-top:14px;max-width:15em}
+    .proc-hero h1 em{font-style:italic;color:var(--brass)}
+    .proc-hero .lede{font-weight:300;opacity:.9;max-width:38em;margin-top:18px;font-size:18px}
+
+    .steps-line{list-style:none;counter-reset:none;max-width:860px}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:26px;padding:26px 0;border-top:1px solid var(--line)}
+    .step:first-child{border-top:none}
+    .step-n{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--brass);line-height:1;min-width:54px}
+    .step-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .step-head h3{font-size:24px}
+    .step-meta{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-dark);white-space:nowrap}
+    .step-body p{font-size:16px;color:var(--muted);font-weight:300;line-height:1.7;margin-top:10px;max-width:60ch}
+
+    .found-intro{font-size:17px;color:var(--muted);font-weight:300;max-width:54ch;margin-bottom:34px}
+    .found-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+    .found{background:var(--ivory);padding:30px 32px}
+    .found-mk{color:var(--brass);font-size:13px}
+    .found h3{font-size:21px;margin:12px 0 8px}
+    .found p{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.65}
+
+    @media(max-width:980px){
+      .proc-hero{padding:56px 0 48px}
+      .proc-hero h1{font-size:40px}
+      .step{grid-template-columns:1fr;gap:8px}
+      .step-n{font-size:28px}
+      .found-grid{grid-template-columns:1fr}
+    }
+  </style>
+
+</BaseLayout>
