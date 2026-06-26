@@ -1,18 +1,110 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const roles = [
-  { k: 'Field', t: 'Paver & Hardscape Installer', p: 'Build bases, set pavers, run compaction and cutting. Experience helps, but we will train the right person who shows up on time and takes pride in clean work.' },
-  { k: 'Field', t: 'Crew Leader / Foreman', p: 'Run a job site from base to final walkthrough, including the daily cleanup and client updates we are known for. For someone who leads by example.' },
-  { k: 'Sales', t: 'Estimator / Sales Consultant', p: 'Measure properties, bring samples, and write the honest, all-in estimates that earn a homeowner’s trust. Local knowledge and a straight answer beat a hard sell.' },
-  { k: 'Service', t: 'Clean & Seal Technician', p: 'Clean, re-sand, and seal paver surfaces with care. Detail-driven work that turns a one-time job into a customer for life.' },
+const benefits = [
+  'Medical, dental & vision insurance',
+  '401(k) retirement plan with company match',
+  'Paid time off and paid holidays',
+  'Workers’ compensation coverage',
+  'Paid training and ICPI certification',
+  'Company truck, equipment, and uniforms provided',
+  'Steady, year-round work — no seasonal layoffs',
+  'A clear path into lead and management roles',
 ];
 
-const reasons = [
-  { t: 'Year-round work', p: 'In South Florida there is no slow winter season. Our crews stay busy and paid through every month of the year.' },
-  { t: 'An established company', p: 'Licensed, ICPI certified, and installing across two counties since 1988 — not a fly-by-night crew that folds after a bad season.' },
-  { t: 'Treated like family', p: '“We treat people like family, not like numbers.” That goes for our customers and our team alike.' },
-  { t: 'Room to grow', p: 'Several of our leads and estimators started on a crew. Do good work and the path up is real, not a slogan.' },
+const roles = [
+  {
+    id: 'installer',
+    k: 'Field',
+    t: 'Paver & Hardscape Installer',
+    p: 'Build bases, set pavers, run compaction and cutting. Experience helps, but we will train the right person who shows up on time and takes pride in clean work.',
+    pay: '$18–$26 / hour',
+    payNote: 'Based on experience, plus overtime — roughly $38,000–$54,000 a year.',
+    schedule: 'Full-time · Day shift · Broward & Palm Beach job sites',
+    duties: [
+      'Excavate and build proper rock bases to grade',
+      'Set concrete pavers, natural stone, and porcelain to layout',
+      'Operate plate compactors, saws, and hand tools safely',
+      'Install edge restraints and handle joint sanding',
+      'Leave every job site clean at the end of the day',
+    ],
+    looking: [
+      'A strong work ethic and reliable, on-time attendance',
+      'Able to do physical outdoor work in the Florida climate',
+      'Hardscape or construction experience is a plus — we’ll train the right person',
+      'Valid driver’s license preferred',
+      'Pride in clean, square, lasting work',
+    ],
+  },
+  {
+    id: 'foreman',
+    k: 'Field',
+    t: 'Crew Leader / Foreman',
+    p: 'Run a job site from base to final walkthrough, including the daily cleanup and client updates we are known for. For someone who leads by example.',
+    pay: '$28–$38 / hour',
+    payNote: 'Based on experience, plus overtime — roughly $58,000–$79,000 a year.',
+    schedule: 'Full-time · Day shift · Leads a crew across Broward & Palm Beach',
+    duties: [
+      'Run a job site from base prep through final walkthrough',
+      'Read plans, set layout, and hold tolerances tight',
+      'Lead and mentor a crew of installers',
+      'Manage materials, daily cleanup, and client updates',
+      'Be the on-site point of contact the customer trusts',
+    ],
+    looking: [
+      '3+ years of hardscape / paver experience, including lead work',
+      'Able to read site plans and manage a daily schedule',
+      'Strong communication with both crew and homeowners',
+      'Valid driver’s license',
+      'A lead-by-example attitude',
+    ],
+  },
+  {
+    id: 'sales',
+    k: 'Sales',
+    t: 'Estimator / Sales Consultant',
+    p: 'Measure properties, bring samples, and write the honest, all-in estimates that earn a homeowner’s trust. Local knowledge and a straight answer beat a hard sell.',
+    pay: '$55,000–$95,000+ / year',
+    payNote: 'Base salary plus commission. Top performers earn more.',
+    schedule: 'Full-time · Field + office · Broward & Palm Beach',
+    duties: [
+      'Meet homeowners on-site, measure, and bring material samples',
+      'Design solutions and write honest, all-in written estimates',
+      'Guide clients from the first visit through a signed contract',
+      'Coordinate a clean handoff to the install crew',
+      'Represent the company with integrity, never a hard sell',
+    ],
+    looking: [
+      'Sales or estimating experience, ideally in home improvement or construction',
+      'Comfortable talking numbers and explaining value clearly',
+      'Knowledge of pavers / hardscape is a strong plus',
+      'Organized follow-up and CRM discipline',
+      'Valid driver’s license and reliable vehicle',
+    ],
+  },
+  {
+    id: 'cleanseal',
+    k: 'Service',
+    t: 'Clean & Seal Technician',
+    p: 'Clean, re-sand, and seal paver surfaces with care. Detail-driven work that turns a one-time job into a customer for life.',
+    pay: '$20–$28 / hour',
+    payNote: 'Based on experience, plus overtime — roughly $42,000–$58,000 a year.',
+    schedule: 'Full-time · Day shift · Broward & Palm Beach',
+    duties: [
+      'Pressure-wash and deep-clean driveways, patios, and pool decks',
+      'Re-sand joints and apply sealer to manufacturer spec',
+      'Allow full drying time — never rush the finish',
+      'Advise customers honestly on timing and care',
+      'Keep equipment and the work area clean and organized',
+    ],
+    looking: [
+      'Detail-oriented and patient with finish work',
+      'Pressure-washing or paver-sealing experience a plus',
+      'Able to do physical outdoor work year-round',
+      'Valid driver’s license preferred',
+      'Reliable and customer-friendly',
+    ],
+  },
 ];
 ---
 <BaseLayout
@@ -39,12 +131,10 @@ const reasons = [
       <h2>A steady trade, with people worth staying for.</h2>
     </div>
     <div class="props why-grid">
-      {reasons.map((r) => (
-        <div class="card">
-          <h3>{r.t}</h3>
-          <p>{r.p}</p>
-        </div>
-      ))}
+      <div class="card"><h3>Year-round work</h3><p>In South Florida there is no slow winter season. Our crews stay busy and paid through every month of the year.</p></div>
+      <div class="card"><h3>An established company</h3><p>Licensed, ICPI certified, and installing across two counties since 1988 — not a fly-by-night crew that folds after a bad season.</p></div>
+      <div class="card"><h3>Treated like family</h3><p>“We treat people like family, not like numbers.” That goes for our customers and our team alike.</p></div>
+      <div class="card"><h3>Room to grow</h3><p>Several of our leads and estimators started on a crew. Do good work and the path up is real, not a slogan.</p></div>
     </div>
   </section>
 
@@ -53,13 +143,15 @@ const reasons = [
       <span class="sec-num">Open roles</span>
       <h2>Where we are hiring.</h2>
     </div>
+    <p class="roles-hint">Tap a role to see pay, what you&rsquo;ll do, and what we offer.</p>
     <div class="roles">
       {roles.map((r) => (
-        <article class="role">
+        <button class="role" type="button" data-open={r.id} aria-haspopup="dialog">
           <span class="role-k">{r.k}</span>
           <h3>{r.t}</h3>
           <p>{r.p}</p>
-        </article>
+          <span class="role-more">View details <span aria-hidden="true">→</span></span>
+        </button>
       ))}
     </div>
     <p class="roles-note">Don&rsquo;t see your role? We are always glad to hear from skilled, reliable people. Send us a note anyway.</p>
@@ -77,6 +169,77 @@ const reasons = [
     </div>
   </section>
 
+  {roles.map((r) => (
+    <div class="role-overlay" id={`ov-${r.id}`} role="dialog" aria-modal="true" aria-labelledby={`t-${r.id}`} aria-hidden="true">
+      <div class="role-sheet">
+        <button class="sheet-close" type="button" aria-label="Close">&times;</button>
+        <div class="sheet-scroll">
+          <span class="role-k">{r.k}</span>
+          <h2 id={`t-${r.id}`} class="sheet-title">{r.t}</h2>
+
+          <div class="sheet-pay">
+            <span class="pay-n">{r.pay}</span>
+            <span class="pay-note">{r.payNote}</span>
+            <span class="pay-meta">{r.schedule}</span>
+          </div>
+
+          <h4>What you&rsquo;ll do</h4>
+          <ul class="sheet-list">{r.duties.map((d) => <li>{d}</li>)}</ul>
+
+          <h4>What we&rsquo;re looking for</h4>
+          <ul class="sheet-list">{r.looking.map((d) => <li>{d}</li>)}</ul>
+
+          <h4>What we offer</h4>
+          <ul class="sheet-list offer">{benefits.map((d) => <li>{d}</li>)}</ul>
+
+          <div class="sheet-apply">
+            <a href={`mailto:office@perfectpavers.com?subject=${encodeURIComponent('Careers — ' + r.t)}`} class="btn btn-brass">Apply for this role</a>
+            <a href="tel:+19547791855" class="btn btn-ghost">Call (954) 779-1855</a>
+          </div>
+          <p class="sheet-foot">Pay ranges are estimates and depend on experience. Benefits are offered per company policy and U.S. eligibility requirements.</p>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <script is:inline>
+    (function () {
+      const lock = () => { document.body.style.overflow = 'hidden'; };
+      const unlock = () => { document.body.style.overflow = ''; };
+      let openEl = null;
+
+      function open(id) {
+        const ov = document.getElementById('ov-' + id);
+        if (!ov) return;
+        ov.classList.add('open');
+        ov.setAttribute('aria-hidden', 'false');
+        openEl = ov;
+        lock();
+        const scroll = ov.querySelector('.sheet-scroll');
+        if (scroll) scroll.scrollTop = 0;
+        const close = ov.querySelector('.sheet-close');
+        if (close) close.focus();
+      }
+      function close() {
+        if (!openEl) return;
+        openEl.classList.remove('open');
+        openEl.setAttribute('aria-hidden', 'true');
+        openEl = null;
+        unlock();
+      }
+
+      document.querySelectorAll('[data-open]').forEach((btn) => {
+        btn.addEventListener('click', () => open(btn.getAttribute('data-open')));
+      });
+      document.querySelectorAll('.role-overlay').forEach((ov) => {
+        ov.addEventListener('click', (e) => { if (e.target === ov) close(); });
+        const c = ov.querySelector('.sheet-close');
+        if (c) c.addEventListener('click', close);
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
+
   <style>
     .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
     .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -91,17 +254,54 @@ const reasons = [
 
     .why-grid{grid-template-columns:1fr 1fr}
 
+    .roles-hint{margin:-8px 0 22px;font-size:13px;letter-spacing:.04em;color:var(--muted)}
     .roles{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .role{border:1px solid var(--line);border-radius:8px;background:var(--ivory);padding:26px 28px}
+    .role{display:block;width:100%;text-align:left;border:1px solid var(--line);border-radius:8px;background:var(--ivory);padding:26px 28px;cursor:pointer;font:inherit;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1),border-color .5s}
+    .role:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(35,35,31,.12);border-color:var(--brass)}
+    .role:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
     .role-k{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark);margin-bottom:10px}
     .role h3{font-size:22px;margin-bottom:8px}
     .role p{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.65}
+    .role-more{display:inline-block;margin-top:16px;font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-dark)}
+    .role-more span{transition:transform .4s cubic-bezier(.16,1,.3,1);display:inline-block}
+    .role:hover .role-more span{transform:translateX(5px)}
     .roles-note{margin-top:26px;font-size:15px;color:var(--muted);font-weight:300;font-family:var(--serif);font-style:italic}
+
+    /* Slide-up sheet */
+    .role-overlay{position:fixed;inset:0;z-index:120;display:flex;align-items:flex-end;justify-content:center;padding:24px;background:rgba(23,33,28,0);visibility:hidden;transition:background .45s ease,visibility .45s}
+    .role-overlay.open{background:rgba(23,33,28,.5);visibility:visible}
+    .role-sheet{position:relative;width:100%;max-width:640px;max-height:88vh;display:flex;flex-direction:column;background:var(--ivory);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 80px rgba(20,20,17,.4);transform:translateY(40px);opacity:0;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s cubic-bezier(.16,1,.3,1)}
+    .role-overlay.open .role-sheet{transform:translateY(0);opacity:1}
+    @media(min-width:720px){.role-overlay{align-items:center}}
+
+    .sheet-close{position:absolute;top:12px;right:14px;z-index:2;width:38px;height:38px;border:none;border-radius:50%;background:var(--ivory-2);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;transition:background .3s,color .3s}
+    .sheet-close:hover{background:var(--green);color:var(--ivory)}
+
+    .sheet-scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:38px 40px 34px}
+    .sheet-scroll .role-k{margin-bottom:8px}
+    .sheet-title{font-size:34px;line-height:1.1;margin-bottom:20px}
+    .sheet-pay{background:var(--ivory-2);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:26px}
+    .pay-n{display:block;font-family:var(--serif);font-size:28px;font-weight:600;color:var(--green);line-height:1}
+    .pay-note{display:block;margin-top:6px;font-size:14px;color:var(--ink);font-weight:300}
+    .pay-meta{display:block;margin-top:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .sheet-scroll h4{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark);margin:24px 0 12px}
+    .sheet-list{list-style:none;display:grid;gap:9px}
+    .sheet-list li{position:relative;padding-left:22px;font-size:15px;color:var(--ink);font-weight:300;line-height:1.55}
+    .sheet-list li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--brass);font-size:12px}
+    .sheet-list.offer li::before{content:'✓';color:var(--green);font-weight:600}
+    .sheet-apply{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .sheet-foot{margin-top:18px;font-size:12px;color:var(--muted);font-weight:300;line-height:1.6}
 
     @media(max-width:980px){
       .careers-hero{padding:56px 0 48px}
       .careers-hero h1{font-size:42px}
+      .why-grid{grid-template-columns:1fr}
       .roles{grid-template-columns:1fr}
+      .sheet-scroll{padding:34px 24px 28px}
+      .sheet-title{font-size:28px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .role,.role-overlay,.role-sheet,.role-more span{transition:none}
     }
   </style>
 
