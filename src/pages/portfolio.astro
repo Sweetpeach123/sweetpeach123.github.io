@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  { href: '/portfolio/boca-raton-travertine-pool-deck', img: '/images/pf-pooldeck.jpg', loc: 'Boca Raton · Travertine', title: 'Resort-style pool deck', alt: 'Travertine paver pool deck in Boca Raton' },
+  { href: '/portfolio/delray-beach-coastal-patio', img: '/images/pf-coast.jpg', loc: 'Delray Beach · Porcelain', title: 'Coastal patio & walkway', alt: 'Coastal paver patio in Delray Beach' },
+  { href: '/portfolio/west-palm-beach-paver-driveway', img: '/images/pf-driveway.jpg', loc: 'West Palm Beach · Concrete pavers', title: 'Estate paver driveway', alt: 'Interlocking paver driveway in West Palm Beach' },
+  { href: '/portfolio/manalapan-oceanfront-pool-terrace', img: '/images/hero-estate.jpg', loc: 'Manalapan · Travertine', title: 'Oceanfront pool terrace', alt: 'Oceanfront paver pool terrace in Manalapan', soon: true },
+  { href: '/portfolio/boca-raton-outdoor-kitchen', img: '/images/pf-outdoor.jpg', loc: 'Boca Raton · Outdoor living', title: 'Outdoor kitchen & patio', alt: 'Outdoor kitchen and paver patio in Boca Raton', soon: true },
+  { href: '/portfolio/palm-beach-estate-terrace', img: '/images/pf-estate.jpg', loc: 'Palm Beach · Natural stone', title: 'Estate garden terrace', alt: 'Natural stone estate garden terrace in Palm Beach', soon: true },
+  { href: '/portfolio/boynton-beach-outdoor-living', img: '/images/hero-driveway.jpg', loc: 'Boynton Beach · Outdoor living', title: 'Outdoor living & fire feature', alt: 'Outdoor living area with pavers in Boynton Beach', soon: true },
+  { href: '/portfolio/delray-beach-spa-surround', img: '/images/pf-pooldeck.jpg', loc: 'Delray Beach · Travertine', title: 'Spa & pool surround', alt: 'Travertine spa and pool surround in Delray Beach', soon: true },
+];
+---
+<BaseLayout
+  title="Portfolio · Paver Projects Across Palm Beach County · Perfect Pavers"
+  description="A look at paver driveways, pool decks, patios and outdoor living we’ve built across Palm Beach County — Boca Raton, Delray Beach, West Palm Beach and beyond.">
+
+  <nav class="crumbs">
+    <div class="wrap">
+      <a href="/">Home</a> <span>/</span> <strong>Portfolio</strong>
+    </div>
+  </nav>
+
+  <section class="port-hero">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Our work</div>
+      <h1>Real projects, real <em>Palm Beach homes.</em></h1>
+      <p class="lede">No stock photos — just driveways, pool decks, and patios we have built across the county. Tap any project to see how it came together.</p>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <div class="pf-grid">
+      {projects.map((p) => (
+        <a class="pf" href={p.href}>
+          <div class="ph">
+            <img loading="lazy" decoding="async" src={p.img} alt={p.alt} width="700" height="600" />
+            {p.soon && <span class="pf-soon">Coming soon</span>}
+          </div>
+          <div class="loc">{p.loc}</div>
+          <h3>{p.title}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Your project next?</div>
+      <h2>Let&rsquo;s build something that lasts.</h2>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="/service-areas" class="btn btn-ghost" style="color:var(--ivory)">See where we work</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
+    .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .crumbs a:hover{color:var(--brass-dark)}
+    .crumbs span{margin:0 8px;color:var(--brass)}
+    .crumbs strong{font-weight:500;color:var(--ink)}
+
+    .port-hero{background:var(--green);color:var(--ivory);padding:78px 0 66px}
+    .port-hero h1{font-size:58px;line-height:1.06;color:var(--ivory);margin-top:14px;max-width:15em}
+    .port-hero h1 em{font-style:italic;color:var(--brass)}
+    .port-hero .lede{font-weight:300;opacity:.9;max-width:38em;margin-top:18px;font-size:18px}
+
+    .pf .ph{position:relative}
+    .pf-soon{position:absolute;top:14px;left:14px;background:rgba(23,33,28,.82);color:var(--ivory);font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+
+    @media(max-width:980px){
+      .port-hero{padding:56px 0 48px}
+      .port-hero h1{font-size:40px}
+    }
+  </style>
+
+</BaseLayout>

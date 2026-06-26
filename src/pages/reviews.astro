@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const reviews = [
+  { q: 'They came out two days after I called, and the price never moved an inch from the estimate. Exactly what they promised.', n: 'Mark R.', m: 'West Palm Beach · Paver driveway' },
+  { q: 'The travertine deck completely changed our backyard. It stays cool underfoot even in July, and it looks like a resort now.', n: 'Jennifer L.', m: 'Boca Raton · Pool deck' },
+  { q: 'Licensed, on time, and they pulled every permit. After years of dealing with bad contractors, this was such a relief.', n: 'David & Susan P.', m: 'Delray Beach · Patio' },
+  { q: 'Neighbors keep asking who did our driveway. Honestly the best money we have spent on the house.', n: 'Anthony G.', m: 'Palm Beach Gardens · Driveway' },
+  { q: 'They cleaned and sealed our pavers and they look brand new again. A rain delay came up and they returned at no charge.', n: 'Carol M.', m: 'Boynton Beach · Clean & Seal' },
+  { q: 'Honest from the very first visit. They even pointed out where we could save instead of trying to upsell us.', n: 'Robert T.', m: 'Greenacres · Walkway' },
+  { q: 'The crew cleaned the job site every single day and kept us updated at every stage. True professionals.', n: 'Maria S.', m: 'Lake Worth Beach · Outdoor living' },
+  { q: 'From the estimate to the final walkthrough, everything was exactly as described. Five stars without hesitation.', n: 'James W.', m: 'Riviera Beach · Driveway' },
+  { q: 'Our pool deck feels like a five-star hotel now. We could not be happier with the porcelain pavers they recommended.', n: 'Linda K.', m: 'Boca Raton · Pool deck' },
+];
+---
+<BaseLayout
+  title="Reviews · What Palm Beach Homeowners Say · Perfect Pavers"
+  description="Verified reviews from Palm Beach County homeowners on Perfect Pavers — honest estimates, on-time crews, permits handled, and paver work that lasts.">
+
+  <nav class="crumbs">
+    <div class="wrap">
+      <a href="/">Home</a> <span>/</span> <strong>Reviews</strong>
+    </div>
+  </nav>
+
+  <section class="rev-hero">
+    <div class="wrap">
+      <div class="stars">★★★★★</div>
+      <h1>What neighbors <em>say.</em></h1>
+      <p class="lede">For every good contractor in South Florida there are ten who cut corners. These are the homeowners who found the difference — verified reviews from across Palm Beach County.</p>
+      <div class="rev-cta">
+        <a href="/contact" class="btn btn-brass">Request your free visit</a>
+        <a href="tel:+19547791855" class="btn btn-ghost">Call (954) 779-1855</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block wrap">
+    <div class="review-grid">
+      {reviews.map((r) => (
+        <figure class="review">
+          <div class="stars sm">★★★★★</div>
+          <blockquote>{r.q}</blockquote>
+          <figcaption>
+            <span class="r-name">{r.n}</span>
+            <span class="r-meta">{r.m}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Join them</div>
+      <h2>Let&rsquo;s earn your five stars.</h2>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="/portfolio" class="btn btn-ghost" style="color:var(--ivory)">See our work</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
+    .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .crumbs a:hover{color:var(--brass-dark)}
+    .crumbs span{margin:0 8px;color:var(--brass)}
+    .crumbs strong{font-weight:500;color:var(--ink)}
+
+    .rev-hero{background:var(--green);color:var(--ivory);padding:74px 0 64px}
+    .rev-hero .stars{font-size:24px}
+    .rev-hero h1{font-size:58px;line-height:1.06;color:var(--ivory);margin-top:14px}
+    .rev-hero h1 em{font-style:italic;color:var(--brass)}
+    .rev-hero .lede{font-weight:300;opacity:.9;max-width:42em;margin-top:18px;font-size:18px}
+    .rev-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+
+    .review-grid{columns:3;column-gap:24px}
+    .review{break-inside:avoid;margin:0 0 24px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);padding:26px 28px}
+    .stars.sm{font-size:15px;letter-spacing:2px}
+    .review blockquote{font-family:var(--serif);font-size:17.5px;line-height:1.55;color:var(--ink);margin:14px 0 18px}
+    .review figcaption{display:flex;flex-direction:column;gap:4px}
+    .r-name{font-size:14px;font-weight:500;color:var(--ink)}
+    .r-meta{font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-dark)}
+
+    @media(max-width:980px){
+      .rev-hero{padding:54px 0 46px}
+      .rev-hero h1{font-size:38px}
+      .review-grid{columns:2}
+    }
+    @media(max-width:620px){
+      .review-grid{columns:1}
+    }
+  </style>
+
+</BaseLayout>
