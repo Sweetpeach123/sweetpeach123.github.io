@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  const projects = {
+  'boca-raton-travertine-pool-deck': {
+    city: 'Boca Raton',
+    surface: 'French-pattern travertine',
+    title: 'Resort-style travertine pool deck',
+    hero: '/images/pf-pooldeck.jpg',
+    heroAlt: 'Travertine paver pool deck surrounding a resort-style pool in Boca Raton',
+    intro: 'A dated, slippery concrete deck gave way to a cool-underfoot travertine surround that turned this Boca Raton backyard into a private resort.',
+    specs: { Location: 'Boca Raton, FL', Surface: 'French-pattern travertine', Scope: 'Pool deck · spa surround · step bands', Size: '≈ 1,850 sq ft', Timeline: '9 working days' },
+    body: [
+      'The original poured deck had cracked and heated up under the Florida sun, making it uncomfortable to walk on and unsafe around the water. We removed it entirely, corrected the slope away from the pool and home, and rebuilt on a compacted base with proper drainage.',
+      'Travertine was the natural choice here: it stays cool underfoot, resists slipping when wet, and gives the whole space that quiet, high-end feel the homeowners were after. We wrapped the spa, banded every step, and sealed the surface to hold its color against pool chemicals and salt air.',
+    ],
+    work: [
+      'Full demolition and haul-away of the failing concrete deck',
+      'Re-graded and compacted base with positive drainage away from the pool',
+      'French-pattern travertine set with tight, consistent joints',
+      'Custom step bands and spa surround for a finished, built-in look',
+      'Cleaned, re-sanded, and sealed for lasting color and grip',
+    ],
+    gallery: [
+      { src: '/images/pf-coast.jpg', alt: 'Travertine pool terrace overlooking the water at dusk' },
+      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living area with paver flooring beside the pool' },
+    ],
+  },
+  'delray-beach-coastal-patio': {
+    city: 'Delray Beach',
+    surface: 'Porcelain & concrete pavers',
+    title: 'Coastal patio & garden walkway',
+    hero: '/images/pf-coast.jpg',
+    heroAlt: 'Paver patio and walkway in a coastal Delray Beach garden',
+    intro: 'A connected patio and walkway designed for salt air, sun, and the kind of year-round entertaining Delray Beach is built for.',
+    specs: { Location: 'Delray Beach, FL', Surface: 'Porcelain & concrete pavers', Scope: 'Rear patio · garden walkway · seat wall', Size: '≈ 1,200 sq ft', Timeline: '7 working days' },
+    body: [
+      'The owners wanted an outdoor room that flowed from the back door to the garden without the patchy pavers and weedy joints they had inherited. We laid out a clean patio for dining and lounging, then carried a matching walkway through the landscaping to tie the yard together.',
+      'Because the property sits close to the coast, we chose surfaces that shrug off salt and sun, and we built a low seat wall to define the space and add casual seating for guests.',
+    ],
+    work: [
+      'Removed old, settling pavers and rebuilt the base to grade',
+      'Large-format porcelain patio with crisp, modern joint lines',
+      'Concrete-paver walkway threading through the garden beds',
+      'Low seat wall with a finished cap for built-in seating',
+      'Polymeric joint sand to resist weeds and washout',
+    ],
+    gallery: [
+      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living patio with pavers and seating' },
+      { src: '/images/pf-estate.jpg', alt: 'Garden terrace with natural stone paving' },
+    ],
+  },
+  'west-palm-beach-paver-driveway': {
+    city: 'West Palm Beach',
+    surface: 'Interlocking concrete pavers',
+    title: 'Estate paver driveway',
+    hero: '/images/pf-driveway.jpg',
+    heroAlt: 'Wide interlocking paver driveway leading to a West Palm Beach estate',
+    intro: 'From a cracked asphalt approach to a banded paver driveway that lifts the whole front of this West Palm Beach property.',
+    specs: { Location: 'West Palm Beach, FL', Surface: 'Interlocking concrete pavers', Scope: 'Driveway · apron · front walkway', Size: '≈ 2,400 sq ft', Timeline: '10 working days' },
+    body: [
+      'The driveway is the first thing you see coming home, and this one had aged into cracked, patched asphalt. We rebuilt it from the ground up with the deep base a driveway needs to carry vehicle weight for decades without rutting or shifting.',
+      'A contrasting border band frames the field of pavers and ties into a new front walkway, giving the entrance a deliberate, estate-grade finish. Every detail was pulled to permit and built to local code.',
+    ],
+    work: [
+      'Excavated and built a 6-inch compacted base rated for vehicle loads',
+      'Interlocking concrete pavers with a contrasting border band',
+      'Matching apron and front walkway for a unified entrance',
+      'Edge restraints and proper drainage to prevent shifting',
+      'Permitted and built to West Palm Beach code',
+    ],
+    gallery: [
+      { src: '/images/pf-estate.jpg', alt: 'Estate entrance with natural stone paving' },
+      { src: '/images/pf-pooldeck.jpg', alt: 'Travertine pool deck at the same property' },
+    ],
+  },
+};
+
+  return Object.entries(projects).map(([slug, project]) => ({ params: { slug }, props: { project } }));
+}
+
+const p = Astro.props.project;
+---
+<BaseLayout
+  title={`${p.title} · ${p.city} · Perfect Pavers`}
+  description={p.intro}>
+
+  <nav class="crumbs">
+    <div class="wrap">
+      <a href="/">Home</a> <span>/</span> <a href="/service-areas">Service areas</a> <span>/</span> <strong>{p.city}</strong>
+    </div>
+  </nav>
+
+  <section class="block wrap proj-head">
+    <div class="proj-meta">{p.city} &middot; {p.surface}</div>
+    <h1>{p.title}</h1>
+    <p class="lede">{p.intro}</p>
+  </section>
+
+  <section class="wrap proj-hero">
+    <div class="ph"><img src={p.hero} alt={p.heroAlt} width="1200" height="640" fetchpriority="high" /></div>
+  </section>
+
+  <section class="block wrap proj-grid">
+    <div class="proj-body">
+      <div class="sec-head"><span class="sec-num">The project</span><h2>What we built.</h2></div>
+      {p.body.map((para) => <p>{para}</p>)}
+
+      <h3 class="work-h">Scope of work</h3>
+      <ul class="work-list">{p.work.map((w) => <li>{w}</li>)}</ul>
+    </div>
+
+    <aside class="proj-specs">
+      <dl>
+        {Object.entries(p.specs).map(([k, v]) => (
+          <div class="spec-row"><dt>{k}</dt><dd>{v}</dd></div>
+        ))}
+      </dl>
+      <a href="/contact" class="btn btn-brass spec-cta">Start a project like this</a>
+    </aside>
+  </section>
+
+  <section class="block wrap proj-gallery">
+    {p.gallery.map((g) => (
+      <div class="ph"><img src={g.src} alt={g.alt} width="700" height="520" loading="lazy" decoding="async" /></div>
+    ))}
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Your free on-site visit</div>
+      <h2>Want something like this in {p.city}?</h2>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
+    .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .crumbs a:hover{color:var(--brass-dark)}
+    .crumbs span{margin:0 8px;color:var(--brass)}
+    .crumbs strong{font-weight:500;color:var(--ink)}
+
+    .proj-head{padding-bottom:30px}
+    .proj-meta{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-dark);margin-bottom:14px}
+    .proj-head h1{font-size:clamp(36px,4.4vw,56px);line-height:1.05;letter-spacing:-.01em;margin:0}
+    .proj-head .lede{font-family:var(--serif);font-size:clamp(19px,1.9vw,23px);line-height:1.5;font-weight:400;color:var(--ink);max-width:34em;margin:20px 0 0}
+
+    .proj-hero .ph{border-radius:12px;overflow:hidden;height:clamp(280px,46vw,560px)}
+    .proj-hero .ph img{width:100%;height:100%;object-fit:cover;display:block}
+    .proj-hero .ph::after{display:none}
+
+    .proj-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:54px;align-items:start}
+    .proj-body p{font-size:16.5px;color:var(--muted);font-weight:300;line-height:1.75;margin-top:16px}
+    .work-h{font-size:20px;margin:30px 0 14px}
+    .work-list{list-style:none;display:grid;gap:11px}
+    .work-list li{position:relative;padding-left:24px;font-size:15.5px;color:var(--ink);font-weight:300;line-height:1.55}
+    .work-list li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--brass);font-size:12px}
+
+    .proj-specs{position:sticky;top:108px;background:var(--ivory-2);border:1px solid var(--line);border-radius:10px;padding:26px 28px}
+    .proj-specs dl{margin:0}
+    .spec-row{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+    .spec-row:last-of-type{border-bottom:none}
+    .spec-row dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);flex:0 0 auto}
+    .spec-row dd{font-size:14.5px;color:var(--ink);text-align:right;font-weight:400}
+    .spec-cta{margin-top:20px;width:100%;text-align:center}
+
+    .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-top:0}
+    .proj-gallery .ph{border-radius:10px;overflow:hidden;height:360px}
+    .proj-gallery .ph img{width:100%;height:100%;object-fit:cover;display:block}
+    .proj-gallery .ph::after{display:none}
+
+    @media(max-width:980px){
+      .proj-grid{grid-template-columns:1fr;gap:34px}
+      .proj-specs{position:static}
+      .proj-gallery{grid-template-columns:1fr}
+      .proj-gallery .ph{height:260px}
+    }
+  </style>
+
+</BaseLayout>

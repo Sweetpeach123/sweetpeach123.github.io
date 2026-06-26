@@ -8,9 +8,9 @@ const cities = [
 ];
 
 const spotlights = [
-  { t: 'Boca Raton', p: 'Estate driveways, travertine pool decks, and outdoor kitchens built to the city’s exacting standards.' },
-  { t: 'Delray Beach', p: 'Coastal patios and walkways designed for salt air, sun, and year-round entertaining.' },
-  { t: 'West Palm Beach', p: 'From historic neighborhoods to new builds — paver surfaces that lift the whole property.' },
+  { t: 'Boca Raton', p: 'Estate driveways, travertine pool decks, and outdoor kitchens built to the city’s exacting standards.', href: '/portfolio/boca-raton-travertine-pool-deck' },
+  { t: 'Delray Beach', p: 'Coastal patios and walkways designed for salt air, sun, and year-round entertaining.', href: '/portfolio/delray-beach-coastal-patio' },
+  { t: 'West Palm Beach', p: 'From historic neighborhoods to new builds — paver surfaces that lift the whole property.', href: '/portfolio/west-palm-beach-paver-driveway' },
 ];
 ---
 <BaseLayout
@@ -55,10 +55,11 @@ const spotlights = [
     </div>
     <div class="spotlights">
       {spotlights.map((s) => (
-        <article class="spot">
+        <a class="spot" href={s.href}>
           <h3>{s.t}</h3>
           <p>{s.p}</p>
-        </article>
+          <span class="spot-more">View the project <span aria-hidden="true">→</span></span>
+        </a>
       ))}
     </div>
   </section>
@@ -98,9 +99,13 @@ const spotlights = [
     .city-note a{color:var(--brass-dark);text-decoration:underline;text-underline-offset:3px}
 
     .spotlights{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .spot{border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:8px;background:var(--ivory);padding:28px 30px}
-    .spot h3{font-size:24px;margin-bottom:10px}
+    .spot{display:block;border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:8px;background:var(--ivory);padding:28px 30px;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)}
+    .spot:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(35,35,31,.12)}
+    .spot h3{font-size:24px;margin-bottom:10px;color:var(--ink)}
     .spot p{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.65}
+    .spot-more{display:inline-block;margin-top:16px;font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-dark)}
+    .spot-more span{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .spot:hover .spot-more span{transform:translateX(5px)}
 
     @media(max-width:980px){
       .areas-hero{padding:56px 0 48px}
