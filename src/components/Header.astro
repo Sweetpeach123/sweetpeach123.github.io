@@ -18,6 +18,7 @@ const about = [
   { label: 'FAQs', href: '/faqs' },
 ];
 ---
+<div class="topbar" id="topbar">
 <div class="util">
   <div class="wrap">
     <div class="tags">
@@ -65,3 +66,24 @@ const about = [
     </div>
   </div>
 </header>
+</div>
+
+<script is:inline>
+  (function () {
+    const bar = document.getElementById('topbar');
+    if (!bar) return;
+    const util = 48; // height of the green certificate strip
+    let last = window.scrollY;
+    window.addEventListener('scroll', function () {
+      const y = window.scrollY;
+      if (y <= util) {
+        bar.classList.remove('nudge-up');        // at the very top — show everything
+      } else if (y > last + 2) {
+        bar.classList.add('nudge-up');           // scrolling down — tuck the strip away
+      } else if (y < last - 2) {
+        bar.classList.remove('nudge-up');         // scrolling up — bring the strip back
+      }
+      last = y;
+    }, { passive: true });
+  })();
+</script>
