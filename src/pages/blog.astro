@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = [
+  { cat: 'Materials', title: 'Pavers vs. poured concrete in Florida soil', dek: 'Why a slab cracks as the ground shifts, and how an interlocking surface flexes instead of failing.' },
+  { cat: 'Process', title: 'The base is the whole job', dek: 'Excavation depth, rock base, and edge restraints, the hidden work that keeps a driveway flat for decades.' },
+  { cat: 'Pool decks', title: 'Travertine, porcelain or concrete pavers?', dek: 'How three popular pool-deck surfaces compare on heat, grip, and maintenance in the South Florida sun.' },
+  { cat: 'Local code', title: 'What a Palm Beach paver permit involves', dek: 'Drainage requirements, door-threshold rules, and why we pull the permit so you never have to.' },
+  { cat: 'Maintenance', title: 'Sealing pavers: when, why, and how often', dek: 'Sealing protects color and joints, but timing matters in our climate. Here is the honest schedule.' },
+  { cat: 'Outdoor living', title: 'Designing an outdoor room that gets used', dek: 'Kitchens, fire features, and shade, planning a back yard for Palm Beach evenings, not just photos.' },
+];
+
+const featured = posts[0];
+const rest = posts.slice(1);
+---
+<BaseLayout
+  title="Blog · Perfect Pavers of Palm Beach"
+  description="Notes on pavers, pool decks and outdoor living in Palm Beach County, from base-building and permits to choosing the right material for South Florida.">
+
+  <nav class="crumbs">
+    <div class="wrap">
+      <a href="/">Home</a> <span>/</span> <strong>Blog</strong>
+    </div>
+  </nav>
+
+  <section class="block wrap" style="padding-bottom:48px">
+    <div class="sec-head">
+      <span class="sec-num">Journal</span>
+      <h2>Notes on pavers &amp; Palm Beach living.</h2>
+    </div>
+
+    <article class="feat">
+      <div class="ph" data-label="Featured"><img src="/images/blog-hero.jpg" alt="Paver driveway leading to a modern white Palm Beach home framed by palms and oaks" width="760" height="630" fetchpriority="high" /></div>
+      <div class="feat-body">
+        <div class="post-cat">{featured.cat} &middot; <span class="soon">Coming soon</span></div>
+        <h3>{featured.title}</h3>
+        <p>{featured.dek}</p>
+        <p class="muted">A driveway takes more weight and more sun than any other surface on your property. We break down why poured concrete fails in Florida ground, and how a properly based paver surface lasts for decades.</p>
+      </div>
+    </article>
+  </section>
+
+  <section class="blog-mission">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Why we write</div>
+      <p>Each week we publish practical guidance drawn directly from our installers, material suppliers, and subcontractors &mdash; reliable, firsthand insight from the professionals who carry out the work.</p>
+    </div>
+  </section>
+
+  <section class="block wrap blog-articles">
+    <div class="pf-grid blog-grid">
+      {rest.map((p) => (
+        <article class="pf">
+          <div class="blog-tile"><span>Blog</span></div>
+          <div class="post-cat">{p.cat} &middot; <span class="soon">Coming soon</span></div>
+          <h3>{p.title}</h3>
+          <p class="dek">{p.dek}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Have a project in mind?</div>
+      <h2>Skip the reading, we&rsquo;ll just walk it with you.</h2>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .crumbs{border-bottom:1px solid var(--line);background:var(--ivory)}
+    .crumbs .wrap{padding-top:16px;padding-bottom:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .crumbs a:hover{color:var(--brass-dark)}
+    .crumbs span{margin:0 8px;color:var(--brass)}
+    .crumbs strong{font-weight:500;color:var(--ink)}
+
+    .post-cat{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-dark);margin-bottom:8px}
+    .post-cat .soon{color:var(--muted)}
+
+    .feat{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
+    .feat .ph{height:430px}
+    .feat .ph::after{display:none}
+    .feat h3{font-size:40px;line-height:1.08;margin-bottom:14px}
+    .feat-body p{font-size:17px;color:var(--ink);font-weight:300}
+    .feat-body p.muted{color:var(--muted);font-size:15px;margin-top:14px}
+
+    /* Airy mission band between hero and the articles */
+    .blog-mission{background:var(--ivory-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .blog-mission .wrap{padding:88px 40px;text-align:center}
+    .blog-mission p{font-family:var(--serif);font-size:25px;line-height:1.5;font-weight:400;color:var(--ink);max-width:20em;margin:20px auto 0}
+
+    .blog-articles{padding-top:100px}
+    .blog-grid{row-gap:60px}
+    .blog-grid .pf h3{font-size:24px;margin-top:12px}
+    .blog-grid .pf .dek{font-size:15px;color:var(--muted);font-weight:300;margin-top:8px}
+    .blog-tile{height:230px;display:flex;align-items:center;justify-content:center;background:var(--green);border-radius:4px;margin-bottom:18px}
+    .blog-tile span{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--ivory);letter-spacing:.02em}
+
+    @media(max-width:980px){
+      .feat{grid-template-columns:1fr;gap:24px}
+      .feat .ph{height:300px}
+      .feat h3{font-size:30px}
+      .blog-mission .wrap{padding:56px 22px}
+      .blog-mission p{font-size:20px}
+      .blog-articles{padding-top:60px}
+    }
+  </style>
+
+</BaseLayout>
