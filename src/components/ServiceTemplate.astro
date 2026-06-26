@@ -27,6 +27,107 @@ const {
   heroImg, heroAlt, heroLabel, intro, benefits, included, includedNote, materials, faqs,
 } = Astro.props as Props;
 
+interface MatInfo {
+  img?: string;
+  tagline: string;
+  properties: string[];
+  why: string;
+  bestFor: string[];
+  pricing: string;
+}
+// Central material reference, shared across every service page. Pricing is an
+// approximate installed range for Palm Beach County — placeholder figures the
+// client should confirm. Photos are placeholders until real swatch shots arrive.
+const MATERIAL_INFO: Record<string, MatInfo> = {
+  'Concrete pavers': {
+    tagline: 'The versatile workhorse — every color, shape and budget.',
+    properties: ['Manufactured to a consistent size and strength', 'The widest range of colors, shapes and patterns', 'Individually replaceable if one is ever stained or cracked', 'Holds up to vehicle weight when the base is built right'],
+    why: 'It gives you the broadest design freedom at the friendliest price, and because the surface is made of individual units it flexes with the ground instead of cracking like poured concrete.',
+    bestFor: ['Driveways and parking aprons', 'Walkways and patios', 'Large areas where budget matters', 'Matching an existing paver look'],
+    pricing: '$13–$22 / sq ft installed',
+  },
+  'Brick pavers': {
+    tagline: 'Classic clay color that never fades.',
+    properties: ['Color runs all the way through — it will not fade in the sun', 'Naturally slip-resistant texture', 'Timeless, traditional appearance', 'Extremely durable, lasts for decades'],
+    why: 'Real clay brick keeps its warm color permanently because the color is baked in, not coated on, so it suits classic and historic homes that want a finish that ages gracefully.',
+    bestFor: ['Traditional and colonial homes', 'Walkways and garden paths', 'Accent borders around other pavers', 'Patios with a timeless look'],
+    pricing: '$15–$25 / sq ft installed',
+  },
+  'Porcelain pavers': {
+    tagline: 'Modern, ultra-low-maintenance and stain-proof.',
+    properties: ['Nearly zero water absorption — resists stains and mold', 'Fade-proof, scratch-resistant surface', 'Cool underfoot, even in full sun', 'Clean, modern lines and consistent color'],
+    why: 'Porcelain is the easiest finish to live with: it shrugs off wine, grease and chlorine, stays cool by the pool, and keeps its exact color for the life of the install.',
+    bestFor: ['Pool decks and patios', 'Modern and contemporary homes', 'Outdoor kitchens and dining areas', 'Anyone wanting minimal upkeep'],
+    pricing: '$20–$32 / sq ft installed',
+  },
+  'Travertine': {
+    tagline: 'The resort standard — cool, natural, elegant.',
+    properties: ['Stays cool underfoot in direct sun', 'Naturally grippy, ideal for wet areas', 'Each piece is unique natural stone', 'Soft, neutral tones that suit any home'],
+    why: 'It is the go-to around Florida pools because it reflects heat instead of absorbing it, so the deck stays comfortable barefoot at midday, with a high-end natural look.',
+    bestFor: ['Pool decks and surrounds', 'Patios and courtyards', 'Luxury and Mediterranean homes', 'Walkways in shaded gardens'],
+    pricing: '$18–$30 / sq ft installed',
+  },
+  'Permeable systems': {
+    tagline: 'Drains rain through the surface — great for code and drainage.',
+    properties: ['Lets stormwater pass through the joints into the base', 'Reduces puddling and runoff', 'Often helps meet drainage and swale requirements', 'Same durable paver surface on top'],
+    why: 'A permeable system manages water on your own property instead of sheeting it onto the street, which solves drainage problems and can satisfy Palm Beach County stormwater rules.',
+    bestFor: ['Driveways with drainage limits', 'Low-lying or flood-prone lots', 'Properties with swale requirements', 'Eco-conscious projects'],
+    pricing: '$17–$28 / sq ft installed',
+  },
+  'Natural stone': {
+    tagline: 'One-of-a-kind stone with unmatched depth and character.',
+    properties: ['Every piece is unique — no two alike', 'Naturally cool and slip-resistant', 'Rich, varied tones that change with the light', 'Ages beautifully with a periodic seal'],
+    why: 'Nothing matches the depth and texture of real quarried stone; it gives a property a sense of permanence and quiet luxury that manufactured products imitate but never equal.',
+    bestFor: ['Pool decks and patios', 'Feature walkways and entries', 'High-end and estate homes', 'Wall facing and accents'],
+    pricing: '$22–$40 / sq ft installed',
+  },
+  'Marble': {
+    tagline: 'Bright, luminous stone with a refined finish.',
+    properties: ['Reflects heat and stays cool underfoot', 'Bright, light tones open up a space', 'Smooth, refined natural surface', 'Premium, high-end appearance'],
+    why: 'Marble brings a luminous, polished elegance to a pool deck or patio while staying cool in the Florida sun, the choice when the look needs to feel truly upscale.',
+    bestFor: ['Luxury pool decks', 'Formal patios and entries', 'Estate and contemporary homes', 'Shaded courtyards'],
+    pricing: '$25–$45 / sq ft installed',
+  },
+  'Limestone': {
+    tagline: 'Soft, earthy tones with a calm, natural feel.',
+    properties: ['Even, understated color', 'Comfortable and cool underfoot', 'Natural slip resistance', 'Pairs well with greenery and water'],
+    why: 'Limestone offers the serenity of natural stone in soft, consistent tones, perfect when you want an organic, calming surface that blends into the landscape.',
+    bestFor: ['Pool decks and patios', 'Garden walkways', 'Mediterranean and coastal homes', 'Courtyards and seating areas'],
+    pricing: '$20–$36 / sq ft installed',
+  },
+  'Natural stone pavers': {
+    tagline: 'Quarried stone cut to a uniform, easy-to-lay size.',
+    properties: ['Real stone with consistent dimensions', 'Naturally cool and slip-resistant', 'Unique color and veining in every piece', 'Durable and long-lasting'],
+    why: 'You get the genuine character of natural stone with the predictable sizing of a paver, which makes for clean lines and easier matching across a large area.',
+    bestFor: ['Driveways and walkways', 'Pool decks and patios', 'Large areas needing consistency', 'Upscale whole-yard designs'],
+    pricing: '$22–$40 / sq ft installed',
+  },
+  'Segmental wall block': {
+    tagline: 'Engineered block for strong, lasting retaining and seating walls.',
+    properties: ['Interlocking units engineered for load', 'Built-in drainage when installed correctly', 'Available in several colors and textures', 'No mortar needed — flexes with the ground'],
+    why: 'Segmental block is the proven way to build a wall that holds its line for decades, because the system is designed around drainage and backfill, the parts you never see.',
+    bestFor: ['Retaining walls', 'Seating walls around patios', 'Raised planters and terraces', 'Grade changes in the yard'],
+    pricing: '$40–$70 / sq ft of wall face',
+  },
+  'Stacked stone veneer': {
+    tagline: 'A natural stone face for a rich, textured wall.',
+    properties: ['Real stone facing over a solid structure', 'Deep texture and natural shadow lines', 'Ties walls into stone elsewhere on the home', 'Durable, weather-resistant finish'],
+    why: 'Veneer wraps a structural wall in genuine stacked stone, giving you the rugged, high-end look of a dry-stone wall with the strength of an engineered core.',
+    bestFor: ['Seating and feature walls', 'Outdoor kitchen and fire surrounds', 'Entry columns and pillars', 'Matching home stonework'],
+    pricing: '$30–$55 / sq ft of wall face',
+  },
+  'Finished concrete block': {
+    tagline: 'A clean, structural wall finish that complements pavers.',
+    properties: ['Strong structural core', 'Smooth or textured finished face', 'Color-matched to your hardscape', 'Cost-effective and durable'],
+    why: 'Finished block gives you a solid, good-looking wall at a sensible price, and we color and cap it to belong to the same design as your pavers.',
+    bestFor: ['Retaining and boundary walls', 'Seating walls', 'Budget-conscious projects', 'Clean, modern lines'],
+    pricing: '$30–$50 / sq ft of wall face',
+  },
+};
+const matSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const matCards = materials.map((m) => ({ name: m, info: MATERIAL_INFO[m] ?? null, id: matSlug(m) }));
+const hasMatModals = matCards.some((m) => m.info);
+
 const url = (p: string) => new URL(p, Astro.site).href;
 const jsonLd = [
   {
@@ -136,9 +237,88 @@ const jsonLd = [
       <h2>Choose your finish.</h2>
     </div>
     <div class="materials">
-      {materials.map((m) => <span class="mat">{m}</span>)}
+      {matCards.map((m) => m.info
+        ? <button type="button" class="mat mat-btn" data-mat={m.id}>{m.name}<span class="mat-plus">+</span></button>
+        : <span class="mat">{m.name}</span>)}
     </div>
   </section>
+
+  {hasMatModals && (
+    <div class="mat-overlay" id="matOverlay" hidden>
+      <div class="mat-backdrop" data-mat-close></div>
+      {matCards.filter((m) => m.info).map((m) => (
+        <div class="mat-sheet" id={`sheet-${m.id}`} role="dialog" aria-modal="true" aria-label={m.name} hidden>
+          <button type="button" class="mat-x" data-mat-close aria-label="Close">&times;</button>
+          <div class="mat-scroll">
+            <div class="mat-ph ph" data-label={m.name}>
+              {m.info.img ? <img src={m.info.img} alt={m.name} /> : <i>{m.name}</i>}
+            </div>
+            <div class="mat-body">
+              <div class="eyebrow" style="color:var(--brass)">Material</div>
+              <h3>{m.name}</h3>
+              <p class="mat-tag">{m.info.tagline}</p>
+
+              <div class="mat-sec">
+                <h4>Properties</h4>
+                <ul>{m.info.properties.map((x) => <li>{x}</li>)}</ul>
+              </div>
+              <div class="mat-sec">
+                <h4>Why people choose it</h4>
+                <p>{m.info.why}</p>
+              </div>
+              <div class="mat-sec">
+                <h4>Best used for</h4>
+                <ul>{m.info.bestFor.map((x) => <li>{x}</li>)}</ul>
+              </div>
+              <div class="mat-sec">
+                <h4>Approximate pricing</h4>
+                <p class="mat-price">{m.info.pricing}</p>
+                <p class="mat-note">Approximate installed range in Palm Beach County. Your free on-site visit and written estimate are exact and itemized.</p>
+              </div>
+
+              <a href="/contact" class="btn btn-brass mat-cta">Request your free on-site visit</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <script is:inline>
+      (function () {
+        const overlay = document.getElementById('matOverlay');
+        if (!overlay) return;
+        const sheets = overlay.querySelectorAll('.mat-sheet');
+        let openId = null;
+
+        function open(id) {
+          const sheet = document.getElementById('sheet-' + id);
+          if (!sheet) return;
+          sheets.forEach((s) => { s.hidden = s !== sheet; });
+          overlay.hidden = false;
+          requestAnimationFrame(() => overlay.classList.add('is-open'));
+          document.body.style.overflow = 'hidden';
+          sheet.querySelector('.mat-scroll').scrollTop = 0;
+          openId = id;
+        }
+        function close() {
+          overlay.classList.remove('is-open');
+          document.body.style.overflow = '';
+          openId = null;
+          setTimeout(() => { overlay.hidden = true; }, 280);
+        }
+
+        document.querySelectorAll('.mat-btn').forEach((b) => {
+          b.addEventListener('click', () => open(b.getAttribute('data-mat')));
+        });
+        overlay.querySelectorAll('[data-mat-close]').forEach((el) => {
+          el.addEventListener('click', close);
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && openId) close();
+        });
+      })();
+    </script>
 
   <section class="block wrap faq">
     <div class="sec-head">
@@ -198,6 +378,38 @@ const jsonLd = [
     .materials{display:flex;flex-wrap:wrap;gap:12px}
     .mat{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--ink);border:1px solid var(--line);border-radius:40px;padding:10px 24px;background:var(--ivory);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,color .35s ease,box-shadow .35s ease}
     .mat:hover{transform:translateY(-3px);border-color:var(--brass);color:var(--brass-dark);box-shadow:0 10px 26px rgba(35,35,31,.12)}
+    .mat-btn{cursor:pointer;display:inline-flex;align-items:center;gap:9px;line-height:1}
+    .mat-plus{font-family:var(--sans);font-style:normal;font-size:15px;color:var(--brass);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+    .mat-btn:hover .mat-plus{color:var(--brass-dark);transform:rotate(90deg)}
+
+    /* Material modal */
+    .mat-overlay{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .28s ease}
+    .mat-overlay.is-open{opacity:1}
+    .mat-backdrop{position:absolute;inset:0;background:rgba(23,30,23,.55);backdrop-filter:blur(3px)}
+    .mat-sheet{position:relative;z-index:1;width:100%;max-width:600px;max-height:88vh;background:var(--ivory);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(20,20,16,.4);transform:translateY(18px) scale(.98);transition:transform .32s cubic-bezier(.16,1,.3,1)}
+    .mat-overlay.is-open .mat-sheet{transform:none}
+    .mat-x{position:absolute;top:12px;right:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:none;background:rgba(246,241,231,.9);color:var(--ink);font-size:24px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease}
+    .mat-x:hover{background:#fff}
+    .mat-scroll{max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .mat-ph{height:230px}
+    .mat-body{padding:30px 36px 38px}
+    .mat-body h3{font-size:32px;margin-top:8px}
+    .mat-tag{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--brass-dark);margin-top:8px}
+    .mat-sec{margin-top:26px}
+    .mat-sec h4{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    .mat-sec ul{list-style:none;display:grid;gap:10px}
+    .mat-sec li{position:relative;padding-left:22px;font-size:15.5px;font-weight:300;color:var(--ink)}
+    .mat-sec li::before{content:'✦';position:absolute;left:0;top:0;color:var(--brass);font-size:13px}
+    .mat-sec p{font-size:15.5px;font-weight:300;color:var(--muted);line-height:1.6}
+    .mat-price{font-family:var(--serif)!important;font-size:26px!important;font-weight:600;color:var(--green)!important;margin-bottom:6px}
+    .mat-note{font-size:13px!important;font-style:italic}
+    .mat-cta{margin-top:30px;display:inline-block}
+
+    @media(max-width:560px){
+      .mat-body{padding:24px 22px 30px}
+      .mat-body h3{font-size:26px}
+      .mat-ph{height:180px}
+    }
 
     .faq-list{max-width:820px;border-top:1px solid var(--line)}
     .faq-list details{border-bottom:1px solid var(--line);padding:4px 0}
