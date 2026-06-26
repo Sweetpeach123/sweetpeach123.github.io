@@ -47,7 +47,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(246,241,231,.92);backdro
 .brand{line-height:1;justify-self:start}
 .brand .mark{font-family:var(--serif);font-size:31px;font-weight:600;letter-spacing:.02em}
 .brand .sub{font-family:var(--sans);font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--brass-dark);margin-top:4px}
-nav.menu{display:flex;gap:34px;align-items:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:400}
+nav.menu{display:flex;gap:34px;align-items:center;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:400;transform:translateX(-36px)}
 nav.menu a{position:relative;padding:6px 0;color:var(--ink)}
 nav.menu a span{font-size:8px;vertical-align:middle;color:var(--muted)}
 nav.menu a:hover{color:var(--brass-dark)}
