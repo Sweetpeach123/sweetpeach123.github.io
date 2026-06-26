@@ -21,7 +21,7 @@ img{max-width:100%;display:block}
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
 /* Soft whole-page fade-in on each page load (no flash, no movement) */
 html{background:var(--ivory)}
-body{animation:pp-page-in .9s ease-out both}
+body{animation:pp-page-in .765s ease-out both}
 @keyframes pp-page-in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){body{animation:none}}
 .eyebrow{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-dark)}
