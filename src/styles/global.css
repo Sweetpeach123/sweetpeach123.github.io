@@ -19,6 +19,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacin
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+/* Soft whole-page fade-in on each page load (no flash, no movement) */
+html{background:var(--ivory)}
+body{animation:pp-page-in .9s ease-out both}
+@keyframes pp-page-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){body{animation:none}}
 .eyebrow{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--brass-dark)}
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;border-radius:2px;transition:.25s;cursor:pointer;border:1px solid transparent}
 .btn-brass{background:var(--brass);color:#fff}
