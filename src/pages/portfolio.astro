@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = [
-  { href: '/portfolio/boca-raton-travertine-pool-deck', img: '/images/pf-pooldeck.jpg', loc: 'Boca Raton · Travertine', title: 'Resort-style pool deck', alt: 'Travertine paver pool deck in Boca Raton' },
-  { href: '/portfolio/delray-beach-coastal-patio', img: '/images/pf-coast.jpg', loc: 'Delray Beach · Porcelain', title: 'Coastal patio & walkway', alt: 'Coastal paver patio in Delray Beach' },
-  { href: '/portfolio/west-palm-beach-paver-driveway', img: '/images/pf-driveway.jpg', loc: 'West Palm Beach · Concrete pavers', title: 'Estate paver driveway', alt: 'Interlocking paver driveway in West Palm Beach' },
-  { href: '/portfolio/manalapan-oceanfront-pool-terrace', img: '/images/hero-estate.jpg', loc: 'Manalapan · Travertine', title: 'Oceanfront pool terrace', alt: 'Oceanfront paver pool terrace in Manalapan', soon: true },
-  { href: '/portfolio/boca-raton-outdoor-kitchen', img: '/images/pf-outdoor.jpg', loc: 'Boca Raton · Outdoor living', title: 'Outdoor kitchen & patio', alt: 'Outdoor kitchen and paver patio in Boca Raton', soon: true },
-  { href: '/portfolio/palm-beach-estate-terrace', img: '/images/pf-estate.jpg', loc: 'Palm Beach · Natural stone', title: 'Estate garden terrace', alt: 'Natural stone estate garden terrace in Palm Beach', soon: true },
-  { href: '/portfolio/boynton-beach-outdoor-living', img: '/images/hero-driveway.jpg', loc: 'Boynton Beach · Outdoor living', title: 'Outdoor living & fire feature', alt: 'Outdoor living area with pavers in Boynton Beach', soon: true },
-  { href: '/portfolio/delray-beach-spa-surround', img: '/images/pf-pooldeck.jpg', loc: 'Delray Beach · Travertine', title: 'Spa & pool surround', alt: 'Travertine spa and pool surround in Delray Beach', soon: true },
+  { href: '/portfolio/boca-raton-travertine-pool-deck', img: '/images/pf-pooldeck.jpg', loc: 'Boca Raton · Travertine', title: 'Resort-style pool deck', desc: 'A cracked concrete deck replaced with cool, slip-resistant French-pattern travertine around the pool and spa.', price: '$24,500', alt: 'Travertine paver pool deck in Boca Raton' },
+  { href: '/portfolio/delray-beach-coastal-patio', img: '/images/pf-coast.jpg', loc: 'Delray Beach · Porcelain', title: 'Coastal patio & walkway', desc: 'A flowing porcelain patio and garden walkway built for salt air and year-round entertaining.', price: '$16,800', alt: 'Coastal paver patio in Delray Beach' },
+  { href: '/portfolio/west-palm-beach-paver-driveway', img: '/images/pf-driveway.jpg', loc: 'West Palm Beach · Concrete pavers', title: 'Estate paver driveway', desc: 'Cracked asphalt rebuilt as a banded interlocking-paver driveway with a matching front walkway.', price: '$31,200', alt: 'Interlocking paver driveway in West Palm Beach' },
+  { href: '/portfolio/manalapan-oceanfront-pool-terrace', img: '/images/hero-estate.jpg', loc: 'Manalapan · Travertine', title: 'Oceanfront pool terrace', desc: 'An oceanfront travertine pool terrace designed to take in the water and the evening light.', price: 'From $28,000', alt: 'Oceanfront paver pool terrace in Manalapan', soon: true },
+  { href: '/portfolio/boca-raton-outdoor-kitchen', img: '/images/pf-outdoor.jpg', loc: 'Boca Raton · Outdoor living', title: 'Outdoor kitchen & patio', desc: 'A full outdoor kitchen and entertaining patio set on a durable, properly based paver foundation.', price: 'From $42,000', alt: 'Outdoor kitchen and paver patio in Boca Raton', soon: true },
+  { href: '/portfolio/palm-beach-estate-terrace', img: '/images/pf-estate.jpg', loc: 'Palm Beach · Natural stone', title: 'Estate garden terrace', desc: 'A natural-stone garden terrace that ties the grounds of the estate quietly together.', price: 'From $36,500', alt: 'Natural stone estate garden terrace in Palm Beach', soon: true },
+  { href: '/portfolio/boynton-beach-outdoor-living', img: '/images/hero-driveway.jpg', loc: 'Boynton Beach · Outdoor living', title: 'Outdoor living & fire feature', desc: 'An outdoor living room with a fire feature, framed in warm-toned pavers for evening gatherings.', price: 'From $22,400', alt: 'Outdoor living area with pavers in Boynton Beach', soon: true },
+  { href: '/portfolio/delray-beach-spa-surround', img: '/images/pf-pooldeck.jpg', loc: 'Delray Beach · Travertine', title: 'Spa & pool surround', desc: 'A travertine spa and pool surround with banded steps and a clean, built-in finish.', price: 'From $19,900', alt: 'Travertine spa and pool surround in Delray Beach', soon: true },
 ];
 ---
 <BaseLayout
@@ -31,15 +31,24 @@ const projects = [
   </section>
 
   <section class="block wrap">
-    <div class="pf-grid">
+    <div class="port-grid">
       {projects.map((p) => (
-        <a class="pf" href={p.href}>
-          <div class="ph">
-            <img loading="lazy" decoding="async" src={p.img} alt={p.alt} width="700" height="600" />
+        <a class="pcard" href={p.href}>
+          <div class="pcard-ph">
+            <img loading="lazy" decoding="async" src={p.img} alt={p.alt} width="400" height="320" />
             {p.soon && <span class="pf-soon">Coming soon</span>}
           </div>
-          <div class="loc">{p.loc}</div>
-          <h3>{p.title}</h3>
+          <div class="pcard-body">
+            <div class="pcard-top">
+              <div class="loc">{p.loc}</div>
+              <h3>{p.title}</h3>
+              <p class="pcard-desc">{p.desc}</p>
+            </div>
+            <div class="pcard-foot">
+              <span class="pcard-price">{p.price}</span>
+              <span class="pcard-more">View project <span aria-hidden="true">→</span></span>
+            </div>
+          </div>
         </a>
       ))}
     </div>
@@ -69,12 +78,36 @@ const projects = [
     .port-hero h1 em{font-style:italic;color:var(--brass)}
     .port-hero .lede{font-weight:300;opacity:.9;max-width:38em;margin-top:18px;font-size:18px}
 
-    .pf .ph{position:relative}
-    .pf-soon{position:absolute;top:14px;left:14px;background:rgba(23,33,28,.82);color:var(--ivory);font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+    .port-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .pcard{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ivory);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)}
+    .pcard:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(35,35,31,.12)}
+    .pcard-ph{position:relative;flex:0 0 40%;overflow:hidden}
+    .pcard-ph img{width:100%;height:100%;min-height:230px;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+    .pcard:hover .pcard-ph img{transform:scale(1.05)}
+    .pf-soon{position:absolute;top:12px;left:12px;background:rgba(23,33,28,.82);color:var(--ivory);font-family:var(--sans);font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+
+    .pcard-body{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:22px 24px}
+    .pcard .loc{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark)}
+    .pcard h3{font-size:21px;margin-top:6px;line-height:1.15}
+    .pcard-desc{font-size:14px;color:var(--muted);font-weight:300;line-height:1.6;margin-top:9px}
+    .pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+    .pcard-price{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--green);line-height:1}
+    .pcard-more{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-dark);white-space:nowrap}
+    .pcard-more span{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .pcard:hover .pcard-more span{transform:translateX(5px)}
 
     @media(max-width:980px){
       .port-hero{padding:56px 0 48px}
       .port-hero h1{font-size:40px}
+      .port-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .pcard{flex-direction:column}
+      .pcard-ph{flex:0 0 auto}
+      .pcard-ph img{min-height:180px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .pcard,.pcard-ph img,.pcard-more span{transition:none}
     }
   </style>
 
