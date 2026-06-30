@@ -40,6 +40,7 @@ body{animation:pp-page-in .765s ease-out both}
 .util .tags{display:contents}
 .util .tags span{white-space:nowrap;opacity:.9}
 .util .wrap>div:last-child{white-space:nowrap;opacity:.9}
+.util-appt i{color:var(--brass);font-style:normal;margin-right:7px}
 .util .tags span i{color:var(--brass);font-style:normal;margin-right:7px}
 .util-license{display:none;align-items:center;gap:7px;white-space:nowrap;opacity:.95;letter-spacing:.05em}
 .util-license i{color:var(--brass);font-style:normal}
