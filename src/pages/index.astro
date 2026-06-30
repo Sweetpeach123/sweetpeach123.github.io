@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const services = [
-  { label: 'Driveways', href: '/services/driveways', img: '/images/pf-driveway.jpg', alt: 'Neatly laid paver driveway leading to a modern white Palm Beach home' },
-  { label: 'Walkways', href: '/services/walkways', img: '/images/svc-walkways.jpg', alt: 'Paver walkway' },
-  { label: 'Patios', href: '/services/patios', img: '/images/pf-outdoor.jpg', alt: 'Travertine paver patio overlooking the water in Palm Beach' },
-  { label: 'Pool decks', href: '/services/pool-decks', img: '/images/svc-pooldecks.jpg', alt: 'Travertine pool deck' },
-  { label: 'Outdoor living', href: '/services/outdoor-living', img: '/images/svc-outdoor.jpg', alt: 'Outdoor kitchen and living space' },
-  { label: 'Retaining & seating walls', href: '/services/retaining-seating-walls', img: '/images/svc-walls.webp', alt: 'Retaining and seating wall' },
-  { label: 'Natural stone', href: '/services/natural-stone', img: '/images/svc-naturalstone.webp', alt: 'Natural stone installation' },
-  { label: 'Clean & seal', href: '/services/clean-seal', img: '/images/svc-cleanseal.jpg', alt: 'Paver cleaning and sealing' },
+  { label: 'Driveways', href: '/services/driveways/', img: '/images/pf-driveway.jpg', alt: 'Neatly laid paver driveway leading to a modern white Palm Beach home' },
+  { label: 'Walkways', href: '/services/walkways/', img: '/images/svc-walkways.jpg', alt: 'Paver walkway' },
+  { label: 'Patios', href: '/services/patios/', img: '/images/pf-outdoor.jpg', alt: 'Travertine paver patio overlooking the water in Palm Beach' },
+  { label: 'Pool decks', href: '/services/pool-decks/', img: '/images/svc-pooldecks.jpg', alt: 'Travertine pool deck' },
+  { label: 'Outdoor living', href: '/services/outdoor-living/', img: '/images/svc-outdoor.jpg', alt: 'Outdoor kitchen and living space' },
+  { label: 'Retaining & seating walls', href: '/services/retaining-seating-walls/', img: '/images/svc-walls.webp', alt: 'Retaining and seating wall' },
+  { label: 'Natural stone', href: '/services/natural-stone/', img: '/images/svc-naturalstone.webp', alt: 'Natural stone installation' },
+  { label: 'Clean & seal', href: '/services/clean-seal/', img: '/images/svc-cleanseal.jpg', alt: 'Paver cleaning and sealing' },
 ];
 
 const cities = ['West Palm Beach','Boca Raton','Boynton Beach','Delray Beach','Palm Beach Gardens','Lake Worth Beach','Riviera Beach','Greenacres','Wellington','Jupiter','Atlantis','Westlake'];
@@ -24,7 +24,7 @@ const cities = ['West Palm Beach','Boca Raton','Boynton Beach','Delray Beach','P
       <h1>Pavers worthy of <em>the address.</em></h1>
       <p class="lede">For more than thirty-five years, Palm Beach&rsquo;s finest properties have trusted us for driveways, pool decks, and outdoor living, installed to a standard you can stand on for decades.</p>
       <div class="hero-cta">
-        <a href="/contact" class="btn btn-brass">Request your on-site visit</a>
+        <a href="/contact/" class="btn btn-brass">Request your on-site visit</a>
         <a href="tel:+19547791855" class="btn btn-ghost">Call (954) 779-1855</a>
       </div>
     </div>
@@ -93,7 +93,7 @@ const cities = ['West Palm Beach','Boca Raton','Boynton Beach','Delray Beach','P
         <div class="eyebrow" style="color:var(--brass)">03 · The Perfect Pavers promise</div>
         <h2>The honest estimate is the whole pitch.</h2>
         <p class="lede">For every good contractor in South Florida, there are ten who cut corners on the base, vanish after the deposit, or bury change orders in the fine print. We built the opposite of that.</p>
-        <a href="/about/our-process" class="btn btn-brass" style="margin-top:30px">See how we price</a>
+        <a href="/about/our-process/" class="btn btn-brass" style="margin-top:30px">See how we price</a>
       </div>
       <ul>
         <li><span class="mk">I.</span><div><b>Free on-site visit &amp; samples</b><p>Most trades charge for the first visit. We bring the showroom to your driveway at no cost.</p></div></li>
@@ -124,25 +124,28 @@ const cities = ['West Palm Beach','Boca Raton','Boynton Beach','Delray Beach','P
         <h2>Real Palm Beach projects, named.</h2>
       </div>
       <div class="pf-grid">
-        <a class="pf" href="/portfolio"><div class="ph" data-label="Before / after"><img loading="lazy" decoding="async" alt="Pool deck transformation in Boca Raton" src="/images/pf-pooldeck.jpg" width="700" height="600" /></div><div class="loc">Boca Raton · Travertine</div><h3>Resort-style pool deck</h3></a>
-        <a class="pf" href="/portfolio"><div class="ph"><img loading="lazy" decoding="async" alt="Paver pool deck and terrace overlooking the water at sunset in Manalapan" src="/images/pf-coast.jpg" width="700" height="600" /></div><div class="loc">Manalapan · Travertine</div><h3>Oceanfront pool terrace</h3></a>
-        <a class="pf" href="/portfolio"><div class="ph"><img loading="lazy" decoding="async" alt="Estate water garden in Palm Beach" src="/images/pf-estate.jpg" width="700" height="600" /></div><div class="loc">Palm Beach · Natural stone</div><h3>Estate garden terrace</h3></a>
+        <a class="pf" href="/portfolio/"><div class="ph" data-label="Before / after"><img loading="lazy" decoding="async" alt="Pool deck transformation in Boca Raton" src="/images/pf-pooldeck.jpg" width="700" height="600" /></div><div class="loc">Boca Raton · Travertine</div><h3>Resort-style pool deck</h3></a>
+        <a class="pf" href="/portfolio/"><div class="ph"><img loading="lazy" decoding="async" alt="Paver pool deck and terrace overlooking the water at sunset in Manalapan" src="/images/pf-coast.jpg" width="700" height="600" /></div><div class="loc">Manalapan · Travertine</div><h3>Oceanfront pool terrace</h3></a>
+        <a class="pf" href="/portfolio/"><div class="ph"><img loading="lazy" decoding="async" alt="Estate water garden in Palm Beach" src="/images/pf-estate.jpg" width="700" height="600" /></div><div class="loc">Palm Beach · Natural stone</div><h3>Estate garden terrace</h3></a>
       </div>
-      <div style="margin-top:46px"><a href="/portfolio" class="btn btn-ghost">View the full portfolio</a></div>
+      <div style="margin-top:46px"><a href="/portfolio/" class="btn btn-ghost">View the full portfolio</a></div>
     </div>
   </section>
 
   <section class="block wrap reviews">
     <div class="wrap" style="padding:0">
       <div>
-        <div class="stars">★★★★★</div>
+        <a class="stars" href="https://maps.app.goo.gl/FNafrxFtDnwKBzsY8" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none">★★★★★</a>
         <h2 style="font-size:40px;margin-top:14px">What neighbors say</h2>
-        <p style="color:var(--muted);margin-top:14px;font-weight:300">Backed by verified Google reviews across Palm Beach County.</p>
-        <a href="/reviews" class="btn btn-ghost" style="margin-top:24px">Read all reviews</a>
+        <p style="color:var(--muted);margin-top:14px;font-weight:300">Rated 5.0 on Google across Palm Beach County.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+          <a href="/reviews/" class="btn btn-ghost">Read all reviews</a>
+          <a href="https://maps.app.goo.gl/FNafrxFtDnwKBzsY8" target="_blank" rel="noopener" class="btn btn-ghost">See us on Google &rarr;</a>
+        </div>
       </div>
       <div class="rev-grid">
-        <div><p class="quote">&ldquo;They came out two days after I called, and the price never moved an inch from the estimate.&rdquo;</p><div class="by">Homeowner · West Palm Beach</div></div>
-        <div><p class="quote">&ldquo;The driveway looks like it belongs on a million-dollar property. Neighbors keep asking who did it.&rdquo;</p><div class="by">Homeowner · Boca Raton</div></div>
+        <div><p class="quote">&ldquo;Fast professional service. My driveway looks amazing. Wish I could give more stars &mdash; 12 out of 10.&rdquo;</p><div class="by">Fred G. · Google review</div></div>
+        <div><p class="quote">&ldquo;Driveway extension was done quicker than expected. No issues and no back and forth. Well done!&rdquo;</p><div class="by">Denis Khmel · Google review</div></div>
       </div>
     </div>
   </section>
@@ -161,10 +164,10 @@ const cities = ['West Palm Beach','Boca Raton','Boynton Beach','Delray Beach','P
   </section>
 
   <section class="block wrap fin">
-    <a href="/financing" class="pill pill-anim">Financing available</a>
+    <a href="/financing/" class="pill pill-anim">Financing available</a>
     <h2>Don&rsquo;t let the budget decide the timeline.</h2>
     <p>Flexible monthly financing through Wisetack and Jobber means you can do it right the first time: full base, proper drainage, and the materials you actually want.</p>
-    <a href="/financing" class="btn btn-brass" style="margin-top:30px">Explore financing options</a>
+    <a href="/financing/" class="btn btn-brass" style="margin-top:30px">Explore financing options</a>
   </section>
 
   <section class="cta">
@@ -173,7 +176,7 @@ const cities = ['West Palm Beach','Boca Raton','Boynton Beach','Delray Beach','P
       <h2>Let&rsquo;s walk your property.</h2>
       <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="/contact/" class="btn btn-brass">Request a visit</a>
         <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
       </div>
     </div>

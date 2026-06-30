@@ -2,19 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = [
-  { href: '/portfolio/boca-raton-travertine-pool-deck', img: '/images/pf-pooldeck.jpg', loc: 'Boca Raton · Travertine', title: 'Resort-style pool deck', desc: 'A cracked concrete deck replaced with cool, slip-resistant French-pattern travertine around the pool and spa.', price: '$24,500', alt: 'Travertine paver pool deck in Boca Raton' },
-  { href: '/portfolio/delray-beach-coastal-patio', img: '/images/pf-coast.jpg', loc: 'Delray Beach · Porcelain', title: 'Coastal patio & walkway', desc: 'A flowing porcelain patio and garden walkway built for salt air and year-round entertaining.', price: '$16,800', alt: 'Coastal paver patio in Delray Beach' },
-  { href: '/portfolio/west-palm-beach-paver-driveway', img: '/images/pf-driveway.jpg', loc: 'West Palm Beach · Concrete pavers', title: 'Estate paver driveway', desc: 'Cracked asphalt rebuilt as a banded interlocking-paver driveway with a matching front walkway.', price: '$31,200', alt: 'Interlocking paver driveway in West Palm Beach' },
-  { href: '/portfolio/manalapan-oceanfront-pool-terrace', img: '/images/hero-estate.jpg', loc: 'Manalapan · Travertine', title: 'Oceanfront pool terrace', desc: 'An oceanfront travertine pool terrace designed to take in the water and the evening light.', price: 'From $28,000', alt: 'Oceanfront paver pool terrace in Manalapan', soon: true },
-  { href: '/portfolio/boca-raton-outdoor-kitchen', img: '/images/pf-outdoor.jpg', loc: 'Boca Raton · Outdoor living', title: 'Outdoor kitchen & patio', desc: 'A full outdoor kitchen and entertaining patio set on a durable, properly based paver foundation.', price: 'From $42,000', alt: 'Outdoor kitchen and paver patio in Boca Raton', soon: true },
-  { href: '/portfolio/palm-beach-estate-terrace', img: '/images/pf-estate.jpg', loc: 'Palm Beach · Natural stone', title: 'Estate garden terrace', desc: 'A natural-stone garden terrace that ties the grounds of the estate quietly together.', price: 'From $36,500', alt: 'Natural stone estate garden terrace in Palm Beach', soon: true },
-  { href: '/portfolio/boynton-beach-outdoor-living', img: '/images/hero-driveway.jpg', loc: 'Boynton Beach · Outdoor living', title: 'Outdoor living & fire feature', desc: 'An outdoor living room with a fire feature, framed in warm-toned pavers for evening gatherings.', price: 'From $22,400', alt: 'Outdoor living area with pavers in Boynton Beach', soon: true },
-  { href: '/portfolio/delray-beach-spa-surround', img: '/images/pf-pooldeck.jpg', loc: 'Delray Beach · Travertine', title: 'Spa & pool surround', desc: 'A travertine spa and pool surround with banded steps and a clean, built-in finish.', price: 'From $19,900', alt: 'Travertine spa and pool surround in Delray Beach', soon: true },
+  { href: '/portfolio/boca-raton-travertine-pool-deck/', img: '/images/pf-pooldeck.jpg', loc: 'Boca Raton · Travertine', title: 'Resort-style pool deck', desc: 'A cracked concrete deck replaced with cool, slip-resistant French-pattern travertine around the pool and spa.', price: '$24,500', alt: 'Travertine paver pool deck in Boca Raton' },
+  { href: '/portfolio/delray-beach-coastal-patio/', img: '/images/pf-coast.jpg', loc: 'Delray Beach · Porcelain', title: 'Coastal patio & walkway', desc: 'A flowing porcelain patio and garden walkway built for salt air and year-round entertaining.', price: '$16,800', alt: 'Coastal paver patio in Delray Beach' },
+  { href: '/portfolio/west-palm-beach-paver-driveway/', img: '/images/pf-driveway.jpg', loc: 'West Palm Beach · Concrete pavers', title: 'Estate paver driveway', desc: 'Cracked asphalt rebuilt as a banded interlocking-paver driveway with a matching front walkway.', price: '$31,200', alt: 'Interlocking paver driveway in West Palm Beach' },
+  { href: '/portfolio/manalapan-oceanfront-pool-terrace/', img: '/images/hero-estate.jpg', loc: 'Manalapan · Travertine', title: 'Oceanfront pool terrace', desc: 'An oceanfront travertine pool terrace designed to take in the water and the evening light.', price: 'From $28,000', alt: 'Oceanfront paver pool terrace in Manalapan', soon: true },
+  { href: '/portfolio/boca-raton-outdoor-kitchen/', img: '/images/pf-outdoor.jpg', loc: 'Boca Raton · Outdoor living', title: 'Outdoor kitchen & patio', desc: 'A full outdoor kitchen and entertaining patio set on a durable, properly based paver foundation.', price: 'From $42,000', alt: 'Outdoor kitchen and paver patio in Boca Raton', soon: true },
+  { href: '/portfolio/palm-beach-estate-terrace/', img: '/images/pf-estate.jpg', loc: 'Palm Beach · Natural stone', title: 'Estate garden terrace', desc: 'A natural-stone garden terrace that ties the grounds of the estate quietly together.', price: 'From $36,500', alt: 'Natural stone estate garden terrace in Palm Beach', soon: true },
+  { href: '/portfolio/boynton-beach-outdoor-living/', img: '/images/hero-driveway.jpg', loc: 'Boynton Beach · Outdoor living', title: 'Outdoor living & fire feature', desc: 'An outdoor living room with a fire feature, framed in warm-toned pavers for evening gatherings.', price: 'From $22,400', alt: 'Outdoor living area with pavers in Boynton Beach', soon: true },
+  { href: '/portfolio/delray-beach-spa-surround/', img: '/images/pf-pooldeck.jpg', loc: 'Delray Beach · Travertine', title: 'Spa & pool surround', desc: 'A travertine spa and pool surround with banded steps and a clean, built-in finish.', price: 'From $19,900', alt: 'Travertine spa and pool surround in Delray Beach', soon: true },
 ];
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Portfolio', item: new URL('/portfolio/', Astro.site).href },
+  ],
+};
 ---
 <BaseLayout
   title="Portfolio · Paver Projects Across Palm Beach County · Perfect Pavers"
   description="A look at paver driveways, pool decks, patios and outdoor living we’ve built across Palm Beach County — Boca Raton, Delray Beach, West Palm Beach and beyond.">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbLd)} />
 
   <nav class="crumbs">
     <div class="wrap">
@@ -60,8 +69,8 @@ const projects = [
       <h2>Let&rsquo;s build something that lasts.</h2>
       <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="/contact" class="btn btn-brass">Request a visit</a>
-        <a href="/service-areas" class="btn btn-ghost" style="color:var(--ivory)">See where we work</a>
+        <a href="/contact/" class="btn btn-brass">Request a visit</a>
+        <a href="/service-areas/" class="btn btn-ghost" style="color:var(--ivory)">See where we work</a>
       </div>
     </div>
   </section>
@@ -82,16 +91,16 @@ const projects = [
     .pcard{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ivory);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)}
     .pcard:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(35,35,31,.12)}
     .pcard-ph{position:relative;flex:0 0 40%;overflow:hidden}
-    .pcard-ph img{width:100%;height:100%;min-height:230px;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+    .pcard-ph img{width:100%;height:100%;min-height:140px;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1)}
     .pcard:hover .pcard-ph img{transform:scale(1.05)}
     .pf-soon{position:absolute;top:12px;left:12px;background:rgba(23,33,28,.82);color:var(--ivory);font-family:var(--sans);font-size:10px;letter-spacing:.13em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
 
-    .pcard-body{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:22px 24px}
-    .pcard .loc{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark)}
-    .pcard h3{font-size:21px;margin-top:6px;line-height:1.15}
-    .pcard-desc{font-size:14px;color:var(--muted);font-weight:300;line-height:1.6;margin-top:9px}
-    .pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:14px}
-    .pcard-price{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--green);line-height:1}
+    .pcard-body{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:13px 18px}
+    .pcard .loc{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-dark)}
+    .pcard h3{font-size:17px;margin-top:2px;line-height:1.12}
+    .pcard-desc{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.5;margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:9px}
+    .pcard-price{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--green);line-height:1}
     .pcard-more{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-dark);white-space:nowrap}
     .pcard-more span{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1)}
     .pcard:hover .pcard-more span{transform:translateX(5px)}
@@ -104,8 +113,8 @@ const projects = [
       .port-hero{padding:46px 0 38px}
       .pcard{flex-direction:column}
       .pcard-ph{flex:0 0 auto}
-      .pcard-ph img{min-height:180px}
-      .pcard-body{padding:20px 18px}
+      .pcard-ph img{min-height:140px}
+      .pcard-body{padding:14px 16px}
     }
     @media(prefers-reduced-motion:reduce){
       .pcard,.pcard-ph img,.pcard-more span{transition:none}

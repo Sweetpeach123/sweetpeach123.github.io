@@ -51,6 +51,26 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <slot />
   <Footer />
 
+  <button id="toTop" class="to-top" aria-label="Back to top" hidden>↑</button>
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('toTop');
+      if (!btn) return;
+      var shown = false;
+      btn.hidden = false;
+      function onScroll() {
+        var should = window.scrollY > 400;
+        if (should !== shown) { shown = should; btn.classList.toggle('is-vis', should); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      var smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+      });
+    })();
+  </script>
+
   <!-- GoHighLevel Number Pool: session-based dynamic phone-number tracking (loads on every page) -->
   <script is:inline src="https://backend.leadconnectorhq.com/appengine/loc/6O64IBH8EOdqNTcAlwLR/pool/hqUY5RAYaK7ku7HEoILc/number_pool.js"></script>
   <script is:inline src="https://backend.leadconnectorhq.com/appengine/js/user_session.js"></script>
@@ -58,7 +78,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <script is:inline>
     (function () {
       if (!document.documentElement.classList.contains('reveal-ready')) return;
-      var sels = ['.trust .cell', '.props .card', '.steps .step', '.promise li', '.incl-list li', '.rev-grid > div', '.cities li'];
+      var sels = ['.trust .cell', '.props .card', '.steps .step', '.promise li', '.incl-list li', '.rev-grid > div', '.cities li', '.svc-intro-stats .sis'];
       var items = [];
       sels.forEach(function (sel) {
         var els = document.querySelectorAll(sel);
@@ -71,13 +91,21 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
           items.push(el);
         });
       });
+      // Once an item has revealed, drop its stagger delay so hover highlights
+      // fire instantly instead of waiting out the reveal delay.
+      function clearDelay(el) {
+        el.addEventListener('transitionend', function once() {
+          el.style.transitionDelay = '0ms';
+          el.removeEventListener('transitionend', once);
+        });
+      }
       if (!('IntersectionObserver' in window)) {
-        items.forEach(function (el) { el.classList.add('is-in'); });
+        items.forEach(function (el) { el.classList.add('is-in'); el.style.transitionDelay = '0ms'; });
         return;
       }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+          if (e.isIntersecting) { clearDelay(e.target); e.target.classList.add('is-in'); io.unobserve(e.target); }
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
       items.forEach(function (el) { io.observe(el); });

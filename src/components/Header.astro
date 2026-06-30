@@ -1,21 +1,23 @@
 ---
 const services = [
-  { label: 'Driveways', href: '/services/driveways' },
-  { label: 'Walkways', href: '/services/walkways' },
-  { label: 'Patios', href: '/services/patios' },
-  { label: 'Pool decks', href: '/services/pool-decks' },
-  { label: 'Outdoor living', href: '/services/outdoor-living' },
-  { label: 'Retaining & seating walls', href: '/services/retaining-seating-walls' },
-  { label: 'Natural stone', href: '/services/natural-stone' },
-  { label: 'Clean & seal', href: '/services/clean-seal' },
+  { label: 'Driveways', href: '/services/driveways/' },
+  { label: 'Walkways', href: '/services/walkways/' },
+  { label: 'Patios', href: '/services/patios/' },
+  { label: 'Pool decks', href: '/services/pool-decks/' },
+  { label: 'Outdoor living', href: '/services/outdoor-living/' },
+  { label: 'Retaining & seating walls', href: '/services/retaining-seating-walls/' },
+  { label: 'Natural stone', href: '/services/natural-stone/' },
+  { label: 'Clean & seal', href: '/services/clean-seal/' },
 ];
 const about = [
-  { label: 'Why choose Perfect Pavers', href: '/about/why-choose-us' },
-  { label: 'Our process', href: '/about/our-process' },
-  { label: 'Service areas', href: '/service-areas' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'FAQs', href: '/faqs' },
+  { label: 'Why choose Perfect Pavers', href: '/about/why-choose-us/' },
+  { label: 'Our process', href: '/about/our-process/' },
+  { label: 'Service areas', href: '/service-areas/' },
+  { label: 'Reviews', href: '/reviews/' },
+  { label: 'FAQs', href: '/faqs/' },
+  { label: 'Careers', href: '/careers/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contact', href: '/contact/' },
 ];
 ---
 <div class="topbar" id="topbar">
@@ -48,9 +50,9 @@ const about = [
           </div>
         </div>
       </div>
-      <a href="/portfolio">Portfolio</a>
+      <a href="/portfolio/">Portfolio</a>
       <div class="menu-item">
-        <a href="/about/why-choose-us">About <span class="caret">▾</span></a>
+        <a href="/about/why-choose-us/">About <span class="caret">▾</span></a>
         <div class="drop drop--right">
           <div class="drop-inner">
             <ul>
@@ -59,12 +61,11 @@ const about = [
           </div>
         </div>
       </div>
-      <a href="/financing">Financing</a>
-      <a href="/contact">Contact</a>
+      <a href="/financing/">Financing</a>
     </nav>
     <div class="nav-right">
       <a class="nav-phone" href="tel:+19547791855">(954) 779-1855</a>
-      <a href="/contact" class="btn btn-brass">Request a visit</a>
+      <a href="/contact/" class="btn btn-brass">Request a visit</a>
       <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <span></span><span></span><span></span>
       </button>
@@ -85,18 +86,17 @@ const about = [
           {services.map((s) => <a href={s.href}>{s.label}</a>)}
         </div>
       </details>
-      <a class="mnav-top mnav-top--link" href="/portfolio">Portfolio</a>
+      <a class="mnav-top mnav-top--link" href="/portfolio/">Portfolio</a>
       <details class="mnav-group">
         <summary class="mnav-top">About <span class="mnav-caret">▾</span></summary>
         <div class="mnav-sub">
           {about.map((x) => <a href={x.href}>{x.label}</a>)}
         </div>
       </details>
-      <a class="mnav-top mnav-top--link" href="/financing">Financing</a>
-      <a class="mnav-top mnav-top--link" href="/contact">Contact</a>
+      <a class="mnav-top mnav-top--link" href="/financing/">Financing</a>
       <div class="mnav-foot">
         <a class="mnav-phone" href="tel:+19547791855">✆&nbsp; (954) 779-1855</a>
-        <a class="btn btn-brass" href="/contact">Request a visit</a>
+        <a class="btn btn-brass" href="/contact/">Request a visit</a>
       </div>
     </div>
   </nav>

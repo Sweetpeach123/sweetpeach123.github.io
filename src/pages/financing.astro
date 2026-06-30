@@ -38,7 +38,7 @@ const faqs = [
       <h1>Don&rsquo;t let the budget decide the <em>timeline.</em></h1>
       <p class="lede">Flexible monthly financing through Wisetack and Jobber means you can do it right the first time: full base, proper drainage, and the materials you actually want.</p>
       <div class="hero-cta" style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap">
-        <a href="/contact" class="btn btn-brass">Request your free estimate</a>
+        <a href="/contact/" class="btn btn-brass">Request your free estimate</a>
         <a href="tel:+19547791855" class="btn btn-ghost">Call (954) 779-1855</a>
       </div>
     </div>
@@ -116,7 +116,7 @@ const faqs = [
       <h2>Let&rsquo;s walk your property.</h2>
       <p>Start with a free on-site visit and a written estimate. We&rsquo;ll show you the monthly options so the budget never decides the timeline.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="/contact/" class="btn btn-brass">Request a visit</a>
         <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
       </div>
     </div>
@@ -143,8 +143,10 @@ const faqs = [
     .partner-note{font-size:13px;color:var(--muted);font-weight:300;font-style:italic;margin-top:26px;max-width:70ch}
 
     .faq-list{max-width:820px;border-top:1px solid var(--line)}
-    .faq-list details{border-bottom:1px solid var(--line);padding:4px 0}
-    .faq-list summary{cursor:pointer;list-style:none;padding:22px 0;font-family:var(--serif);font-size:22px;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+    .faq-list details{border-bottom:1px solid var(--line);padding:4px 0;transition:border-color .08s linear,background-color .08s linear}
+    .faq-list details:hover{border-color:var(--brass);background:rgba(176,138,79,.05)}
+    .faq-list summary{cursor:pointer;list-style:none;padding:22px 0;font-family:var(--serif);font-size:22px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;transition:color .08s linear}
+    .faq-list summary:hover{color:var(--brass-dark)}
     .faq-list summary::-webkit-details-marker{display:none}
     .faq-list summary::after{content:'+';color:var(--brass-dark);font-family:var(--sans);font-weight:400}
     .faq-list details[open] summary::after{content:'–'}

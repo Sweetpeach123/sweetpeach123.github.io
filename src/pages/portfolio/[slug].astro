@@ -7,6 +7,7 @@ export function getStaticPaths() {
     city: 'Boca Raton',
     surface: 'French-pattern travertine',
     title: 'Resort-style travertine pool deck',
+    service: { href: '/services/pool-decks/', label: 'paver pool deck' },
     hero: '/images/pf-pooldeck.jpg',
     heroAlt: 'Travertine paver pool deck surrounding a resort-style pool in Boca Raton',
     intro: 'A dated, slippery concrete deck gave way to a cool-underfoot travertine surround that turned this Boca Raton backyard into a private resort.',
@@ -23,14 +24,15 @@ export function getStaticPaths() {
       'Cleaned, re-sanded, and sealed for lasting color and grip',
     ],
     gallery: [
-      { src: '/images/pf-coast.jpg', alt: 'Travertine pool terrace overlooking the water at dusk', href: '/portfolio/manalapan-oceanfront-pool-terrace', caption: 'Manalapan · Oceanfront pool terrace' },
-      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living area with paver flooring beside the pool', href: '/portfolio/boca-raton-outdoor-kitchen', caption: 'Boca Raton · Outdoor kitchen' },
+      { src: '/images/pf-coast.jpg', alt: 'Travertine pool terrace overlooking the water at dusk', href: '/portfolio/manalapan-oceanfront-pool-terrace/', caption: 'Manalapan · Oceanfront pool terrace' },
+      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living area with paver flooring beside the pool', href: '/portfolio/boca-raton-outdoor-kitchen/', caption: 'Boca Raton · Outdoor kitchen' },
     ],
   },
   'delray-beach-coastal-patio': {
     city: 'Delray Beach',
     surface: 'Porcelain & concrete pavers',
     title: 'Coastal patio & garden walkway',
+    service: { href: '/services/patios/', label: 'paver patio' },
     hero: '/images/pf-coast.jpg',
     heroAlt: 'Paver patio and walkway in a coastal Delray Beach garden',
     intro: 'A connected patio and walkway designed for salt air, sun, and the kind of year-round entertaining Delray Beach is built for.',
@@ -47,14 +49,15 @@ export function getStaticPaths() {
       'Polymeric joint sand to resist weeds and washout',
     ],
     gallery: [
-      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living patio with pavers and seating', href: '/portfolio/boynton-beach-outdoor-living', caption: 'Boynton Beach · Outdoor living' },
-      { src: '/images/pf-estate.jpg', alt: 'Garden terrace with natural stone paving', href: '/portfolio/palm-beach-estate-terrace', caption: 'Palm Beach · Estate garden terrace' },
+      { src: '/images/pf-outdoor.jpg', alt: 'Outdoor living patio with pavers and seating', href: '/portfolio/boynton-beach-outdoor-living/', caption: 'Boynton Beach · Outdoor living' },
+      { src: '/images/pf-estate.jpg', alt: 'Garden terrace with natural stone paving', href: '/portfolio/palm-beach-estate-terrace/', caption: 'Palm Beach · Estate garden terrace' },
     ],
   },
   'west-palm-beach-paver-driveway': {
     city: 'West Palm Beach',
     surface: 'Interlocking concrete pavers',
     title: 'Estate paver driveway',
+    service: { href: '/services/driveways/', label: 'paver driveway' },
     hero: '/images/pf-driveway.jpg',
     heroAlt: 'Wide interlocking paver driveway leading to a West Palm Beach estate',
     intro: 'From a cracked asphalt approach to a banded paver driveway that lifts the whole front of this West Palm Beach property.',
@@ -71,8 +74,8 @@ export function getStaticPaths() {
       'Permitted and built to West Palm Beach code',
     ],
     gallery: [
-      { src: '/images/pf-estate.jpg', alt: 'Estate entrance with natural stone paving', href: '/portfolio/palm-beach-estate-terrace', caption: 'Palm Beach · Estate garden terrace' },
-      { src: '/images/pf-pooldeck.jpg', alt: 'Travertine pool deck at the same property', href: '/portfolio/delray-beach-spa-surround', caption: 'Delray Beach · Spa & pool surround' },
+      { src: '/images/pf-estate.jpg', alt: 'Estate entrance with natural stone paving', href: '/portfolio/palm-beach-estate-terrace/', caption: 'Palm Beach · Estate garden terrace' },
+      { src: '/images/pf-pooldeck.jpg', alt: 'Travertine pool deck at the same property', href: '/portfolio/delray-beach-spa-surround/', caption: 'Delray Beach · Spa & pool surround' },
     ],
   },
 
@@ -87,14 +90,25 @@ export function getStaticPaths() {
 }
 
 const p = Astro.props.project;
+const site = Astro.site;
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', site).href },
+    { '@type': 'ListItem', position: 2, name: 'Portfolio', item: new URL('/portfolio/', site).href },
+    { '@type': 'ListItem', position: 3, name: p.title, item: new URL(Astro.url.pathname, site).href },
+  ],
+};
 ---
 <BaseLayout
   title={`${p.title} · ${p.city} · Perfect Pavers`}
   description={p.intro ?? `A Perfect Pavers project in ${p.city}, Palm Beach County — coming soon.`}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbLd)} />
 
   <nav class="crumbs">
     <div class="wrap">
-      <a href="/">Home</a> <span>/</span> <a href="/service-areas">Service areas</a> <span>/</span> <strong>{p.city}</strong>
+      <a href="/">Home</a> <span>/</span> <a href="/portfolio/">Portfolio</a> <span>/</span> <strong>{p.city}</strong>
     </div>
   </nav>
 
@@ -105,8 +119,8 @@ const p = Astro.props.project;
       <p class="soon-tag">Project coming soon</p>
       <p class="soon-copy">We&rsquo;re putting this {p.city} project together right now &mdash; full photos and the story behind it are on the way. In the meantime, we&rsquo;d be glad to walk your property and talk through something similar.</p>
       <div class="soon-cta">
-        <a href="/service-areas" class="btn btn-ghost">Back to service areas</a>
-        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="/service-areas/" class="btn btn-ghost">Back to service areas</a>
+        <a href="/contact/" class="btn btn-brass">Request a visit</a>
       </div>
     </section>
   ) : (
@@ -128,6 +142,7 @@ const p = Astro.props.project;
 
       <h3 class="work-h">Scope of work</h3>
       <ul class="work-list">{p.work.map((w) => <li>{w}</li>)}</ul>
+      {p.service && <p class="proj-service">This was a <a href={p.service.href}>{p.service.label}</a> project &mdash; see how we approach it.</p>}
     </div>
 
     <aside class="proj-specs">
@@ -136,7 +151,7 @@ const p = Astro.props.project;
           <div class="spec-row"><dt>{k}</dt><dd>{v}</dd></div>
         ))}
       </dl>
-      <a href="/contact" class="btn btn-brass spec-cta">Start a project like this</a>
+      <a href="/contact/" class="btn btn-brass spec-cta">Start a project like this</a>
     </aside>
   </section>
 
@@ -155,7 +170,7 @@ const p = Astro.props.project;
       <h2>Want something like this in {p.city}?</h2>
       <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="/contact" class="btn btn-brass">Request a visit</a>
+        <a href="/contact/" class="btn btn-brass">Request a visit</a>
         <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
       </div>
     </div>
@@ -185,6 +200,9 @@ const p = Astro.props.project;
     .work-list{list-style:none;display:grid;gap:11px}
     .work-list li{position:relative;padding-left:24px;font-size:15.5px;color:var(--ink);font-weight:300;line-height:1.55}
     .work-list li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--brass);font-size:12px}
+    .proj-service{margin-top:24px;font-size:16px;color:var(--muted);font-weight:300}
+    .proj-service a{color:var(--brass-dark);text-decoration:underline;text-underline-offset:3px}
+    .proj-service a:hover{color:var(--green)}
 
     .proj-specs{position:sticky;top:108px;background:var(--ivory-2);border:1px solid var(--line);border-radius:10px;padding:26px 28px}
     .proj-specs dl{margin:0}

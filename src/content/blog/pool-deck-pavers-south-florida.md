@@ -29,7 +29,7 @@ Finish matters as much as the rating. Installers report that tumbled or textured
 
 ## Material by material, framed for South Florida
 
-Here is how the three common choices compare for porcelain, [travertine and other natural stone](/services/natural-stone), and concrete, on the factors that matter most by the water:
+Here is how the three common choices compare for porcelain, [travertine and other natural stone](/services/natural-stone/), and concrete, on the factors that matter most by the water:
 
 | Material | Barefoot heat | Wet grip | Salt & chlorine | Sealing |
 |---|---|---|---|---|
@@ -45,7 +45,7 @@ Homeowners weigh these the same way. On a homeowner forum, one person preferred 
 
 The water chemistry around a South Florida pool is hard on porous surfaces, which is what makes sealing a natural-stone deck a recurring task rather than a one-time step. Sealing protects the color and helps the stone resist staining from pool chemistry, and our humidity is a factor in how often it needs redoing. Porcelain sidesteps most of this because installers describe it as non-porous and chemical resistant, needing no sealing at all. None of this means natural stone is a wrong choice; it means you should pick it knowing the upkeep, rather than being surprised by it a year in.
 
-This is also where finish and grip intersect with maintenance. A textured travertine finish that grips well when wet is also the finish most exposed to grime in our climate, so a realistic cleaning and resealing routine keeps both the look and the safety intact. When you compare quotes, ask each installer to spell out the [sealing and cleaning](/services/clean-seal) interval they recommend for the exact product, so you are comparing total ownership and not just the first install.
+This is also where finish and grip intersect with maintenance. A textured travertine finish that grips well when wet is also the finish most exposed to grime in our climate, so a realistic cleaning and resealing routine keeps both the look and the safety intact. When you compare quotes, ask each installer to spell out the [sealing and cleaning](/services/clean-seal/) interval they recommend for the exact product, so you are comparing total ownership and not just the first install.
 
 ## Permits in Broward and Palm Beach: expect city-by-city rules
 
@@ -59,4 +59,4 @@ If you live in an HOA, factor it in early. Under Florida's HOA Act, associations
 
 For a South Florida pool deck, the smartest path is to choose by performance in our climate, in this order: pick a light color to keep the surface cool underfoot, confirm a real wet DCOF and an outdoor high-grip finish for safety near the water, and match the material's maintenance to your tolerance for sealing against salt and chlorine. Porcelain leans low-maintenance, travertine and shellstone offer the natural look at the cost of periodic sealing, and concrete pavers can work well in lighter colors with regular upkeep.
 
-If you want to walk your specific yard, sun exposure, and city's permit requirements with someone who installs these surfaces every week, see our [pool deck services](/services/pool-decks) or browse finished projects in our [portfolio](/portfolio).
+If you want to walk your specific yard, sun exposure, and city's permit requirements with someone who installs these surfaces every week, see our [pool deck services](/services/pool-decks/) or browse finished projects in our [portfolio](/portfolio/).
