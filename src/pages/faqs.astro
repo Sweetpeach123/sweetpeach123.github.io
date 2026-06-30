@@ -69,7 +69,7 @@ const faqs = [
     .crumbs strong{font-weight:500;color:var(--ink)}
 
     .faq-hero{background:var(--green);color:var(--ivory);padding:78px 0 66px}
-    .faq-hero h1{font-size:58px;line-height:1.06;color:var(--ivory);margin-top:14px}
+    .faq-hero h1{font-size:clamp(38px,6.5vw,58px);line-height:1.06;color:var(--ivory);margin-top:14px}
     .faq-hero h1 em{font-style:italic;color:var(--brass)}
     .faq-hero .lede{font-weight:300;opacity:.9;max-width:38em;margin-top:18px;font-size:18px}
 
@@ -88,10 +88,14 @@ const faqs = [
     .faq-a p{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:64ch;padding-bottom:24px;margin-top:-4px}
     .faq[open] summary .faq-q{color:var(--green)}
 
-    @media(max-width:980px){
+    @media(max-width:1024px){
       .faq-hero{padding:56px 0 48px}
-      .faq-hero h1{font-size:38px}
       .faq-q{font-size:18px}
+    }
+    @media(max-width:600px){
+      .faq-hero{padding:48px 0 40px}
+      .faq summary{padding:20px 2px;gap:14px}
+      .faq-a p{font-size:15px;padding-bottom:20px}
     }
   </style>
 

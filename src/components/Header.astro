@@ -26,7 +26,8 @@ const about = [
       <span><i>✦</i>ICPI Certified Installer</span>
       <span><i>✦</i>35+ years in South Florida</span>
     </div>
-    <div>By appointment across Palm Beach County · <a href="tel:+19547791855">(954) 779-1855</a></div>
+    <span class="util-license"><i>✦</i> State Licensed &amp; Insured</span>
+    <div class="util-appt"><span class="util-pre">By appointment across Palm Beach County · </span><a href="tel:+19547791855">(954) 779-1855</a></div>
   </div>
 </div>
 
@@ -64,9 +65,41 @@ const about = [
     <div class="nav-right">
       <a class="nav-phone" href="tel:+19547791855">(954) 779-1855</a>
       <a href="/contact" class="btn btn-brass">Request a visit</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+</div>
+
+<div class="mobile-nav" id="mobileNav" hidden>
+  <div class="mnav-backdrop" data-mnav-close></div>
+  <nav class="mnav-panel" aria-label="Site">
+    <div class="mnav-badge"><i>✦</i> State Licensed &amp; Insured</div>
+    <button class="mnav-x" data-mnav-close aria-label="Close menu">&times;</button>
+    <div class="mnav-body">
+      <details class="mnav-group">
+        <summary class="mnav-top">Services <span class="mnav-caret">▾</span></summary>
+        <div class="mnav-sub">
+          {services.map((s) => <a href={s.href}>{s.label}</a>)}
+        </div>
+      </details>
+      <a class="mnav-top mnav-top--link" href="/portfolio">Portfolio</a>
+      <details class="mnav-group">
+        <summary class="mnav-top">About <span class="mnav-caret">▾</span></summary>
+        <div class="mnav-sub">
+          {about.map((x) => <a href={x.href}>{x.label}</a>)}
+        </div>
+      </details>
+      <a class="mnav-top mnav-top--link" href="/financing">Financing</a>
+      <a class="mnav-top mnav-top--link" href="/contact">Contact</a>
+      <div class="mnav-foot">
+        <a class="mnav-phone" href="tel:+19547791855">✆&nbsp; (954) 779-1855</a>
+        <a class="btn btn-brass" href="/contact">Request a visit</a>
+      </div>
+    </div>
+  </nav>
 </div>
 
 <script is:inline>
@@ -88,3 +121,71 @@ const about = [
     }, { passive: true });
   })();
 </script>
+
+<script is:inline>
+  (function () {
+    const nav = document.getElementById('mobileNav');
+    const toggle = document.getElementById('navToggle');
+    if (!nav || !toggle) return;
+    function open() {
+      nav.hidden = false;
+      requestAnimationFrame(() => nav.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+      toggle.classList.add('is-active');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function close() {
+      nav.classList.remove('is-open');
+      document.body.style.overflow = '';
+      toggle.classList.remove('is-active');
+      toggle.setAttribute('aria-expanded', 'false');
+      setTimeout(() => { nav.hidden = true; }, 300);
+    }
+    toggle.addEventListener('click', () => (nav.hidden ? open() : close()));
+    nav.querySelectorAll('[data-mnav-close], .mnav-panel a').forEach((el) =>
+      el.addEventListener('click', close)
+    );
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !nav.hidden) close();
+    });
+  })();
+</script>
+
+<style>
+  /* Hamburger button — hidden on desktop, shown when the inline menu collapses */
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 9px;background:none;border:0;cursor:pointer}
+  .nav-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:transform .3s cubic-bezier(.16,1,.3,1),opacity .2s ease}
+  .nav-toggle.is-active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.is-active span:nth-child(2){opacity:0}
+  .nav-toggle.is-active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:1024px){ .nav-toggle{display:inline-flex} }
+
+  /* Slide-in drawer */
+  .mobile-nav{position:fixed;inset:0;z-index:90;opacity:0;transition:opacity .3s ease}
+  .mobile-nav[hidden]{display:none}
+  .mobile-nav.is-open{opacity:1}
+  .mnav-backdrop{position:absolute;inset:0;background:rgba(16,22,18,.5);backdrop-filter:blur(3px)}
+  .mnav-panel{position:absolute;top:0;right:0;height:100%;width:min(88vw,400px);background:var(--ivory);box-shadow:-24px 0 60px rgba(16,22,18,.3);padding:0 0 30px;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateX(100%);transition:transform .36s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+  .mobile-nav.is-open .mnav-panel{transform:none}
+  /* Green licensed-&-insured band fills the top of the drawer */
+  .mnav-badge{background:var(--green);color:var(--ivory);padding:20px 56px 20px 30px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:9px}
+  .mnav-badge i{color:var(--brass);font-style:normal;font-size:12px}
+  .mnav-x{position:absolute;top:13px;right:16px;width:42px;height:42px;border:0;background:none;font-size:28px;line-height:1;color:var(--ivory);cursor:pointer;z-index:2}
+  .mnav-body{display:flex;flex-direction:column;flex:1;padding:14px 30px 0}
+  /* Top-level rows — only these show until you expand a group */
+  .mnav-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--serif);font-size:24px;color:var(--ink);padding:17px 0;border-top:1px solid var(--line);cursor:pointer;list-style:none}
+  .mnav-top::-webkit-details-marker{display:none}
+  .mnav-body>.mnav-group:first-child .mnav-top{border-top:0}
+  .mnav-caret{font-size:13px;color:var(--brass-dark);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+  .mnav-group[open] .mnav-caret{transform:rotate(180deg)}
+  .mnav-group[open] .mnav-top{color:var(--brass-dark)}
+  .mnav-sub{display:flex;flex-direction:column;margin:0 0 14px;border-left:1px solid var(--line);padding:2px 0 6px 16px}
+  .mnav-sub a{padding:9px 0;font-size:15px;color:var(--muted)}
+  .mnav-sub a:hover{color:var(--brass-dark)}
+  .mnav-foot{margin-top:auto;padding-top:26px;display:flex;flex-direction:column;gap:14px}
+  .mnav-phone{font-size:18px;font-weight:500;letter-spacing:.04em;color:var(--green)}
+  .mnav-foot .btn{justify-content:center}
+  @media(prefers-reduced-motion:reduce){
+    .mobile-nav,.mnav-panel,.nav-toggle span{transition:none}
+  }
+</style>

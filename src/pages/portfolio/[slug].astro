@@ -176,7 +176,7 @@ const p = Astro.props.project;
     .proj-head .lede{font-family:var(--serif);font-size:clamp(19px,1.9vw,23px);line-height:1.5;font-weight:400;color:var(--ink);max-width:34em;margin:20px 0 0}
 
     .proj-hero .ph{border-radius:12px;overflow:hidden;height:clamp(280px,46vw,560px)}
-    .proj-hero .ph img{width:100%;height:100%;object-fit:cover;display:block}
+    .proj-hero .ph img{width:100%;max-width:100%;height:100%;object-fit:cover;display:block}
     .proj-hero .ph::after{display:none}
 
     .proj-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:54px;align-items:start}
@@ -194,7 +194,7 @@ const p = Astro.props.project;
     .spec-row dd{font-size:14.5px;color:var(--ink);text-align:right;font-weight:400}
     .spec-cta{margin-top:20px;width:100%;text-align:center}
 
-    .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding-top:0}
+    .proj-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;padding-top:0}
     .gphoto{position:relative;display:block;border-radius:10px;overflow:hidden;height:360px}
     .gphoto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
     .gphoto::after{display:none}
@@ -211,11 +211,18 @@ const p = Astro.props.project;
     .soon-copy{max-width:40em;margin:24px auto 0;font-size:17px;color:var(--muted);font-weight:300;line-height:1.7}
     .soon-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
 
-    @media(max-width:980px){
+    @media(max-width:1024px){
       .proj-grid{grid-template-columns:1fr;gap:34px}
       .proj-specs{position:static}
       .proj-gallery{grid-template-columns:1fr}
       .proj-gallery .ph{height:260px}
+    }
+    @media(max-width:600px){
+      .proj-grid{gap:26px}
+      .proj-specs{padding:22px 18px}
+      .proj-body p{font-size:15.5px}
+      .gphoto{height:220px}
+      .proj-soon{padding-top:46px;padding-bottom:64px}
     }
   </style>
 

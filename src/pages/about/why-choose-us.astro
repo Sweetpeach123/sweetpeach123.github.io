@@ -119,9 +119,20 @@ const values = [
     .team-photo img{display:block;width:100%;height:auto;border-radius:10px}
     .team-photo figcaption{margin-top:16px;text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
-    @media(max-width:680px){
+    @media(max-width:1024px){
+      .about-top{padding-bottom:38px}
+      .team-photo{max-width:100%}
+      .stats-strip{gap:28px 20px}
+      .stats-strip .stat{flex:1 1 28%}
+    }
+
+    @media(max-width:600px){
+      .about-top{padding-bottom:30px}
+      .about-top .lede{margin-top:18px}
+      .about-copy{margin-top:22px}
       .stats-strip{gap:24px 16px}
       .stats-strip .stat{flex:1 1 40%}
+      .team-section{padding-top:44px}
     }
   </style>
 

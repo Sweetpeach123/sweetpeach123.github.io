@@ -7,13 +7,18 @@ interface Props {
   title?: string;
   description?: string;
   bodyClass?: string;
+  canonical?: string;
+  image?: string;        // absolute URL for social share previews
 }
 
 const {
   title = 'Perfect Pavers of Palm Beach',
   description = 'Premium paver driveways, pool decks, patios and outdoor living across Palm Beach County. State Licensed Building Contractor, ICPI certified, 35+ years in South Florida.',
   bodyClass = '',
+  canonical,
+  image,
 } = Astro.props;
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 ---
 <!doctype html>
 <html lang="en">
@@ -22,6 +27,14 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:type" content="website" />
+  {image && <meta property="og:image" content={image} />}
+  <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+  <slot name="head" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
