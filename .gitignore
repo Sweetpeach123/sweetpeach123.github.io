@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # mockup-era scratch images (not used by the Astro site)
 /images/
+
+# SEO agent working files — keep research/strategy out of the public repo
+seo-runs/
+.claude/settings.local.json

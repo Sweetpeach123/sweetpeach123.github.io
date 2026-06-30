@@ -26,6 +26,12 @@ const {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script is:inline>
+    // Enable scroll-reveal before first paint (skip if user prefers reduced motion)
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('reveal-ready');
+    }
+  </script>
 </head>
 <body class={bodyClass}>
   <Header />
@@ -35,5 +41,34 @@ const {
   <!-- GoHighLevel Number Pool: session-based dynamic phone-number tracking (loads on every page) -->
   <script is:inline src="https://backend.leadconnectorhq.com/appengine/loc/6O64IBH8EOdqNTcAlwLR/pool/hqUY5RAYaK7ku7HEoILc/number_pool.js"></script>
   <script is:inline src="https://backend.leadconnectorhq.com/appengine/js/user_session.js"></script>
+
+  <script is:inline>
+    (function () {
+      if (!document.documentElement.classList.contains('reveal-ready')) return;
+      var sels = ['.trust .cell', '.props .card', '.steps .step', '.promise li', '.incl-list li', '.rev-grid > div', '.cities li'];
+      var items = [];
+      sels.forEach(function (sel) {
+        var els = document.querySelectorAll(sel);
+        var counts = new Map();
+        els.forEach(function (el) {
+          var p = el.parentElement;
+          var i = counts.get(p) || 0;
+          counts.set(p, i + 1);
+          el.style.transitionDelay = (i * 85) + 'ms';
+          items.push(el);
+        });
+      });
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('is-in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
