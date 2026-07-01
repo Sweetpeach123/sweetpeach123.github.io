@@ -165,7 +165,7 @@ const about = [
   .mobile-nav[hidden]{display:none}
   .mobile-nav.is-open{opacity:1}
   .mnav-backdrop{position:absolute;inset:0;background:rgba(16,22,18,.5);backdrop-filter:blur(3px)}
-  .mnav-panel{position:absolute;top:0;right:0;height:100%;width:min(88vw,400px);background:var(--ivory);box-shadow:-24px 0 60px rgba(16,22,18,.3);padding:0 0 30px;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateX(100%);transition:transform .36s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+  .mnav-panel{position:absolute;top:0;left:0;height:100%;width:min(88vw,400px);background:var(--ivory);box-shadow:24px 0 60px rgba(16,22,18,.3);padding:0 0 30px;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateX(-100%);transition:transform .36s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
   .mobile-nav.is-open .mnav-panel{transform:none}
   /* Green licensed-&-insured band fills the top of the drawer */
   .mnav-badge{background:var(--green);color:var(--ivory);padding:20px 56px 20px 30px;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:9px}
