@@ -28,6 +28,6 @@ jobs:
           chmod 600 ~/.ssh/id_deploy
           ssh-keyscan -p "$PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
           rsync -avz --delete \
-            --exclude='.htaccess' --exclude='.well-known' --exclude='cgi-bin' \
+            --exclude='.well-known' --exclude='cgi-bin' \
             -e "ssh -p $PORT -i ~/.ssh/id_deploy -o StrictHostKeyChecking=accept-new" \
             dist/ "$USER@$HOST:$DEST/"

@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Page not found · Perfect Pavers of Palm Beach"
+  description="That page could not be found. Explore our paver services or request your free on-site visit in Palm Beach County.">
+
+  <section class="nf">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--brass)">Error 404</div>
+      <h1>This page took a <em>wrong turn.</em></h1>
+      <p class="lede">The page you were looking for isn&rsquo;t here. It may have moved, or the link was mistyped. Let&rsquo;s get you back on solid ground.</p>
+      <div class="nf-cta">
+        <a href="/" class="btn btn-brass">Back to home</a>
+        <a href="/contact/" class="btn btn-ghost">Request a free visit</a>
+      </div>
+      <nav class="nf-links" aria-label="Popular pages">
+        <a href="/services/driveways/">Driveways</a>
+        <a href="/services/pool-decks/">Pool decks</a>
+        <a href="/services/patios/">Patios</a>
+        <a href="/portfolio/">Our work</a>
+        <a href="/reviews/">Reviews</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </section>
+
+  <style>
+    .nf{background:var(--green);color:var(--ivory);padding:96px 0 104px}
+    .nf h1{font-size:clamp(40px,7vw,64px);line-height:1.05;color:var(--ivory);margin-top:14px}
+    .nf h1 em{font-style:italic;color:var(--brass)}
+    .nf .lede{font-weight:300;opacity:.9;max-width:44em;margin-top:18px;font-size:18px}
+    .nf-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .nf-links{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:40px;padding-top:28px;border-top:1px solid rgba(245,240,228,.2)}
+    .nf-links a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory);opacity:.85;transition:color .3s,opacity .3s}
+    .nf-links a:hover{color:var(--brass);opacity:1}
+    @media(max-width:600px){ .nf{padding:64px 0 72px} .nf .lede{font-size:16px} }
+  </style>
+
+</BaseLayout>

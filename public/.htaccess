@@ -1,0 +1,3 @@
+# Perfect Pavers — static Astro site on Bluehost (addon domain)
+Options -Indexes
+ErrorDocument 404 /404.html
