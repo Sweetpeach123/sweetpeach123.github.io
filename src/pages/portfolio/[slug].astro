@@ -309,8 +309,10 @@ const breadcrumbLd = {
     <p class="lede">{p.intro}</p>
   </section>
 
-  <section class="wrap proj-hero">
-    <div class="ph"><img src={p.hero} alt={p.heroAlt} width="1200" height="640" fetchpriority="high" /></div>
+  <section class="wrap proj-strip">
+    {[{ src: p.hero, alt: p.heroAlt }, ...(p.gallery ?? [])].map((g) => (
+      <div class="sph"><img src={g.src} alt={g.alt} loading="lazy" decoding="async" /></div>
+    ))}
   </section>
 
   <section class="block wrap proj-grid">
@@ -332,16 +334,6 @@ const breadcrumbLd = {
       <a href="/contact/" class="btn btn-brass spec-cta">Start a project like this</a>
     </aside>
   </section>
-
-  {p.gallery && p.gallery.length > 0 && (
-  <section class="block wrap proj-gallery">
-    {p.gallery.map((g) => (
-      <div class="ph gphoto">
-        <img src={g.src} alt={g.alt} width="700" height="520" loading="lazy" decoding="async" />
-      </div>
-    ))}
-  </section>
-  )}
 
   <section class="cta">
     <div class="wrap">
@@ -369,9 +361,9 @@ const breadcrumbLd = {
     .proj-head h1{font-size:clamp(36px,4.4vw,56px);line-height:1.05;letter-spacing:-.01em;margin:0}
     .proj-head .lede{font-family:var(--serif);font-size:clamp(19px,1.9vw,23px);line-height:1.5;font-weight:400;color:var(--ink);max-width:34em;margin:20px 0 0}
 
-    .proj-hero .ph{border-radius:12px;overflow:hidden;height:clamp(220px,30vw,380px);max-width:720px;margin:0 auto}
-    .proj-hero .ph img{width:100%;max-width:100%;height:100%;object-fit:cover;display:block}
-    .proj-hero .ph::after{display:none}
+    .proj-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:640px}
+    .sph{border-radius:8px;overflow:hidden;height:112px;background:var(--ivory-2)}
+    .sph img{width:100%;height:100%;object-fit:cover;display:block}
 
     .proj-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:54px;align-items:start}
     .proj-body p{font-size:16.5px;color:var(--muted);font-weight:300;line-height:1.75;margin-top:16px}
@@ -411,14 +403,13 @@ const breadcrumbLd = {
     @media(max-width:1024px){
       .proj-grid{grid-template-columns:1fr;gap:34px}
       .proj-specs{position:static}
-      .proj-gallery{grid-template-columns:1fr}
-      .proj-gallery .ph{height:260px}
     }
     @media(max-width:600px){
       .proj-grid{gap:26px}
       .proj-specs{padding:22px 18px}
       .proj-body p{font-size:15.5px}
-      .gphoto{height:220px}
+      .proj-strip{grid-template-columns:repeat(2,1fr);max-width:320px}
+      .sph{height:100px}
       .proj-soon{padding-top:46px;padding-bottom:64px}
     }
   </style>
