@@ -1,0 +1,33 @@
+name: Build & deploy to Bluehost
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Rsync dist to Bluehost over SSH
+        env:
+          KEY:  ${{ secrets.BLUEHOST_SSH_KEY }}
+          HOST: ${{ secrets.BLUEHOST_HOST }}
+          USER: ${{ secrets.BLUEHOST_USER }}
+          PORT: ${{ secrets.BLUEHOST_PORT }}
+          DEST: ${{ secrets.BLUEHOST_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -p "$PORT" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          rsync -avz --delete \
+            --exclude='.htaccess' --exclude='.well-known' --exclude='cgi-bin' \
+            -e "ssh -p $PORT -i ~/.ssh/id_deploy -o StrictHostKeyChecking=accept-new" \
+            dist/ "$USER@$HOST:$DEST/"
