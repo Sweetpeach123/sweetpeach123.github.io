@@ -24,11 +24,15 @@ interface Props {
   faqs: Faq[];
   relatedProjects?: RelLink[];  // contextual links to portfolio items
   relatedReading?: RelLink[];   // contextual links to blog / other services
+  materialImages?: Record<string, string>;  // per-page override of the shared finish photos
+  materialsLabel?: string;   // section eyebrow, default "Materials"
+  materialsHeading?: string; // section h2, default "Choose your finish."
 }
 const {
   seoTitle, seoDescription, name, crumb, eyebrow, h1, h1em, lede,
   heroImg, heroAlt, heroLabel, intro, benefits, included, includedNote, materials, faqs,
-  relatedProjects = [], relatedReading = [],
+  relatedProjects = [], relatedReading = [], materialImages = {},
+  materialsLabel = 'Materials', materialsHeading = 'Choose your finish.',
 } = Astro.props as Props;
 const hasRelated = relatedProjects.length > 0 || relatedReading.length > 0;
 
@@ -65,7 +69,7 @@ const MATERIAL_INFO: Record<string, MatInfo> = {
     tagline: 'Modern, ultra-low-maintenance and stain-proof.',
     properties: ['Nearly zero water absorption — resists stains and mold', 'Fade-proof, scratch-resistant surface', 'Cool underfoot, even in full sun', 'Clean, modern lines and consistent color'],
     why: 'Porcelain is the easiest finish to live with: it shrugs off wine, grease and chlorine, stays cool by the pool, and keeps its exact color for the life of the install.',
-    bestFor: ['Pool decks and patios', 'Modern and contemporary homes', 'Outdoor kitchens and dining areas', 'Anyone wanting minimal upkeep'],
+    bestFor: ['Pool decks and patios', 'Modern and contemporary homes', 'Dining and entertaining terraces', 'Anyone wanting minimal upkeep'],
     pricing: '$20–$32 / sq ft installed',
   },
   'Travertine': {
@@ -122,7 +126,7 @@ const MATERIAL_INFO: Record<string, MatInfo> = {
     tagline: 'A natural stone face for a rich, textured wall.',
     properties: ['Real stone facing over a solid structure', 'Deep texture and natural shadow lines', 'Ties walls into stone elsewhere on the home', 'Durable, weather-resistant finish'],
     why: 'Veneer wraps a structural wall in genuine stacked stone, giving you the rugged, high-end look of a dry-stone wall with the strength of an engineered core.',
-    bestFor: ['Seating and feature walls', 'Outdoor kitchen and fire surrounds', 'Entry columns and pillars', 'Matching home stonework'],
+    bestFor: ['Seating and feature walls', 'Terrace and patio borders', 'Entry columns and pillars', 'Matching home stonework'],
     pricing: '$30–$55 / sq ft of wall face',
   },
   'Finished concrete block': {
@@ -134,7 +138,11 @@ const MATERIAL_INFO: Record<string, MatInfo> = {
   },
 };
 const matSlug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-const matCards = materials.map((m) => ({ name: m, info: MATERIAL_INFO[m] ?? null, id: matSlug(m) }));
+const matCards = materials.map((m) => {
+  const base = MATERIAL_INFO[m] ?? null;
+  const info = base ? { ...base, img: materialImages[m] ?? base.img } : null;
+  return { name: m, info, id: matSlug(m) };
+});
 const hasMatModals = matCards.some((m) => m.info);
 
 const url = (p: string) => new URL(p, Astro.site).href;
@@ -240,10 +248,11 @@ const jsonLd = [
     </div>
   </section>
 
+  {materials.length > 0 && (
   <section class="block wrap" style="padding-bottom:44px">
     <div class="sec-head">
-      <span class="sec-num">Materials</span>
-      <h2>Choose your finish.</h2>
+      <span class="sec-num">{materialsLabel}</span>
+      <h2>{materialsHeading}</h2>
     </div>
     <div class="materials">
       {matCards.map((m) => m.info
@@ -251,6 +260,7 @@ const jsonLd = [
         : <span class="mat">{m.name}</span>)}
     </div>
   </section>
+  )}
 
   {hasMatModals && (
     <div class="mat-overlay" id="matOverlay" hidden>
@@ -377,7 +387,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="eyebrow" style="color:var(--brass)">Your free on-site visit</div>
       <h2>Let&rsquo;s walk your property.</h2>
-      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, samples in hand, no charge, no pressure.</p>
+      <p>Tell us the surface, the size, and your timeline. We&rsquo;ll be at your door within a day or two, no charge, no pressure.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
         <a href="/contact/" class="btn btn-brass">Request a visit</a>
         <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>

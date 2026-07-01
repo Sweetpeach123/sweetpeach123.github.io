@@ -7,7 +7,7 @@ heroImage: "/images/pool-deck-pavers-south-florida.jpg"
 draft: false
 ---
 
-If you are choosing pool deck pavers in Broward or Palm Beach County, the decision is different here than almost anywhere else. Our sun is intense, our rain comes in sheets, and the surface around a pool lives in constant contact with salt or chlorine. A material that looks great in a national catalog can still cook your feet at noon or get slick when it is wet. This guide walks through how to pick pool deck pavers for South Florida conditions specifically, so you go into your project knowing what actually matters.
+If you are choosing pool deck pavers in Broward or Palm Beach County, the decision is different here than almost anywhere else. Our sun is intense, our rain comes in sheets, and the surface around a pool lives in constant contact with salt or chlorine. A material that looks great in a national catalog can still cook your feet at noon or get slick when it is wet. This guide walks through how to pick pool deck pavers for South Florida conditions specifically, so you go into your project knowing what matters most.
 
 ## How to choose pool deck pavers for South Florida heat and slip
 
@@ -15,11 +15,11 @@ The single most useful thing to understand about pool deck pavers is that barefo
 
 Within a single Daltile porcelain line (TREAD 2CM), the spread is dramatic. A dark Bluestone-look color carries an SRI of about 23.55 and a Voyager Black around 31, while a Luminary White reaches 65 and a Studio Carrara about 65.45, with mid-tones like Editorial Volakas at 57 and Jet Setter Dusk at 47 falling in between. That is the same material, same line, with the cooler colors reflecting more than twice the heat of the darkest ones.
 
-According to Daltile's own data, dark grey, black, and brown porcelain run roughly 10 to 22 percent hotter, while white, cream, and light grey absorb and retain 5 to 20 percent less heat than concrete. The practical takeaway is one most South Florida homeowners do not expect: light-colored surfaces stay cooler underfoot than dark ones across all of these materials, so a light concrete paver can actually run cooler than a dark porcelain. If bare feet on a hot deck is your concern, choose by color first.
+According to Daltile's own data, dark grey, black, and brown porcelain run roughly 10 to 22 percent hotter, while white, cream, and light grey absorb and retain 5 to 20 percent less heat than concrete. The practical takeaway is one most South Florida homeowners do not expect: light-colored surfaces stay cooler underfoot than dark ones across all of these materials, so a light concrete paver can run cooler than a dark porcelain. If bare feet on a hot deck is your concern, choose by color first.
 
 One thing to be honest about: published SRI numbers exist mainly per porcelain brand and color. We did not find a generic published SRI for travertine, shellstone, or unbranded concrete pavers, so the cleanest apples-to-apples heat comparison available is within porcelain lines. The general color principle still holds, but be wary of anyone quoting a precise "degrees cooler" figure for natural stone without a spec sheet behind it.
 
-### Slip resistance: what the wet numbers actually mean
+### Slip resistance: what the wet numbers mean
 
 Around a pool, the surface is wet by definition, so wet slip resistance is not optional. The relevant measured standard is ANSI A326.3, which reports a wet Dynamic Coefficient of Friction (DCOF). For a level interior surface walked on when wet, the published minimum is 0.42. For clean, maintained outdoor wet areas, the figure cited is 0.55. Higher is grippier.
 

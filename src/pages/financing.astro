@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const steps = [
   { n: '01', t: 'Get your written estimate', meta: 'Free, itemized', p: 'It starts the same honest way every project does: a free on-site visit and a full written estimate with the base, drainage, and restraints already included.' },
-  { n: '02', t: 'Apply in minutes', meta: 'Soft credit check', p: 'Check your options through Wisetack with a quick application. Seeing your rate is a soft credit check that does not affect your credit score.' },
+  { n: '02', t: 'Apply in minutes', meta: 'Soft credit check', p: 'Check your options through Wisetack with a quick application you can finish from home in a few minutes.' },
   { n: '03', t: 'Choose your monthly plan', meta: 'Terms that fit', p: 'Pick the monthly payment and term that work for your budget. Clear terms, no hidden fees, and no prepayment penalty if you pay it off early.' },
-  { n: '04', t: 'We build, you pay monthly', meta: 'Do it right, once', p: 'With the budget handled, you can build it right the first time — full base, proper drainage, and the materials you actually want.' },
+  { n: '04', t: 'We build, you pay monthly', meta: 'Do it right, once', p: 'With the budget spread out, you order the material you truly want and never value-engineer the parts that matter beneath the surface.' },
 ];
 
 const benefits = [
@@ -15,7 +15,7 @@ const benefits = [
 ];
 
 const faqs = [
-  { q: 'Who provides the financing?', a: 'We partner with Wisetack and Jobber, established financing platforms used by home-service contractors across the country. The lending is handled by them; we simply make it easy to apply.' },
+  { q: 'Who provides the financing?', a: 'We partner with Wisetack, an established financing platform used by home-service contractors across the country. The lending is handled by Wisetack; we simply make it easy to apply.' },
   { q: 'Will checking my rate hurt my credit?', a: 'No. Seeing what you prequalify for is a soft credit check, which does not affect your credit score. A hard check only happens if you choose to move forward with a loan.' },
   { q: 'What can I finance?', a: 'Any of our work — driveways, walkways, patios, pool decks, outdoor living, walls, natural stone, and clean-and-seal. Projects generally start at $1,200.' },
   { q: 'Is there a penalty for paying early?', a: 'No. There is no prepayment penalty. You can pay off the balance early at any time without any additional fee.' },
@@ -24,7 +24,7 @@ const faqs = [
 ---
 <BaseLayout
   title="Financing · Flexible Monthly Payments · Perfect Pavers of Palm Beach"
-  description="Flexible monthly financing for paver driveways, pool decks, patios and outdoor living in Palm Beach County, through Wisetack and Jobber. Checking your rate is a soft credit check with no impact to your score.">
+  description="Flexible monthly financing for paver driveways, pool decks, patios and outdoor living in Palm Beach County, through Wisetack. Checking your rate is a soft credit check with no impact to your score.">
 
   <nav class="crumbs">
     <div class="wrap">
@@ -36,7 +36,7 @@ const faqs = [
     <div class="wrap">
       <div class="eyebrow" style="color:var(--brass)">Financing available</div>
       <h1>Don&rsquo;t let the budget decide the <em>timeline.</em></h1>
-      <p class="lede">Flexible monthly financing through Wisetack and Jobber means you can do it right the first time: full base, proper drainage, and the materials you actually want.</p>
+      <p class="lede">Flexible monthly financing through Wisetack means you can do it right the first time: full base, proper drainage, and the materials you had in mind.</p>
       <div class="hero-cta" style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap">
         <a href="/contact/" class="btn btn-brass">Request your free estimate</a>
         <a href="tel:+19547791855" class="btn btn-ghost">Call (954) 779-1855</a>
@@ -79,19 +79,15 @@ const faqs = [
 
   <section class="partners">
     <div class="wrap">
-      <div class="eyebrow" style="color:var(--brass)">Our financing partners</div>
-      <h2>Backed by names you can trust.</h2>
-      <div class="partner-grid">
+      <div class="eyebrow" style="color:var(--brass)">Our financing partner</div>
+      <h2>Backed by a name you can trust.</h2>
+      <div class="partner-grid single">
         <div class="partner">
           <h3>Wisetack</h3>
-          <p>Simple, transparent consumer financing built for home-service projects. Check your rate with a soft credit pull, choose a monthly plan, and pay with no hidden fees and no prepayment penalty.</p>
-        </div>
-        <div class="partner">
-          <h3>Jobber</h3>
-          <p>The platform we use to send your written estimate, schedule the work, and offer convenient payment options — so the whole process, from quote to payment, stays clear and in one place.</p>
+          <p>Simple, transparent consumer financing built for home-service projects. Check your rate with a soft credit pull, choose a monthly plan, and pay with no hidden fees and no prepayment penalty. Trusted by thousands of contractors across the country.</p>
         </div>
       </div>
-      <p class="partner-note">Financing is subject to approval by our lending partners. Checking your options is a soft credit check that does not affect your credit score. Terms and availability are set by the lender.</p>
+      <p class="partner-note">Financing is subject to approval by our lending partner. Checking your options is a soft credit check that does not affect your credit score. Terms and availability are set by the lender.</p>
     </div>
   </section>
 
@@ -137,6 +133,7 @@ const faqs = [
     .partners{background:var(--ivory-2)}
     .partners .wrap{padding:96px 40px}
     .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px}
+    .partner-grid.single{grid-template-columns:1fr;max-width:660px}
     .partner{background:var(--ivory);border:1px solid var(--line);border-radius:10px;padding:34px 36px}
     .partner h3{font-size:28px;margin-bottom:12px}
     .partner p{font-size:15.5px;color:var(--muted);font-weight:300;line-height:1.7}
