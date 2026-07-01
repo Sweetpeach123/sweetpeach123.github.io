@@ -5,7 +5,7 @@ const values = [
   { mk: 'I.', h: 'The estimate is the price', p: 'Base, drainage, and edge restraints are written in up front, never billed later as "extras." The number we quote is the number you pay.' },
   { mk: 'II.', h: 'We answer the phone', p: 'Before the deposit and years after the final paver is set. A real local team, not a call center two states away.' },
   { mk: 'III.', h: 'Built beneath the surface', p: 'A proper rock base, real drainage, and hidden restraints are what keep a driveway flat for decades. We do not cut there.' },
-  { mk: 'IV.', h: 'One county, full attention', p: 'Palm Beach County is all this division does. Our other Perfect Pavers locations also serve Broward — but here, we know the local code, the soil, and the municipalities by name.' },
+  { mk: 'IV.', h: 'One county, full attention', p: 'Palm Beach County is all this division does — here, we know the local code, the soil, and the municipalities by name. For service in Broward County, visit <a href="https://www.perfectpavers.com" target="_blank" rel="noopener">www.perfectpavers.com</a>.' },
 ];
 ---
 <BaseLayout
@@ -75,7 +75,7 @@ const values = [
       </div>
       <ul>
         {values.map((v) => (
-          <li><span class="mk">{v.mk}</span><div><b>{v.h}</b><p>{v.p}</p></div></li>
+          <li><span class="mk">{v.mk}</span><div><b>{v.h}</b><p set:html={v.p}></p></div></li>
         ))}
       </ul>
     </div>
@@ -99,6 +99,9 @@ const values = [
     .crumbs a:hover{color:var(--brass-dark)}
     .crumbs span{margin:0 8px;color:var(--brass)}
     .crumbs strong{font-weight:500;color:var(--ink)}
+
+    :global(.promise li p a){color:var(--brass);text-decoration:underline;text-underline-offset:2px}
+    :global(.promise li p a:hover){color:var(--ivory)}
 
     /* Intro — no hero image, starts at the top */
     .about-top{padding-bottom:46px;text-align:center}

@@ -7,8 +7,8 @@ const groups = [
     items: [
       { q: 'Is the first visit really free?', a: 'Yes. The on-site visit and the measurements are completely free, with no obligation. Most trades charge for that first visit — we don’t.' },
       { q: 'How soon can you come out?', a: 'Usually within 1–2 days. While many installers take four weeks just to show up, we measure your property and walk through the details within a day or two.' },
-      { q: 'How long does the estimate take?', a: 'You’ll have a full written estimate within 24–48 hours. The rock base, drainage, and edge restraints are already included — the number we quote is the number you pay.' },
-      { q: 'What areas do you serve?', a: 'All of Palm Beach County, with no additional travel charge to any community in the county. If you’re not sure we reach you, just ask.' },
+      { q: 'How long does the estimate take?', a: 'You’ll have a full written estimate within 48–72 hours. The rock base, drainage, and edge restraints are already included — the number we quote is the number you pay.' },
+      { q: 'What areas do you serve?', a: 'All of Palm Beach County, with no additional travel charge to any community in the county. For service in Broward County, visit <a href="https://www.perfectpavers.com" target="_blank" rel="noopener">www.perfectpavers.com</a>. If you’re not sure we reach you, just ask.' },
       { q: 'Is there a minimum project size?', a: 'Yes, our minimum project is around $1,200. It helps us keep our crews focused on doing each job right.' },
     ],
   },
@@ -41,7 +41,7 @@ const faqSchema = {
   '@type': 'FAQPage',
   mainEntity: groups.flatMap((g) => g.items).map((f) => ({
     '@type': 'Question', name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
   })),
 };
 ---
@@ -75,7 +75,7 @@ const faqSchema = {
                 <span class="faq-q">{f.q}</span>
                 <span class="faq-ic" aria-hidden="true"></span>
               </summary>
-              <div class="faq-a"><p>{f.a}</p></div>
+              <div class="faq-a"><p set:html={f.a}></p></div>
             </details>
           ))}
         </div>
@@ -123,6 +123,8 @@ const faqSchema = {
     .faq[open] .faq-ic::after{transform:scaleY(0);opacity:0}
     .faq-a{overflow:hidden;padding:0 4px}
     .faq-a p{font-size:16px;color:var(--muted);font-weight:300;line-height:1.75;max-width:64ch;padding-bottom:24px;margin-top:-4px}
+    :global(.faq-a a){color:var(--brass-dark);text-decoration:underline;text-underline-offset:2px}
+    :global(.faq-a a:hover){color:var(--green)}
     .faq[open] summary .faq-q{color:var(--green)}
 
     @media(max-width:1024px){
