@@ -1,3 +1,11 @@
 # Perfect Pavers — static Astro site on Bluehost (addon domain)
 Options -Indexes
+
+# Force a clean 404 for anything that isn't a real file or directory,
+# before Bluehost's default handler turns it into a 500.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ - [R=404,L]
+
 ErrorDocument 404 /404.html
