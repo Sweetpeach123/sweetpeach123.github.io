@@ -64,7 +64,6 @@ const foundations = [
     <div class="found-grid">
       {foundations.map((f) => (
         <div class="found">
-          <span class="found-mk" aria-hidden="true">✦</span>
           <h3>{f.t}</h3>
           <p>{f.p}</p>
         </div>
@@ -107,8 +106,10 @@ const foundations = [
 
     .found-intro{font-size:17px;color:var(--muted);font-weight:300;max-width:54ch;margin-bottom:34px}
     .found-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-    .found{background:var(--ivory);padding:30px 32px}
-    .found-mk{color:var(--brass);font-size:13px}
+    .found{background:var(--ivory);padding:30px 32px;transition:background .4s cubic-bezier(.16,1,.3,1),box-shadow .4s cubic-bezier(.16,1,.3,1)}
+    .found:hover{background:var(--ivory-2);box-shadow:inset 3px 0 0 0 var(--brass)}
+    .found h3{transition:color .3s ease}
+    .found:hover h3{color:var(--brass-dark)}
     .found h3{font-size:21px;margin:12px 0 8px}
     .found p{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.65}
 
