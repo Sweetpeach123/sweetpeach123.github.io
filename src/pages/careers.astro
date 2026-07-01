@@ -124,9 +124,9 @@ const roles = [
     <div class="wrap">
       <div class="eyebrow" style="color:var(--brass)">How to apply</div>
       <h2>Tell us about yourself.</h2>
-      <p>Email a short note about your experience (a resume is welcome but not required) or give us a call. A real person on our team will get back to you.</p>
+      <p>Fill out our quick application (a resume is welcome but not required) or give us a call. A real person on our team will get back to you.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <a href="mailto:office@perfectpavers.com?subject=Careers%20%E2%80%94%20Application" class="btn btn-brass">Email office@perfectpavers.com</a>
+        <a href="/careers/apply/" class="btn btn-brass">Apply online</a>
         <a href="tel:+19547791855" class="btn btn-ghost" style="color:var(--ivory)">Call (954) 779-1855</a>
       </div>
     </div>
@@ -156,7 +156,7 @@ const roles = [
           <ul class="sheet-list offer">{r.offer.map((d) => <li>{d}</li>)}</ul>
 
           <div class="sheet-apply">
-            <a href={`mailto:office@perfectpavers.com?subject=${encodeURIComponent('Careers — ' + r.t)}`} class="btn btn-brass">Apply for this role</a>
+            <a href={`/careers/apply/?role=${r.id}`} class="btn btn-brass">Apply for this role</a>
             <a href="tel:+19547791855" class="btn btn-ghost">Call (954) 779-1855</a>
           </div>
           <p class="sheet-foot">Pay ranges are estimates and depend on experience. Benefits are offered per company policy and U.S. eligibility requirements.</p>
