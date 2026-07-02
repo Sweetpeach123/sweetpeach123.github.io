@@ -88,7 +88,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <script is:inline>
     (function () {
       if (!document.documentElement.classList.contains('reveal-ready')) return;
-      var sels = ['.trust .cell', '.props .card', '.steps .step', '.promise li', '.incl-list li', '.rev-grid > div', '.cities li', '.svc-intro-stats .sis'];
+      var sels = ['.trust .cell', '.props .card', '.steps .step', '.promise li', '.incl-list li', '.rev-grid > div', '.cities li', '.svc-intro-stats .sis', '.sec-head', '.services .svc', '.pf-grid .pf', '.promise > .wrap > div:first-child', '.area > .wrap > div:first-child', '.cta .wrap', '.fin'];
       var items = [];
       sels.forEach(function (sel) {
         var els = document.querySelectorAll(sel);
