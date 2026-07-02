@@ -295,6 +295,11 @@ footer{background:#0C211B;color:rgba(246,241,231,.78)}
      cards so there's no stray empty cell when the count is odd */
   .props{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;background:none;border:0}
   .props .card{flex:0 1 calc(50% - 8.5px);border:1px solid var(--line)}
+  /* Footer: brand + NAP block on top, then the three link columns as a
+     centered group — everything centered so it reads as one symmetric block */
+  .foot{display:flex;flex-wrap:wrap;justify-content:center;column-gap:80px;row-gap:36px;align-items:start;text-align:center}
+  .foot>div{flex:0 1 auto}
+  .foot>div:first-child{flex:0 0 100%;margin-bottom:6px}
 }
 
 /* ===================== PHONE  (≤600px) ===================== */
