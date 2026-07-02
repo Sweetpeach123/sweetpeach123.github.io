@@ -3,32 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export function getStaticPaths() {
   const projects = {
-  'pompano-beach-pool-deck-driveway': {
-    city: 'Pompano Beach',
-    surface: 'Concrete pavers',
-    title: 'Pool deck & driveway paver installation',
-    service: { href: '/services/driveways/', label: 'paver driveway' },
-    hero: '/images/portfolio/pompano-beach-pool-deck-driveway-1.jpg',
-    heroAlt: 'New paver pool deck and driveway installation in Pompano Beach',
-    intro: 'A full paver installation that reworked the driveway, walkway, patio, and pool deck into one cohesive outdoor space in Pompano Beach.',
-    specs: { Location: 'Pompano Beach, FL', Surface: 'Concrete pavers', Scope: 'Driveway · patio · walkway · pool deck', Size: '≈ 1,800 sq ft', Timeline: '8–10 working days' },
-    body: [
-      'This project was a complete paver installation across the property. We prepared and rebuilt the base, set new pavers with the correct slope for drainage, and secured edge restraints for a durable, long-lasting result.',
-      'The finished work ties the driveway, an outdoor patio, a paver walkway, and the pool deck into one connected, cohesive outdoor living space built for South Florida life.',
-    ],
-    work: [
-      'Prepared and rebuilt the compacted base',
-      'Installed new pavers across pool deck and driveway',
-      'Set proper slope for positive drainage',
-      'Secured edge restraints against shifting',
-      'Built a matching paver walkway and patio',
-    ],
-    gallery: [
-      { src: '/images/portfolio/pompano-beach-pool-deck-driveway-2.jpg', alt: 'Paver driveway in Pompano Beach' },
-      { src: '/images/portfolio/pompano-beach-pool-deck-driveway-3.jpg', alt: 'Paver pool deck in Pompano Beach' },
-      { src: '/images/portfolio/pompano-beach-pool-deck-driveway-4.jpg', alt: 'Paver patio and walkway in Pompano Beach' },
-    ],
-  },
   'hollywood-residence': {
     city: 'Hollywood',
     surface: 'Ivory Select travertine (French pattern)',
@@ -55,32 +29,6 @@ export function getStaticPaths() {
       { src: '/images/portfolio/hollywood-residence-4.jpg', alt: 'Travertine pool deck detail in Hollywood' },
     ],
   },
-  'pool-deck-transformation': {
-    city: 'Jupiter',
-    surface: 'Porcelain pavers',
-    title: 'Porcelain pool deck transformation',
-    service: { href: '/services/pool-decks/', label: 'paver pool deck' },
-    hero: '/images/portfolio/pool-deck-transformation-1.jpg',
-    heroAlt: 'Grouted porcelain paver pool deck in Jupiter',
-    intro: 'A Jupiter pool deck rebuilt with batch-matched porcelain over a mortar-set base with fully grouted joints for a seamless, low-maintenance finish.',
-    specs: { Location: 'Jupiter, FL', Surface: 'Porcelain pavers', Scope: 'Pool deck · coping · drainage', Size: '≈ 600 sq ft', Timeline: '6–8 working days' },
-    body: [
-      'Two rows of porcelain coping were already set by the pool contractor using Hardscape.com material. We coordinated directly with the supplier to source pavers from the exact same batch, then removed and realigned the second coping row to continue the pattern precisely.',
-      'The entire deck was installed over a mortar-set base so every joint could be grouted for a seamless, durable finish. Porcelain needs no sealing or re-sanding — just occasional cleaning — and we added a Deco Drain system to redirect gutter water and prevent puddling.',
-    ],
-    work: [
-      'Batch-matched and sourced porcelain from the original supplier',
-      'Removed and realigned the existing coping row',
-      'Installed pavers over a mortar-set base',
-      'Grouted all joints for a seamless finish',
-      'Installed a Deco Drain water-redirection system',
-    ],
-    gallery: [
-      { src: '/images/portfolio/pool-deck-transformation-2.jpg', alt: 'Porcelain pool deck detail in Jupiter' },
-      { src: '/images/portfolio/pool-deck-transformation-3.jpg', alt: 'Grouted porcelain paver joints in Jupiter' },
-      { src: '/images/portfolio/pool-deck-transformation-4.jpg', alt: 'Finished porcelain pool deck in Jupiter' },
-    ],
-  },
   'concrete-paver-and-drain': {
     city: 'Palm Beach Gardens',
     surface: 'Concrete pavers',
@@ -105,32 +53,6 @@ export function getStaticPaths() {
       { src: '/images/portfolio/concrete-paver-and-drain-2.jpg', alt: 'Paver driveway with improved drainage in Palm Beach Gardens' },
       { src: '/images/portfolio/concrete-paver-and-drain-3.jpg', alt: 'Concrete paver driveway detail in Palm Beach Gardens' },
       { src: '/images/portfolio/concrete-paver-and-drain-4.jpg', alt: 'Finished concrete paver driveway in Palm Beach Gardens' },
-    ],
-  },
-  'palm-beach-residence': {
-    city: 'Palm Beach',
-    surface: 'Chicago brick pavers',
-    title: 'Whole-property paver restoration',
-    service: { href: '/services/clean-seal/', label: 'clean & seal' },
-    hero: '/images/portfolio/palm-beach-residence-1.jpg',
-    heroAlt: 'Chicago brick paver restoration at a Palm Beach residence',
-    intro: 'A full paver restoration for a Palm Beach residence — cleaning, re-sanding, and sealing the driveway, pool deck, patio, and walkway.',
-    specs: { Location: 'Palm Beach, FL', Surface: 'Chicago brick pavers', Scope: 'Driveway · pool deck · patio · walkway', Size: '≈ 2,500 sq ft', Timeline: '3–4 working days' },
-    body: [
-      'The work began with a thorough pressure cleaning of every paver surface to lift out dirt, debris, and stains, restoring the original color and preparing the driveway, pool deck, patio, and connecting walkway.',
-      'The team then re-sanded the joints for stability and a uniform finish, applied a high-quality sealant, and blocked entrances during curing to protect the fresh surface from traffic.',
-    ],
-    work: [
-      'Pressure cleaned all paver surfaces',
-      'Removed dirt, debris, and stains',
-      'Re-sanded joints for stability and a uniform finish',
-      'Applied a high-quality sealant',
-      'Blocked access points to protect the curing surface',
-    ],
-    gallery: [
-      { src: '/images/portfolio/palm-beach-residence-2.jpg', alt: 'Restored brick pool deck in Palm Beach' },
-      { src: '/images/portfolio/palm-beach-residence-3.jpg', alt: 'Sealed brick paver patio in Palm Beach' },
-      { src: '/images/portfolio/palm-beach-residence-4.jpg', alt: 'Restored brick paver walkway in Palm Beach' },
     ],
   },
   'pool-deck-clean-reseal': {
@@ -185,32 +107,6 @@ export function getStaticPaths() {
       { src: '/images/portfolio/miramar-pool-deck-restoration-4.jpg', alt: 'Sealed pool deck surface in Miramar' },
     ],
   },
-  'north-bay-village-residence': {
-    city: 'North Bay Village',
-    surface: 'Concrete pavers',
-    title: 'Paver restoration',
-    service: { href: '/services/clean-seal/', label: 'clean & seal' },
-    hero: '/images/portfolio/north-bay-village-residence-1.jpg',
-    heroAlt: 'Paver driveway restoration in North Bay Village',
-    intro: 'A residential paver restoration in North Bay Village — pressure cleaning, joint re-sanding, and sealing to renew the driveway and walkways.',
-    specs: { Location: 'North Bay Village, FL', Surface: 'Concrete pavers', Scope: 'Driveway · walkways · clean & seal', Size: '≈ 1,200 sq ft', Timeline: '2–3 working days' },
-    body: [
-      'Work began with a thorough pressure cleaning of the pavers to strip away built-up dirt, debris, and stains, restoring the original color and preparing the driveway and walkway surfaces for treatment.',
-      'Crews then re-sanded the joints for stability and a uniform finish before applying a high-quality sealant, blocking off entrances afterward to protect the newly treated surfaces during curing.',
-    ],
-    work: [
-      'Pressure cleaned the existing pavers',
-      'Re-sanded joints for stability',
-      'Restored a uniform surface finish',
-      'Applied a high-quality sealant',
-      'Blocked entrances to protect the curing surface',
-    ],
-    gallery: [
-      { src: '/images/portfolio/north-bay-village-residence-2.jpg', alt: 'Cleaned paver driveway in North Bay Village' },
-      { src: '/images/portfolio/north-bay-village-residence-3.jpg', alt: 'Re-sanded paver joints in North Bay Village' },
-      { src: '/images/portfolio/north-bay-village-residence-4.jpg', alt: 'Sealed paver walkway in North Bay Village' },
-    ],
-  },
   'north-lauderdale-residence': {
     city: 'North Lauderdale',
     surface: 'Concrete pavers',
@@ -235,31 +131,6 @@ export function getStaticPaths() {
       { src: '/images/portfolio/north-lauderdale-residence-2.jpg', alt: 'Re-sanded paver driveway in North Lauderdale' },
       { src: '/images/portfolio/north-lauderdale-residence-3.jpg', alt: 'Paver driveway cleaning in North Lauderdale' },
       { src: '/images/portfolio/north-lauderdale-residence-4.jpg', alt: 'Sealed curved paver driveway in North Lauderdale' },
-    ],
-  },
-  'restored-elegance': {
-    city: 'Fort Lauderdale',
-    surface: 'Concrete pavers',
-    title: 'Restored elegance',
-    service: { href: '/services/clean-seal/', label: 'clean & seal' },
-    hero: '/images/portfolio/restored-elegance-1.jpg',
-    heroAlt: 'Restored concrete paver driveway in Fort Lauderdale',
-    intro: 'A complete restoration that renewed the appearance and protection of a concrete paver driveway in Fort Lauderdale.',
-    specs: { Location: 'Fort Lauderdale, FL', Surface: 'Concrete pavers', Scope: 'Driveway · strip & reseal', Size: '≈ 600 sq ft', Timeline: '2 working days' },
-    body: [
-      'We began by removing the aged, worn sealant layer, then refilling and compacting the joints to restore a stable, uniform surface across the driveway.',
-      'A modern Cobble Loc sealant was then applied for a clean, protected finish that preserves the natural look and long-term durability of the pavers while shielding them from South Florida weather.',
-    ],
-    work: [
-      'Removed the old, worn sealant layer',
-      'Refilled and compacted the paver joints',
-      'Cleaned and prepared the surface',
-      'Applied modern Cobble Loc sealant',
-      'Restored the natural color and finish',
-    ],
-    gallery: [
-      { src: '/images/portfolio/restored-elegance-2.jpg', alt: 'Cobble Loc sealed paver driveway in Fort Lauderdale' },
-      { src: '/images/portfolio/restored-elegance-4.jpg', alt: 'Restored paver driveway detail in Fort Lauderdale' },
     ],
   },
 };
