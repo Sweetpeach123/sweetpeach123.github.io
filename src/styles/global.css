@@ -264,7 +264,7 @@ footer{background:#0C211B;color:rgba(246,241,231,.78)}
   /* hamburger on the left, logo on the right */
   .nav{height:78px;display:flex;align-items:center;justify-content:space-between}
   .nav-right{order:1}
-  .brand{order:2;text-align:right}
+  .nav .brand{order:2;text-align:right}
   /* hero stacks */
   .hero{grid-template-columns:1fr;padding-bottom:0;border-bottom:0}
   .hero-text{padding:44px 0 8px}
