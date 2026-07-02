@@ -179,7 +179,7 @@ const breadcrumbLd = {
     <p class="lede">{p.intro}</p>
   </section>
 
-  <section class="wrap proj-strip">
+  <section class="wrap proj-strip" style={`--cols:${1 + (p.gallery?.length ?? 0)}`}>
     {[{ src: p.hero, alt: p.heroAlt }, ...(p.gallery ?? [])].map((g) => (
       <button class="sph" type="button" aria-label={`Enlarge photo: ${g.alt}`}><img src={v(g.src)} alt={g.alt} loading="lazy" decoding="async" /></button>
     ))}
@@ -238,7 +238,7 @@ const breadcrumbLd = {
     .proj-head h1{font-size:clamp(36px,4.4vw,56px);line-height:1.05;letter-spacing:-.01em;margin:0}
     .proj-head .lede{font-family:var(--serif);font-size:clamp(19px,1.9vw,23px);line-height:1.5;font-weight:400;color:var(--ink);max-width:34em;margin:20px 0 0}
 
-    .proj-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,148px));justify-content:center;gap:12px;max-width:640px}
+    .proj-strip{display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,148px));justify-content:center;gap:12px;max-width:none}
     .sph{border-radius:8px;overflow:hidden;height:112px;background:var(--ivory-2);padding:0;border:none;width:100%;cursor:zoom-in;font:inherit}
     .sph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1)}
     .sph:hover img,.sph:focus-visible img{transform:scale(1.06)}
@@ -298,8 +298,8 @@ const breadcrumbLd = {
       .proj-grid{gap:26px}
       .proj-specs{padding:22px 18px}
       .proj-body p{font-size:15.5px}
-      .proj-strip{grid-template-columns:repeat(2,1fr);max-width:320px}
-      .sph{height:100px}
+      .proj-strip{gap:8px}
+      .sph{height:74px}
       .proj-soon{padding-top:46px;padding-bottom:64px}
     }
   </style>
