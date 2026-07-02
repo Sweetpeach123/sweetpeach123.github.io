@@ -277,7 +277,13 @@ footer{background:#0C211B;color:rgba(246,241,231,.78)}
   .trust .cell:nth-child(-n+2){border-top:0}
   /* two-part sections stack */
   .promise .wrap,.reviews .wrap,.area .wrap{grid-template-columns:1fr;gap:36px;padding-left:30px;padding-right:30px}
-  .foot{grid-template-columns:1fr 1fr;gap:30px 40px}
+  /* Footer: brand full-width, then a balanced two-column link block
+     (long services column on the left, the two shorter columns stacked right) */
+  .foot{grid-template-columns:1fr 1fr;gap:34px 44px;align-items:start}
+  .foot>div:first-child{grid-column:1/-1}
+  .foot>div:nth-child(2){grid-column:1;grid-row:2/span 2}
+  .foot>div:nth-child(3){grid-column:2;grid-row:2}
+  .foot>div:nth-child(4){grid-column:2;grid-row:3}
 }
 
 /* ===================== PHONE  (≤600px) ===================== */

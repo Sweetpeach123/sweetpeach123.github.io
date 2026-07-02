@@ -21,6 +21,7 @@ interface Props {
   included: string[];      // "our standard" checklist
   includedNote?: string;   // local-code note
   materials: string[];
+  serviceLevels?: Array<{ title: string; desc: string }>;  // tiers of service (no material photos)
   faqs: Faq[];
   relatedProjects?: RelLink[];  // contextual links to portfolio items
   relatedReading?: RelLink[];   // contextual links to blog / other services
@@ -30,7 +31,7 @@ interface Props {
 }
 const {
   seoTitle, seoDescription, name, crumb, eyebrow, h1, h1em, lede,
-  heroImg, heroAlt, heroLabel, intro, benefits, included, includedNote, materials, faqs,
+  heroImg, heroAlt, heroLabel, intro, benefits, included, includedNote, materials, serviceLevels = [], faqs,
   relatedProjects = [], relatedReading = [], materialImages = {},
   materialsLabel = 'Materials', materialsHeading = 'Choose your finish.',
 } = Astro.props as Props;
@@ -262,6 +263,26 @@ const jsonLd = [
   </section>
   )}
 
+  {serviceLevels.length > 0 && (
+  <section class="block wrap" style="padding-bottom:44px">
+    <div class="sec-head">
+      <span class="sec-num">{materialsLabel}</span>
+      <h2>{materialsHeading}</h2>
+    </div>
+    <ol class="svc-levels">
+      {serviceLevels.map((s, i) => (
+        <li class="lvl">
+          <span class="lvl-n">{String(i + 1).padStart(2, '0')}</span>
+          <div class="lvl-body">
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+  )}
+
   {hasMatModals && (
     <div class="mat-overlay" id="matOverlay" hidden>
       <div class="mat-backdrop" data-mat-close></div>
@@ -426,6 +447,17 @@ const jsonLd = [
     .incl-list li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding-bottom:14px;border-bottom:1px solid var(--line-light);font-size:15px;font-weight:300;transition:border-color .08s linear,background-color .08s linear}
     .incl-list li:hover{border-color:var(--brass);background:rgba(176,138,79,.10)}
     .incl-list i{color:var(--brass);font-style:normal;font-size:15px}
+
+    /* Service tiers — descriptive cards, not clickable material swatches */
+    .svc-levels{list-style:none;display:grid;gap:16px;max-width:760px}
+    .lvl{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;border:1px solid var(--line);border-radius:12px;padding:22px 26px;background:var(--ivory)}
+    .lvl-n{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--brass);line-height:1.1}
+    .lvl-body h3{font-size:20px;margin:0}
+    .lvl-body p{font-size:15px;font-weight:300;color:var(--muted);line-height:1.55;margin:6px 0 0}
+    @media(max-width:600px){
+      .lvl{padding:18px 18px;gap:14px}
+      .lvl-body h3{font-size:18px}
+    }
 
     .materials{display:flex;flex-wrap:wrap;gap:12px}
     .mat{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--ink);border:1px solid var(--line);border-radius:40px;padding:10px 24px;background:var(--ivory);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,color .35s ease,box-shadow .35s ease}
