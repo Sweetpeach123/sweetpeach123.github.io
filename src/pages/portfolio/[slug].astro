@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { v } from '../../lib/asset.ts';
 
 export function getStaticPaths() {
   const projects = {
@@ -180,7 +181,7 @@ const breadcrumbLd = {
 
   <section class="wrap proj-strip">
     {[{ src: p.hero, alt: p.heroAlt }, ...(p.gallery ?? [])].map((g) => (
-      <button class="sph" type="button" aria-label={`Enlarge photo: ${g.alt}`}><img src={g.src} alt={g.alt} loading="lazy" decoding="async" /></button>
+      <button class="sph" type="button" aria-label={`Enlarge photo: ${g.alt}`}><img src={v(g.src)} alt={g.alt} loading="lazy" decoding="async" /></button>
     ))}
   </section>
 
