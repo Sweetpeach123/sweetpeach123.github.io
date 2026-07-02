@@ -189,7 +189,7 @@ const jsonLd = [
 
   <section class="wrap hero">
     <div class="hero-text">
-      <div class="eyebrow">{eyebrow}</div>
+      <div class="eyebrow" set:html={eyebrow.replace(' · Palm Beach County', '<span class="eb-sep"> · </span><span class="nb">Palm Beach County</span>')}></div>
       <h1>{h1} {h1em && <em>{h1em}</em>}</h1>
       <p class="lede">{lede}</p>
       <div class="hero-cta">
