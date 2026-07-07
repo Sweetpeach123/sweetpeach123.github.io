@@ -10,8 +10,6 @@ const published = (await getCollection('blog', ({ data }) =>
 const fmt = (d: Date) =>
   new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/New_York' }).format(d);
 
-const featured = published[0];
-const rest = published.slice(1);
 const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -32,22 +30,24 @@ const breadcrumbLd = {
     </div>
   </nav>
 
-  <section class="block wrap" style="padding-bottom:48px">
+  <section class="block wrap" style="padding-bottom:64px">
     <div class="sec-head">
       <span class="sec-num">Journal</span>
       <h2>Notes on pavers &amp; Palm Beach living.</h2>
     </div>
 
-    {featured ? (
-      <a class="feat" href={`/blog/${featured.data.slug}/`}>
-        <div class="ph" data-label=""><img src={featured.data.heroImage} alt={featured.data.title} width="760" height="630" fetchpriority="high" /></div>
-        <div class="feat-body">
-          <div class="post-cat">Journal &middot; {fmt(featured.data.pubDate)}</div>
-          <h3>{featured.data.title}</h3>
-          <p>{featured.data.description}</p>
-          <span class="read">Read the article <i>&rarr;</i></span>
-        </div>
-      </a>
+    {published.length > 0 ? (
+      <div class="pf-grid blog-grid">
+        {published.map((p) => (
+          <a class="pf" href={`/blog/${p.data.slug}/`}>
+            <div class="ph blog-card-ph"><img loading="lazy" decoding="async" src={p.data.heroImage} alt={p.data.title} width="600" height="430" /></div>
+            <div class="post-cat">Journal &middot; {fmt(p.data.pubDate)}</div>
+            <h3>{p.data.title}</h3>
+            <p class="dek">{p.data.description}</p>
+            <span class="read">Read the article <i>&rarr;</i></span>
+          </a>
+        ))}
+      </div>
     ) : (
       <div class="blog-empty">
         <div class="post-cat">Journal</div>
@@ -64,21 +64,6 @@ const breadcrumbLd = {
       <p>Each week we publish practical guidance drawn directly from our installers, material suppliers, and subcontractors &mdash; reliable, firsthand insight from the professionals who carry out the work.</p>
     </div>
   </section>
-
-  {rest.length > 0 && (
-    <section class="block wrap blog-articles">
-      <div class="pf-grid blog-grid">
-        {rest.map((p) => (
-          <a class="pf" href={`/blog/${p.data.slug}/`}>
-            <div class="ph blog-card-ph"><img loading="lazy" decoding="async" src={p.data.heroImage} alt={p.data.title} width="600" height="430" /></div>
-            <div class="post-cat">{fmt(p.data.pubDate)}</div>
-            <h3>{p.data.title}</h3>
-            <p class="dek">{p.data.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  )}
 
   <section class="cta">
     <div class="wrap">
@@ -101,46 +86,37 @@ const breadcrumbLd = {
 
     .post-cat{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-dark);margin-bottom:8px}
 
-    .feat{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center}
-    .feat .ph{height:430px}
-    .feat .ph::after{display:none}
-    .feat h3{font-size:clamp(28px,5vw,40px);line-height:1.08;margin-bottom:14px}
-    .feat-body p{font-size:17px;color:var(--ink);font-weight:300}
-    .feat .ph img,.blog-card-ph img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
-    .feat:hover .ph img,.pf:hover .blog-card-ph img{transform:scale(1.05)}
-    .read{display:inline-flex;gap:8px;align-items:center;margin-top:20px;font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-dark);font-weight:500}
+    /* Uniform article cards: two per row on desktop, one on phones */
+    .blog-grid{grid-template-columns:repeat(2,1fr);column-gap:44px;row-gap:60px}
+    .blog-grid .pf{display:flex;flex-direction:column}
+    .blog-grid .pf h3{font-size:23px;line-height:1.18;margin-top:6px}
+    .blog-grid .pf .dek{font-size:15px;color:var(--muted);font-weight:300;margin-top:10px}
+    .blog-card-ph{height:250px;margin-bottom:18px;border-radius:4px;overflow:hidden}
+    .blog-card-ph::after{display:none}
+    .blog-card-ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+    .pf:hover .blog-card-ph img{transform:scale(1.05)}
+
+    .read{display:inline-flex;gap:8px;align-items:center;margin-top:16px;font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-dark);font-weight:500}
     .read i{font-style:normal;transition:transform .25s ease}
-    .feat:hover .read i{transform:translateX(5px)}
+    .pf:hover .read i{transform:translateX(5px)}
 
     .blog-empty{text-align:center;max-width:30em;margin:0 auto;padding:30px 0 10px}
     .blog-empty h3{font-size:clamp(26px,4vw,34px);margin-bottom:14px}
     .blog-empty p{color:var(--muted);font-weight:300}
 
-    /* Airy mission band between hero and the articles */
+    /* Airy mission band below the articles */
     .blog-mission{background:var(--ivory-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .blog-mission .wrap{padding:88px 40px;text-align:center}
     .blog-mission p{font-family:var(--serif);font-size:25px;line-height:1.5;font-weight:400;color:var(--ink);max-width:20em;margin:20px auto 0}
 
-    .blog-articles{padding-top:100px}
-    .blog-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));row-gap:60px}
-    .blog-grid .pf h3{font-size:24px;margin-top:12px}
-    .blog-grid .pf .dek{font-size:15px;color:var(--muted);font-weight:300;margin-top:8px}
-    .blog-card-ph{height:230px;margin-bottom:18px;border-radius:4px}
-    .blog-card-ph::after{display:none}
-
     @media(max-width:1024px){
-      .feat{grid-template-columns:1fr;gap:24px}
-      .feat .ph{height:300px}
       .blog-mission .wrap{padding:56px 22px}
       .blog-mission p{font-size:20px}
-      .blog-articles{padding-top:60px}
     }
-    @media(max-width:600px){
-      .feat .ph{height:240px}
+    @media(max-width:700px){
+      .blog-grid{grid-template-columns:1fr;row-gap:44px}
+      .blog-card-ph{height:220px}
       .blog-mission .wrap{padding:44px 18px}
-      .blog-articles{padding-top:48px}
-      .blog-grid{row-gap:44px}
-      .blog-card-ph{height:200px}
     }
   </style>
 
