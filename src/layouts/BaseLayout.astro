@@ -55,7 +55,11 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://backend.leadconnectorhq.com" />
+  <!-- Load web fonts without blocking first paint (font-display:swap keeps text visible) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" /></noscript>
   <script is:inline>
     // Enable scroll-reveal before first paint (skip if user prefers reduced motion)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -89,8 +93,8 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
   </script>
 
   <!-- GoHighLevel Number Pool: session-based dynamic phone-number tracking (loads on every page) -->
-  <script is:inline src="https://backend.leadconnectorhq.com/appengine/loc/6O64IBH8EOdqNTcAlwLR/pool/hqUY5RAYaK7ku7HEoILc/number_pool.js"></script>
-  <script is:inline src="https://backend.leadconnectorhq.com/appengine/js/user_session.js"></script>
+  <script is:inline defer src="https://backend.leadconnectorhq.com/appengine/loc/6O64IBH8EOdqNTcAlwLR/pool/hqUY5RAYaK7ku7HEoILc/number_pool.js"></script>
+  <script is:inline defer src="https://backend.leadconnectorhq.com/appengine/js/user_session.js"></script>
 
   <script is:inline>
     (function () {
