@@ -1,0 +1,164 @@
+---
+import LocalServiceTemplate from '../../../components/LocalServiceTemplate.astro';
+import { CITIES, type City } from '../../../data/cities';
+
+export function getStaticPaths() {
+  return CITIES.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props as { city: City };
+
+const SERVICE = { name: 'Paver pool decks', label: 'Pool decks', slug: 'pool-decks' };
+
+const SERVICES = [
+  { label: 'Driveways', slug: 'driveways' },
+  { label: 'Walkways', slug: 'walkways' },
+  { label: 'Patios', slug: 'patios' },
+  { label: 'Pool decks', slug: 'pool-decks' },
+  { label: 'Outdoor living', slug: 'outdoor-living' },
+  { label: 'Retaining & seating walls', slug: 'retaining-seating-walls' },
+  { label: 'Natural stone', slug: 'natural-stone' },
+  { label: 'Clean & seal', slug: 'clean-seal' },
+];
+const CITY_CHIPS = CITIES.map((c) => ({ label: c.name, slug: c.slug }));
+
+// ---- Per-city pool-deck copy (uniquely written off each city's real differentiators) ----
+interface Local { lede: string; intro: string[]; localNote: string; faqs: { q: string; a: string }[]; }
+const LOCAL: Record<string, Local> = {
+  'boca-raton': {
+    lede: 'In East Boca and the canal-front streets, a pool deck poured with the 1970s or 80s house has usually settled and heated up under bare feet — cool travertine and marble fix both.',
+    intro: [
+      'Boca Raton is one of South Florida\'s most established communities, and through East Boca, the Boca Islands and Old Floresta many of the pools date to the 1970s through 90s. A concrete pool deck that old tends to spall, stain from the chlorine and salt system, and settle unevenly against the pool shell. We remove the failing deck, build a proper compacted base, and lay travertine or marble pavers that stay cool underfoot and grip when they are wet.',
+      'This close to the ocean and the canals, salt is relentless on a deck, and a salt-chlorine system adds to it. Sealed travertine and marble shrug off both, and if a section ever settles near the seawall or the pool coping we lift and reset those pavers rather than patching a slab you can never hide. We set the coping around the pool edge so the transition is clean and the bullnose is comfortable to sit on.',
+      'Whether you are on a non-HOA street in East Boca or inside a gated club like Royal Palm Yacht & Country Club, we handle the paperwork — the City of Boca Raton permit, the pool-barrier code, the drainage that carries water away from the pool and the house, and the architectural review submittal for the clubs that require it.',
+    ],
+    localNote: "Boca's canal-front lots often carry drainage and swale requirements, and the pool-barrier code is checked at permit — we grade the deck so water runs away from the pool shell and the house, never back toward the door.",
+    faqs: [
+      { q: 'Which pavers stay cool enough to walk on barefoot around a Boca pool?', a: 'Travertine and marble are the go-to here. They hold far less heat than concrete or dark pavers, so the deck stays comfortable under bare feet in the afternoon sun, and both grip well when they are wet at the pool edge.' },
+      { q: 'My deck has settled and cracked against the pool near a canal — can it be reset?', a: 'Often yes. If the pool shell is sound we remove the settled pavers, correct the base, and reset the field and the coping so it sits flush again. Where an old concrete deck has failed outright, a rebuild on a fresh compacted base is the lasting fix — we tell you honestly which one yours needs.' },
+      { q: 'Will a salt-chlorine pool damage a paver deck?', a: 'Not a sealed travertine or marble deck. We seal the pavers so the salt and pool chemicals bead off instead of etching the surface, and because the deck is individual units, any piece that ever weathers can be lifted and reset with no visible patch.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  jupiter: {
+    lede: "Jupiter's waterfront and golf-community pools sit inside a gated ARB world — we handle the approval and build a cool, non-slip deck for the Intracoastal salt.",
+    intro: [
+      "From Admirals Cove to the Loxahatchee Club, most of Jupiter's pools sit inside gated golf and waterfront communities built in the 1990s and 2000s. The decks are dated rather than destroyed, so the job is as much about the look — matching the community palette and lifting the whole backyard — as it is about the base. Cool-underfoot travertine and marble are the natural choice for a pool deck people cross barefoot all summer.",
+      'The catch in Jupiter is the architectural review board. Nearly every community here has one, and it decides the color, pattern and coping you are allowed on the pool deck. We prepare the ARB submittal with the paver spec and drawings so it clears the first time, then pull the Town of Jupiter permit and meet the pool-barrier code.',
+      'On the water — the Intracoastal, the inlet, the canals — salt is constant and many of these pools run a salt-chlorine system. We seal the deck for the salt, set the coping around the pool edge cleanly, and grade the surface so water runs off the deck and away from the house instead of pooling by the coping.',
+    ],
+    localNote: 'Most Jupiter pool decks run through a community architectural review board before the Town permit — we manage both, set the coping to the community rules, and grade drainage away from the pool.',
+    faqs: [
+      { q: 'Will you handle the architectural review board approval for my Jupiter pool deck?', a: 'Yes — that is a standard part of the job here. We prepare the ARB package (paver color, pattern, coping and drawings), get the community sign-off, and only then order material, pull the Town of Jupiter permit and meet the pool-barrier code.' },
+      { q: 'Can you match the paver style my waterfront community requires on the deck?', a: 'We build to the community approved palette. Bring us the guidelines and we spec a pool deck and coping that meet them while still looking custom — usually a cool travertine or marble that suits a barefoot waterfront deck.' },
+      { q: 'Does the Intracoastal salt and a salt system hurt a paver deck?', a: 'Not a sealed one. We seal travertine and marble so the salt and pool chemistry bead off, and any piece near the coping that ever weathers or settles can be lifted and reset with no visible patch — something you cannot do with a poured deck.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'palm-beach-gardens': {
+    lede: "PGA National, BallenIsles, Frenchman's Creek — the Gardens' golf-community pools have reached the age where the whole deck is ready for cool, non-slip stone.",
+    intro: [
+      "Palm Beach Gardens grew up around golf — PGA National, BallenIsles, Frenchman's Creek, Mirasol — and those 1990s and 2000s pools have reached the age where the deck looks tired and the surface runs hot. A new travertine or marble pool deck is the single biggest lift you can give a backyard in a community where every screen enclosure faces its neighbor.",
+      'The design guidelines here are strict. Communities in the Gardens often dictate the color family and the pattern for the pool deck to keep the streetscape and the backyards consistent, so the work is picking a stone that satisfies the committee and still sets your home apart. We build that into the plan from the start, coping included.',
+      'Under the surface it is the same discipline every time — proper excavation, a compacted base for the sandy soil, edge restraints, a clean coping around the pool edge, and a slope that carries water away from the pool and the house. We pull the City of Palm Beach Gardens permit, meet the pool-barrier code, and prepare the community submittal.',
+    ],
+    localNote: 'Gardens golf communities typically require design-committee approval on pool-deck color, pattern and coping before work starts — we prepare that submittal alongside the City permit and the pool-barrier code check.',
+    faqs: [
+      { q: 'Does my Palm Beach Gardens community have to approve the pool-deck design?', a: 'Almost certainly yes — communities like PGA National and BallenIsles run design committees that approve color, pattern and coping. We prepare and submit that package for you, then pull the City permit and meet the pool-barrier code once it clears.' },
+      { q: 'Our community pool deck is faded and uneven — replace or reset?', a: 'If the base and pool shell are sound we can lift, re-level and reseal the field and coping; if the base has failed or the deck has settled unevenly against the pool, a rebuild is the lasting fix. We tell you honestly which one your deck needs at the on-site visit.' },
+      { q: 'Which stone stays coolest around a Gardens pool?', a: 'Travertine and marble. Both reflect heat rather than holding it, so the deck stays comfortable under bare feet through the afternoon, and both keep their grip when they are wet at the pool edge.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  wellington: {
+    lede: "Out in Wellington's equestrian estates the pool decks are large, and a big travertine deck on acreage is where cool, non-slip stone pays off most.",
+    intro: [
+      'Wellington is a different kind of pool-deck job. Out on the acreage of Palm Beach Point, the Aero Club and Grand Prix Village, the decks are large — often wrapping a full estate pool with room for shade structures and an outdoor kitchen — so material choice and drainage across a wide area both matter. Cool-underfoot travertine and marble are the natural fit for a deck this size that stays comfortable all summer.',
+      'We build these for the scale. That means excavation and a compacted base sized to the deck, edge restraints that hold a large field flat, and a clean coping around the pool edge. On acreage we also plan the drainage across the whole deck so summer downpours run off and away from the pool and the house rather than pooling at the coping.',
+      'The size is the opportunity — a large travertine deck on an estate lot is a statement, and it is where pavers pull the furthest ahead of a poured deck that would crack across a span that big. We pull the Village of Wellington permit, meet the pool-barrier code, and grade the full run.',
+    ],
+    localNote: 'Estate pool decks cover a large span — we build a base sized to the deck, hold it flat with edge restraints and coping, and grade drainage across the whole area so heavy rain runs away from the pool and the house.',
+    faqs: [
+      { q: 'Can you build a large estate pool deck without it cracking across the span?', a: 'Yes. A poured deck that size cracks as the ground shifts; a paver deck is individual units over a compacted base, so it flexes and stays flat — and any spot that ever settles can be reset, unlike a cracked concrete slab.' },
+      { q: 'Which material works best for a big Wellington pool deck people cross barefoot?', a: 'Travertine and marble. They stay cool under bare feet even on a large deck in full sun, grip when they are wet, and hold up to the wear a busy estate pool sees through the season.' },
+      { q: 'Can you tie the pool deck into an outdoor kitchen or shade structure?', a: 'That is a big part of what we do in Wellington. We plan the deck, the coping and the drainage around the kitchen or shade footprint so the whole space reads as one build and water still runs away from the pool.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'west-palm-beach': {
+    lede: 'In El Cid, SoSo and Flamingo Park the pools are tucked behind 1920s–40s homes — the deck has to fit the period and stay cool under bare feet.',
+    intro: [
+      "West Palm Beach's target streets — El Cid, SoSo, Flamingo Park, Prospect Park — are historic, with Spanish and Mediterranean homes from the 1920s through the 40s. A pool deck here has to suit the architecture: warm-toned travertine and marble laid in a classic pattern read right where a plain gray slab looks out of place, and they stay cool under bare feet the way concrete never does.",
+      'Several of these neighborhoods sit in city historic districts, so the deck should stay in step with the period. There is no HOA to answer to, but there is a look worth protecting — we help you pick a stone, pattern and coping that lift a historic pool rather than modernizing away its character.',
+      'The lots are older and often tighter, and the mature trees, original grading and older pool shells make the base and drainage work matter. We excavate, build a proper compacted base, set the coping around the pool edge, slope the deck away from the house, pull the City of West Palm Beach permit and meet the pool-barrier code.',
+    ],
+    localNote: 'Older in-town lots have mature tree roots, tight setbacks and original grading to work around, and some streets fall in a historic district — we design the deck to the period and build the base to handle the roots and settling.',
+    faqs: [
+      { q: 'What deck material suits a historic El Cid or Flamingo Park pool?', a: 'Warm-toned travertine and marble in a classic pattern read true to the 1920s–40s architecture and stay cool under bare feet. We help you choose a finish and coping that look original to the house rather than bolted on.' },
+      { q: "Is there an approval process for a pool deck in West Palm Beach's historic neighborhoods?", a: 'There is no HOA, but some streets are in a city historic district where exterior changes are reviewed. We keep the design period-appropriate, pull the City of West Palm Beach permit, meet the pool-barrier code, and handle any historic-district paperwork that applies.' },
+      { q: 'Can you reset a deck that has heaved against an older pool shell?', a: 'Usually yes. We lift the settled pavers, correct the base and reset the field and coping so it sits flush against the shell again — and because it is individual units, there is no visible patch the way there would be on a poured deck.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'delray-beach': {
+    lede: 'Around Lake Ida and the beach the pools are older and the salt air is constant — a sealed travertine deck takes the salt and the chlorine better than concrete ever will.',
+    intro: [
+      "Delray's strength is the east side — Lake Ida, the beach district, Del-Ida Park — where established homes sit close to the water. These coastal streets have a character all their own, and many of the pool decks are original to homes from the 1950s through 80s and well past their life.",
+      'This close to the ocean, salt, heavy summer rain and the pool\'s own chlorine or salt system wear a deck down fast. Concrete stains and spalls; a sealed travertine or marble deck shrugs off the salt, stays cool under bare feet, and if a section settles near the water or the coping we reset those pavers rather than patching a slab. It stays looking new with an occasional rinse and reseal.',
+      'The good news on the east side is simplicity — most of these streets are non-HOA, so approval is usually just the city permit and the pool-barrier code. We pull the City of Delray Beach permit, build the base for the sandy coastal soil, set the coping around the pool edge, and grade the drainage away from the pool and the home.',
+    ],
+    localNote: 'Coastal east-side lots deal with salt, high summer rain and pool chemistry — we seal for the salt and build the slope to move heavy rain to the swale or street, away from the pool and older homes with low thresholds.',
+    faqs: [
+      { q: 'Does salt air near the Delray beach hurt a paver pool deck?', a: 'Far less than it hurts concrete. We seal the travertine or marble so salt, storm runoff and pool chemistry bead off, and because the deck is individual units, any piece that ever weathers or settles near the water or the coping can be lifted and reset with no visible patch.' },
+      { q: "I'm on a non-HOA street near Lake Ida — what approval do I need for a pool deck?", a: 'Usually just the city permit and the pool-barrier code check. Most Lake Ida and beach-district streets have no HOA, so we simply pull the City of Delray Beach permit, handle the drainage requirement if one applies, and get to work.' },
+      { q: 'Which deck material stays coolest by the beach?', a: 'Travertine and marble. They reflect heat rather than holding it, so the deck stays comfortable under bare feet in the coastal sun, and both grip well when they are wet at the pool edge.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'boynton-beach': {
+    lede: "Along the Intracoastal and Boynton's eastern streets, pool decks see salt and settle near the water — sealed travertine handles both and stays cool underfoot.",
+    intro: [
+      "Boynton Beach's best hardscape work is on the water and to the east — the Intracoastal waterfront, Harbor Estates, Chapel Hill, Lake Eden. Many of these homes are 1960s–90s builds whose original pool decks have cracked, spalled and settled against the shell, and they are ready for an upgrade to cool travertine or marble.",
+      'Near the Intracoastal, salt, a high water table and the pool\'s salt system all work against a slab. We build the base for ground that stays damp, seal the pavers against the salt and pool chemistry, and set the drainage so summer downpours run off the deck instead of pooling by the coping and the house.',
+      'Boynton is a mix — some waterfront pockets are non-HOA, some newer streets run an HOA. We confirm which applies to you, prepare the HOA submittal if there is one, pull the City of Boynton Beach permit, meet the pool-barrier code, and set the coping around the pool edge cleanly.',
+    ],
+    localNote: 'Waterfront lots near the Intracoastal sit on a higher water table — we build the base for damp ground, seal against salt and pool chemistry, and grade so heavy rain drains off the deck away from the pool and the home.',
+    faqs: [
+      { q: 'My Boynton pool backs onto the Intracoastal — does the water table matter for the deck?', a: 'It does. A high water table near the water makes a solid, well-compacted base essential, which is exactly what we build. Travertine or marble over that base handles the damp ground and lets you reset any section that ever settles by the coping or the seawall.' },
+      { q: 'Is there an HOA approval step for a pool deck in Boynton Beach?', a: 'It depends on your street — waterfront pockets are often non-HOA, while newer communities have one. We check first, prepare the HOA package if it is needed, pull the City of Boynton Beach permit regardless, and meet the pool-barrier code.' },
+      { q: 'Will a salt system and Intracoastal salt damage the deck?', a: 'Not a sealed travertine or marble deck. We seal the pavers so salt and pool chemistry bead off instead of etching the surface, and any piece near the coping that weathers or settles can be lifted and reset with no visible patch.' },
+      { q: 'What does a paver pool deck cost?', a: 'It depends on size, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+};
+
+const local = LOCAL[city.slug];
+const permit = city.permitAuthority.replace('the ', '').replace(/^./, (m) => m.toUpperCase());
+const handles = [
+  `Removal of the failing pool deck and a compacted base built for ${city.name}'s sandy soil, with cool, non-slip travertine or marble laid to the pool edge`,
+  city.hoa === 'none'
+    ? 'Any city or historic-district review kept period-appropriate'
+    : city.hoa === 'hoa'
+    ? 'Your HOA / architectural review board submittal prepared and shepherded through'
+    : 'HOA or non-HOA — we confirm your street and handle whichever applies',
+  `${permit} permit pulled, with the coping set and drainage, slope and pool-barrier code built to local code`,
+];
+
+const data = {
+  seoTitle: `Paver Pool Decks in ${city.name}, FL · Perfect Pavers of Palm Beach`,
+  seoDescription: `Cool, non-slip paver pool decks in ${city.name} — travertine and marble, clean coping and drainage. ${permit} permit and ${city.hoa === 'none' ? 'district' : 'HOA/ARB'} approval handled. Free on-site visit.`,
+  service: SERVICE,
+  city,
+  lede: local.lede,
+  intro: local.intro,
+  localNote: local.localNote,
+  handles,
+  faqs: local.faqs,
+  heroImg: '/images/local-hero-pool-decks.jpg',
+  heroAlt: `Paver pool deck in ${city.name}, Palm Beach County`,
+  heroBg: '/images/local-hero-pool-decks.jpg',
+  services: SERVICES,
+  cities: CITY_CHIPS,
+};
+---
+<LocalServiceTemplate {...data} />

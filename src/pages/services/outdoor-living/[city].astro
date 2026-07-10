@@ -1,0 +1,164 @@
+---
+import LocalServiceTemplate from '../../../components/LocalServiceTemplate.astro';
+import { CITIES, type City } from '../../../data/cities';
+
+export function getStaticPaths() {
+  return CITIES.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props as { city: City };
+
+const SERVICE = { name: 'Outdoor living spaces', label: 'Outdoor living', slug: 'outdoor-living' };
+
+const SERVICES = [
+  { label: 'Driveways', slug: 'driveways' },
+  { label: 'Walkways', slug: 'walkways' },
+  { label: 'Patios', slug: 'patios' },
+  { label: 'Pool decks', slug: 'pool-decks' },
+  { label: 'Outdoor living', slug: 'outdoor-living' },
+  { label: 'Retaining & seating walls', slug: 'retaining-seating-walls' },
+  { label: 'Natural stone', slug: 'natural-stone' },
+  { label: 'Clean & seal', slug: 'clean-seal' },
+];
+const CITY_CHIPS = CITIES.map((c) => ({ label: c.name, slug: c.slug }));
+
+// ---- Per-city outdoor-living copy (uniquely written off each city's real differentiators) ----
+interface Local { lede: string; intro: string[]; localNote: string; faqs: { q: string; a: string }[]; }
+const LOCAL: Record<string, Local> = {
+  'boca-raton': {
+    lede: 'On the canals and the Intracoastal side of East Boca, the backyard is where the entertaining happens — a built-in outdoor kitchen, a fire feature and a paver floor tie it all together.',
+    intro: [
+      'Boca Raton is built for outdoor living. Through East Boca, the Boca Islands and Old Floresta, the homes from the 1970s through 90s came with backyards that were meant to be used, and waterfront entertaining on the canals and the Intracoastal is the whole point of living here. We build the full space — a summer kitchen with the grill, sink and refrigeration, a fire feature to gather around, and a paver floor that carries the eye from the house to the seawall.',
+      'This close to the salt air, everything outdoors takes a beating, so the materials matter. We spec stainless components and sealed pavers that hold up to the coastal weather, set the whole floor on a proper compacted base, and coordinate the gas, electric and plumbing trades so the grill, the lighting and the sink all land where they belong the first time.',
+      'Whether you are on a non-HOA street in East Boca or inside a gated club like Royal Palm Yacht & Country Club, we handle the paperwork — the City of Boca Raton permit for the gas and electric, the drainage slope, and the architectural review submittal for the clubs that require it.',
+    ],
+    localNote: "Boca's canal-front lots often carry drainage and setback rules near the seawall, and a full outdoor kitchen brings gas and electric into the permit — we build the slope and coordinate the trades so it clears inspection.",
+    faqs: [
+      { q: 'Can you build a full outdoor kitchen on my Boca waterfront lot?', a: 'Yes. A built-in outdoor kitchen with the grill, sink, refrigeration and a fire feature is a large share of what we build in East Boca and the Boca Islands. We coordinate the gas, electric and plumbing trades and set it all on a paver floor that ties the space to the water.' },
+      { q: 'Do you work inside the gated communities in Boca Raton?', a: 'Yes. We regularly prepare the architectural review board package for gated clubs like Royal Palm Yacht & Country Club, then pull the City of Boca Raton permit for the gas and electric once the community signs off.' },
+      { q: 'Will the outdoor kitchen and pavers hold up to the salt air?', a: 'They will when they are built for it. We spec stainless components and sealed pavers that shrug off the coastal salt, and because the floor is individual units over a compacted base, any section near the seawall can be lifted and reset with no visible patch.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  jupiter: {
+    lede: "Jupiter's golf and waterfront backyards were built for entertaining, and most sit inside a gated community with an approval board — we design the outdoor space and take that off your plate.",
+    intro: [
+      "From Admirals Cove to the Loxahatchee Club, most of Jupiter's homes are 1990s–2000s builds inside gated golf and waterfront communities, and the backyard is where they live. We build the whole outdoor room — a summer kitchen with the grill and refrigeration, a fire feature, pergola footings for shade, and a paver floor that pulls the seating areas, the pool and the water view into one space.",
+      'The catch in Jupiter is the architectural review board. Nearly every community here has one, and it decides the materials, the layout and often the structures you are allowed to add. We prepare the ARB submittal with the outdoor-kitchen spec, the pergola drawings and the paver palette so it clears the first time, then pull the Town of Jupiter permit for the gas, electric and plumbing.',
+      'On the water — the Intracoastal, the inlet, the canals — salt drives the material choices. We spec stainless components and sealed pavers, set the pergola or pavilion on proper footings for the wind, and coordinate the trades so the kitchen, the lighting and the fire feature all work together.',
+    ],
+    localNote: 'Most Jupiter outdoor-living projects run through a community architectural review board before the Town permit — we manage both, and set pergola and pavilion footings to the community and wind-code requirements.',
+    faqs: [
+      { q: 'Will you handle the architectural review board approval for my outdoor kitchen in Jupiter?', a: 'Yes — that is a standard part of the job here. We prepare the ARB package (outdoor-kitchen spec, pergola drawings, paver palette and layout), get the community sign-off, and only then order material and pull the Town of Jupiter permit for the gas, electric and plumbing.' },
+      { q: 'Can you add a pergola or pavilion over the outdoor kitchen?', a: 'Yes. We set the footings to the wind code and the community rules, then build the outdoor kitchen and seating area under it. Bring us the ARB guidelines and we spec a structure that meets them while still looking custom to your home.' },
+      { q: 'Will the outdoor kitchen and pavers hold up on a waterfront lot?', a: 'They will. We spec stainless components and sealed pavers for the salt air, and because the floor is individual units over a compacted base, any section that ever settles by the water can be lifted and reset with no visible patch.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'palm-beach-gardens': {
+    lede: "PGA National, BallenIsles, Frenchman's Creek — the Gardens' golf-community backyards are ready to become the full outdoor living space they were always meant to be.",
+    intro: [
+      "Palm Beach Gardens grew up around golf — PGA National, BallenIsles, Frenchman's Creek, Mirasol — and those 1990s–2000s homes have reached the age where the backyard is ready for a real outdoor room. We build the whole thing: a built-in outdoor kitchen with the grill and refrigeration, a fire feature, pergola footings for shade, seating areas, and a paver floor that ties the space together against the golf-course backdrop.",
+      'The design guidelines here are strict. Communities in the Gardens often dictate the material palette and the look of any added structure to keep the streetscape consistent, so the work is designing an outdoor kitchen and pergola that satisfy the committee and still set your backyard apart. We build that into the plan from the start.',
+      'Under the surface it is the same discipline every time — proper excavation, a compacted rock base for the sandy soil, edge restraints and a slope that carries water away — plus coordinating the gas, electric and plumbing trades for the kitchen and lighting. We pull the City of Palm Beach Gardens permit and prepare the community submittal.',
+    ],
+    localNote: 'Gardens golf communities typically require design-committee approval on materials and any pergola or structure before work starts — we prepare that submittal alongside the City permit for the gas and electric.',
+    faqs: [
+      { q: 'Does my Palm Beach Gardens community have to approve the outdoor kitchen and pergola?', a: 'Almost certainly yes — communities like PGA National and BallenIsles run design committees that approve materials and added structures. We prepare and submit that package for you, then pull the City permit for the gas and electric once it clears.' },
+      { q: 'Can you build the outdoor kitchen to match our community palette?', a: 'Yes. We build to the community approved materials and colors. Bring us the guidelines or the design-committee requirements and we spec an outdoor kitchen, fire feature and paver floor that meet them while still looking custom to your home.' },
+      { q: 'Do you coordinate the gas, electric and plumbing for the outdoor kitchen?', a: 'We do. A built-in summer kitchen brings the grill, refrigeration, sink and lighting together, so we coordinate those trades and set the runs before the paver floor goes down, so everything lands where it belongs the first time.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  wellington: {
+    lede: "Out on Wellington's equestrian acreage the backyards are big, and so is the outdoor kitchen — this is estate-scale outdoor living with room for a full pavilion and fire feature.",
+    intro: [
+      'Wellington is a different kind of outdoor-living job. Out on the acreage of Palm Beach Point, the Aero Club and Grand Prix Village, there is room to build big — a full summer kitchen, a covered pavilion, a fire feature and generous seating areas set on a broad paver floor. The scale is the opportunity, and an estate backyard is where a complete outdoor room really comes into its own.',
+      'We build these for the scale and the setting. That means a proper compacted base under a large paver floor, a pavilion set on footings sized for the span and the wind, and enough grill, refrigeration and prep to entertain a crowd. On acreage we also plan the drainage and the utility runs across a much larger area than a typical suburban yard.',
+      'Coordinating the trades is a big part of an estate outdoor kitchen — gas for the grill and any fire feature, electric for the lighting and refrigeration, plumbing for the sink — and we set all of it before the pavers go down. We pull the Village of Wellington permit and grade the whole space.',
+    ],
+    localNote: 'Estate outdoor kitchens and pavilions run large — we set the pavilion footings for the span and the wind, size the utility runs for a full summer kitchen, and grade drainage across the whole space.',
+    faqs: [
+      { q: 'Can you build a full pavilion and summer kitchen on my Wellington estate?', a: 'Yes — that is a big part of what we do here. We set the pavilion footings for the span and the wind, build a full outdoor kitchen with the grill, refrigeration and sink underneath, and lay a broad paver floor to tie the seating areas and the fire feature together.' },
+      { q: 'Our backyard is large — can the outdoor space match that scale?', a: 'It can. Estate acreage is where a complete outdoor room shines: a big paver floor, a covered pavilion, a fire feature and room to entertain. We grade the drainage and run the gas, electric and plumbing across the whole space for it.' },
+      { q: 'Do you coordinate the gas, electric and plumbing for the outdoor kitchen?', a: 'We do. A full summer kitchen brings the grill, refrigeration, sink and lighting together, so we coordinate those trades and set the runs before the paver floor goes down, so everything lands where it belongs the first time.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'west-palm-beach': {
+    lede: 'In El Cid, SoSo and Flamingo Park the homes date to the 1920s–40s — the outdoor living space has to fit the period, so the courtyard reads as if it were always there.',
+    intro: [
+      "West Palm Beach's target streets — El Cid, SoSo, Flamingo Park, Prospect Park — are historic, with Spanish and Mediterranean homes from the 1920s through the 40s. An outdoor living space here has to suit the architecture: a period-sensitive courtyard with a built-in grill tucked into the layout, a fire feature, and warm-toned pavers or clay brick laid in a classic pattern read right where modern finishes look out of place.",
+      'Several of these neighborhoods sit in city historic districts, so the design should stay in step with the period. There is no HOA to answer to, but there is a look worth protecting — we help you plan an outdoor kitchen, seating area and fire feature that lift a historic courtyard rather than modernizing away its character.',
+      'The lots are older and often narrower, and the mature trees and original grading make the base and utility work matter. We excavate, build a proper compacted base, coordinate the gas, electric and plumbing for the kitchen, set the slope away from the house, and pull the City of West Palm Beach permit.',
+    ],
+    localNote: 'Older in-town courtyards have mature tree roots and original grading to work around, and some streets fall in a historic district — we keep the design period-appropriate and build the base and utility runs to handle the roots and settling.',
+    faqs: [
+      { q: 'What kind of outdoor kitchen suits a historic El Cid or Flamingo Park home?', a: 'A period-sensitive courtyard with the grill tucked into the layout, a fire feature, and warm-toned pavers or clay brick in a herringbone or running-bond pattern read true to the 1920s–40s architecture. We help you plan a space that looks original to the house rather than bolted on.' },
+      { q: "Is there an approval process in West Palm Beach's historic neighborhoods?", a: 'There is no HOA, but some streets are in a city historic district where exterior changes are reviewed. We keep the outdoor-living design period-appropriate, pull the City of West Palm Beach permit for the gas and electric, and handle any historic-district paperwork that applies.' },
+      { q: 'Can you fit an outdoor kitchen into an older, narrower lot?', a: 'Yes. We design the courtyard around the mature trees and original grading, coordinate the gas, electric and plumbing so the runs work with the older layout, and set the paver floor and seating to make the most of the space you have.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'delray-beach': {
+    lede: 'Around Lake Ida and the beach the homes are older and the coastal breeze is the whole draw — a breeze-side patio with a built-in grill and fire feature is what the backyard was made for.',
+    intro: [
+      "Delray's strength is the east side — Lake Ida, the beach district, Del-Ida Park — where established homes sit close to the water and the coastal breeze is the whole point of being outside. Many of these homes date to the 1950s through 80s, and the backyard is ready to become a real outdoor room: a breeze-side patio, a built-in grill, a fire feature, and a paver floor that ties the seating to the garden.",
+      'This close to the ocean, salt and heavy summer rain drive the material choices. We spec stainless components and sealed pavers that shrug off the salt, coordinate the gas and electric for the grill and lighting, and set the floor on a proper base for the sandy coastal soil so the whole space stays looking new with an occasional rinse and reseal.',
+      'The good news on the east side is simplicity — most of these streets are non-HOA, so approval is usually just the city permit for the gas and electric. We pull the City of Delray Beach permit, build the base for the coastal soil, and grade the drainage away from the home.',
+    ],
+    localNote: 'Coastal east-side lots deal with salt and high summer rain — we spec stainless and seal the pavers for the salt, coordinate the gas and electric, and build the slope to move heavy rain to the swale or street, away from older homes with low thresholds.',
+    faqs: [
+      { q: 'Can you build a breeze-side patio with a grill near the Delray beach?', a: 'Yes. A built-in grill, a fire feature and a paver floor set to catch the coastal breeze is a favorite here on the east side. We spec stainless components and sealed pavers for the salt air and coordinate the gas and electric so the space is ready to use.' },
+      { q: "I'm on a non-HOA street near Lake Ida — what approval do I need?", a: 'Usually just the city permit. Most of the Lake Ida and beach-district streets have no HOA, so we simply pull the City of Delray Beach permit for the gas and electric, handle any drainage requirement that applies, and get to work.' },
+      { q: 'Will the outdoor kitchen and pavers hold up to the salt air?', a: 'They will. We spec stainless components and sealed pavers so salt and storm runoff bead off, and because the floor is individual units over a compacted base, any section that ever settles near the water can be lifted and reset with no visible patch.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'boynton-beach': {
+    lede: "Along the Intracoastal and Boynton's eastern streets, waterfront entertaining is the draw — a summer kitchen, a fire feature and a paver floor built for ground that stays damp near the water.",
+    intro: [
+      "Boynton Beach's best outdoor-living work is on the water and to the east — the Intracoastal waterfront, Harbor Estates, Chapel Hill, Lake Eden. Many of these homes are 1960s–90s builds with backyards ready to become a real entertaining space: a built-in summer kitchen, a fire feature, seating areas and a paver floor that carries the eye from the house to the water.",
+      'Near the Intracoastal, salt and a high water table both work against an outdoor build. We spec stainless components and sealed pavers for the salt, build the base for ground that stays damp, coordinate the gas, electric and plumbing for the kitchen, and set the drainage so summer downpours run off instead of pooling by the seating.',
+      'Boynton is a mix — some waterfront pockets are non-HOA, some newer streets run an HOA. We confirm which applies to you, prepare the HOA submittal if there is one, and pull the City of Boynton Beach permit for the gas and electric either way.',
+    ],
+    localNote: 'Waterfront lots near the Intracoastal sit on a higher water table — we build the base for damp ground, spec stainless and seal against salt, and grade so heavy rain drains away from the outdoor kitchen and seating.',
+    faqs: [
+      { q: 'My Boynton home backs onto the Intracoastal — can you build an outdoor kitchen there?', a: 'Yes. Waterfront entertaining is the whole draw here. A high water table near the water makes a solid, well-compacted base essential, which is exactly what we build under the summer kitchen, the fire feature and the paver floor — and any section that ever settles by the seawall can be reset.' },
+      { q: 'Is there an HOA approval step in Boynton Beach?', a: 'It depends on your street — waterfront pockets are often non-HOA, while newer communities have one. We check first, prepare the HOA package if it is needed, and pull the City of Boynton Beach permit for the gas and electric regardless.' },
+      { q: 'Do you coordinate the gas, electric and plumbing for the outdoor kitchen?', a: 'We do. A built-in summer kitchen brings the grill, refrigeration, sink and lighting together, so we coordinate those trades and set the runs before the paver floor goes down, so everything lands where it belongs the first time.' },
+      { q: 'What does an outdoor living space cost?', a: 'It depends on the scope, materials and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+};
+
+const local = LOCAL[city.slug];
+const permit = city.permitAuthority.replace('the ', '').replace(/^./, (m) => m.toUpperCase());
+const handles = [
+  `A built-in outdoor kitchen, fire feature and paver floor built on a compacted base for ${city.name}'s sandy soil`,
+  city.hoa === 'none'
+    ? 'Any city or historic-district review kept period-appropriate'
+    : city.hoa === 'hoa'
+    ? 'Your HOA / architectural review board submittal prepared and shepherded through'
+    : 'HOA or non-HOA — we confirm your street and handle whichever applies',
+  `${permit} permit pulled, with the gas, electric and plumbing trades coordinated to local code`,
+];
+
+const data = {
+  seoTitle: `Outdoor Living Spaces in ${city.name}, FL · Perfect Pavers of Palm Beach`,
+  seoDescription: `Outdoor kitchens, fire features and paver living spaces in ${city.name}. ${permit} permit and ${city.hoa === 'none' ? 'district' : 'HOA/ARB'} approval handled. Free on-site visit.`,
+  service: SERVICE,
+  city,
+  lede: local.lede,
+  intro: local.intro,
+  localNote: local.localNote,
+  handles,
+  faqs: local.faqs,
+  heroImg: '/images/local-hero-outdoor-living.jpg',
+  heroAlt: `Outdoor living space in ${city.name}, Palm Beach County`,
+  heroBg: '/images/local-hero-outdoor-living.jpg',
+  services: SERVICES,
+  cities: CITY_CHIPS,
+};
+---
+<LocalServiceTemplate {...data} />

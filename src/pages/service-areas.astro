@@ -1,10 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { CITIES } from '../data/cities';
 
+// Cities with a full service hub (name -> slug) get linked; the rest stay plain.
+const hubBySlug = new Map(CITIES.map((c) => [c.name, c.slug]));
 const cities = [
   'West Palm Beach', 'Boca Raton', 'Boynton Beach', 'Delray Beach',
-  'Palm Beach Gardens', 'Greenacres', 'Lake Worth Beach', 'Riviera Beach',
-  'Atlantis', 'Westlake', 'Belle Glade', 'Pahokee', 'South Bay',
+  'Palm Beach Gardens', 'Jupiter', 'Wellington', 'Greenacres',
+  'Lake Worth Beach', 'Riviera Beach', 'Atlantis', 'Westlake',
+  'Belle Glade', 'Pahokee', 'South Bay',
 ];
 
 const spotlights = [
@@ -41,7 +45,9 @@ const spotlights = [
 
     <ul class="city-grid">
       {cities.map((c) => (
-        <li class="city"><span class="city-mk" aria-hidden="true">✦</span>{c}</li>
+        hubBySlug.has(c)
+          ? <li class="city"><a href={`/service-areas/${hubBySlug.get(c)}/`}><span class="city-mk" aria-hidden="true">✦</span>{c}</a></li>
+          : <li class="city"><span class="city-mk" aria-hidden="true">✦</span>{c}</li>
       ))}
     </ul>
     <p class="city-note">No additional travel charge to any community in Palm Beach County. Don&rsquo;t see your town? <a href="/contact/">Ask us</a> — if it&rsquo;s in the county, we likely cover it.</p>
@@ -93,6 +99,8 @@ const spotlights = [
     .city-grid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
     .city{display:flex;align-items:center;gap:12px;background:var(--ivory);padding:20px 22px;font-family:var(--serif);font-size:19px;color:var(--ink);transition:background .4s ease,color .4s ease}
     .city:hover{background:var(--ivory-2);color:var(--green)}
+    .city a{display:flex;align-items:center;gap:12px;width:100%;color:inherit}
+    .city a:hover{color:var(--brass-dark)}
     .city-mk{color:var(--brass);font-size:12px}
     .city-note{margin-top:22px;font-size:14.5px;color:var(--muted);font-weight:300}
     .city-note a{color:var(--brass-dark);text-decoration:underline;text-underline-offset:3px}

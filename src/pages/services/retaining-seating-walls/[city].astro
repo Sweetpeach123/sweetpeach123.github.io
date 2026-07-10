@@ -1,0 +1,164 @@
+---
+import LocalServiceTemplate from '../../../components/LocalServiceTemplate.astro';
+import { CITIES, type City } from '../../../data/cities';
+
+export function getStaticPaths() {
+  return CITIES.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props as { city: City };
+
+const SERVICE = { name: 'Retaining & seating walls', label: 'Retaining & seating walls', slug: 'retaining-seating-walls' };
+
+const SERVICES = [
+  { label: 'Driveways', slug: 'driveways' },
+  { label: 'Walkways', slug: 'walkways' },
+  { label: 'Patios', slug: 'patios' },
+  { label: 'Pool decks', slug: 'pool-decks' },
+  { label: 'Outdoor living', slug: 'outdoor-living' },
+  { label: 'Retaining & seating walls', slug: 'retaining-seating-walls' },
+  { label: 'Natural stone', slug: 'natural-stone' },
+  { label: 'Clean & seal', slug: 'clean-seal' },
+];
+const CITY_CHIPS = CITIES.map((c) => ({ label: c.name, slug: c.slug }));
+
+// ---- Per-city retaining & seating wall copy (uniquely written off each city's real differentiators) ----
+interface Local { lede: string; intro: string[]; localNote: string; faqs: { q: string; a: string }[]; }
+const LOCAL: Record<string, Local> = {
+  'boca-raton': {
+    lede: 'On the canal-front lots of East Boca and the Boca Islands, the ground sits low and wet — a proper retaining wall with drainage behind it holds the grade instead of bulging.',
+    intro: [
+      "Boca Raton is one of South Florida's most established communities, and many of its best lots — through East Boca, the Boca Islands and Old Floresta — sit near a canal or the Intracoastal where the water table runs high and the grade drops toward the seawall. A retaining wall on ground like that has one job: to hold the earth without leaning, and that comes down to what you cannot see. We build a compacted base, a segmental block or stone-veneer face, and a full drainage system with weep points behind it so water escapes instead of pushing the wall out.",
+      'Above the retaining work, Boca homeowners love a seat wall — a low capped wall wrapping a fire pit or bordering a patio that adds seating without crowding the space. We cap it to match your pavers so the wall reads as part of the same design, not an afterthought.',
+      'Whether you are on a non-HOA street in East Boca or inside a gated club like Royal Palm Yacht & Country Club, we handle the paperwork — the City of Boca Raton permit, the drainage design near the seawall, and the architectural review submittal for the clubs that require it.',
+    ],
+    localNote: "Boca's canal-front and seawall-adjacent lots carry a high water table and drainage rules — we build weep systems and a proper base behind every retaining wall so hydrostatic pressure never bulges the face.",
+    faqs: [
+      { q: 'My lot slopes toward the canal — can a wall hold that grade?', a: 'Yes, when it is engineered for the water. Near the Boca canals and seawalls the pressure behind a wall is the real load, so we build a compacted base and a weep-and-drainage system behind the block so water escapes instead of pushing the wall out over time.' },
+      { q: 'Do you work inside the gated communities in Boca Raton?', a: 'Yes. We regularly prepare the architectural review board package for gated clubs like Royal Palm Yacht & Country Club, then pull the City of Boca Raton permit once the community signs off on the wall design.' },
+      { q: 'Can you add a seat wall around a fire pit on my patio?', a: 'That is one of our most requested builds in Boca. We set a low capped seat wall around the fire pit or along the patio edge and finish the cap to match your pavers, so it adds seating and reads as one design.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  jupiter: {
+    lede: "Jupiter's golf and waterfront communities want landscape walls that match the palette — and every one runs an approval board we clear for you.",
+    intro: [
+      "From Admirals Cove to the Loxahatchee Club, most of Jupiter's homes sit inside gated golf and waterfront communities built in the 1990s and 2000s. The wall work here is usually landscape-driven — raised planter walls that frame the entry, low garden walls that terrace a sloped side yard, and seat walls that turn a patio into an outdoor room. The look has to fit the community, so material and color matter as much as structure.",
+      'The catch in Jupiter is the architectural review board. Nearly every community here has one, and it decides the color, the cap and the face material you are allowed on a wall. We prepare the ARB submittal with the wall spec and drawings so it clears the first time, then pull the Town of Jupiter permit.',
+      'On the water — the Intracoastal, the inlet, the canals — salt and grade both matter. Where a lot steps down toward the water we build the retaining wall for the load with drainage behind it, and where it is purely decorative we still seal the stone against the salt so the face holds its color.',
+    ],
+    localNote: 'Most Jupiter wall projects run through a community architectural review board before the Town permit — we manage both, and match the cap and face material to the community palette.',
+    faqs: [
+      { q: 'Will you handle the architectural review board approval for my Jupiter wall?', a: 'Yes — that is a standard part of the job here. We prepare the ARB package with the wall face, cap and color, get the community sign-off, and only then order material and pull the Town of Jupiter permit.' },
+      { q: 'Can you build planter and garden walls that match my community landscaping?', a: 'We build to the community approved palette. Bring us the guidelines and we spec raised planter walls or low garden walls in a stone or block that meets them while still looking custom to your home.' },
+      { q: 'My side yard slopes down toward the canal — do I need a retaining wall?', a: 'If the grade is holding soil back, yes. We build a segmental block or stone-veneer retaining wall with a compacted base and a weep-and-drainage system behind it, so it holds the grade near the water without bulging.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'palm-beach-gardens': {
+    lede: "In PGA National, BallenIsles and Frenchman's Creek, the wall you add has to match the community's design guidelines — planters, seat walls and terracing included.",
+    intro: [
+      "Palm Beach Gardens grew up around golf — PGA National, BallenIsles, Frenchman's Creek, Mirasol — and those 1990s and 2000s homes are the age where the landscape is ready for a refresh. Walls are a big part of that: raised planter walls along the drive and entry, seat walls off the lanai, and low garden walls that give a flat lot some structure. A well-built capped wall lifts the whole front of the house in a community where every home is judged against its neighbor.",
+      'The design guidelines here are strict. Communities in the Gardens often dictate the color family, the cap and the face material to keep the streetscape consistent, so the work is picking a wall material that satisfies the committee and still sets your home apart. We build that into the plan from the start.',
+      'Under the surface it is the same discipline every time — a compacted base for the sandy soil, and where a wall is holding grade rather than just framing a bed, a drainage-and-weep system behind it so it never leans. We pull the City of Palm Beach Gardens permit and prepare the community submittal.',
+    ],
+    localNote: 'Gardens golf communities typically require design-committee approval on wall color, cap and face material before work starts — we prepare that submittal alongside the City permit.',
+    faqs: [
+      { q: 'Does my Palm Beach Gardens community have to approve a new wall?', a: 'Almost certainly yes — communities like PGA National and BallenIsles run design committees that approve the color, cap and face of a wall. We prepare and submit that package for you, then pull the City permit once it clears.' },
+      { q: 'Can you build raised planter walls to match my community landscaping?', a: 'That is a common request here. We build raised planter and low garden walls in the community approved material and cap them to tie into your existing hardscape, so they look original to the home.' },
+      { q: 'Our existing wall is leaning — reset or rebuild?', a: 'A leaning wall usually means the drainage behind it failed and water is pushing on the face. If the base is sound we can rework it; if it has moved, a rebuild with a proper weep system is the lasting fix, and we tell you honestly which at the on-site visit.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  wellington: {
+    lede: "On Wellington's equestrian acreage the walls run long — estate terracing and long planter walls that frame the grounds rather than hold back a hill.",
+    intro: [
+      'Wellington is a different kind of wall job. Out on the acreage of Palm Beach Point, the Aero Club and Grand Prix Village, walls are about scale and landscape rather than steep grade. Think long capped planter walls that line a drive, terraced garden walls that give a flat estate lot some level and structure, and seat walls that define a large patio or fire-pit area on grounds where everything is generously sized.',
+      'The length is the engineering. A wall that runs the side of an estate lot has to stay dead level over a long distance, which means a properly compacted base for the full run and consistent capping so the top line reads straight from the house. Where a section steps grade, we put a drainage-and-weep system behind it so the soil load never moves the wall.',
+      'The scale is the opportunity — a long stone or block wall on an estate lot is a statement that a short residential wall never makes. We build it to last across the acreage, match the cap to your patio, and pull the Village of Wellington permit for the full project.',
+    ],
+    localNote: 'Estate walls run long, so a level top line over distance is the hard part — we build a consistent compacted base for the whole run and add drainage behind any section that holds grade.',
+    faqs: [
+      { q: 'Can you build a long planter or garden wall across my Wellington acreage?', a: 'That is a big part of what we do here. We build long capped planter and terraced garden walls that stay level across the run, on a compacted base built for the full length, so the top line reads straight from the house.' },
+      { q: 'I want a seat wall around a large fire-pit area — is that doable on acreage?', a: 'Yes, and the scale suits it. We set a low capped seat wall around the fire pit or patio, sized for the open grounds, and match the cap to your existing hardscape so it feels part of the estate.' },
+      { q: 'Do the equestrian villages have wall rules I need to clear?', a: 'Some do and some are non-HOA acreage. We confirm which applies to your neighborhood before we design, prepare any village submittal that is needed, and pull the Village of Wellington permit either way.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'west-palm-beach': {
+    lede: 'In El Cid, SoSo and Flamingo Park the courtyard and garden walls are part of the 1920s–40s character — a new wall has to fit the period, not fight it.',
+    intro: [
+      "West Palm Beach's target streets — El Cid, SoSo, Flamingo Park, Prospect Park — are historic, with Spanish and Mediterranean homes from the 1920s through the 40s. Walls are woven into that architecture: low courtyard walls that enclose a front garden, garden walls that separate a side yard, and seat walls off a patio. A stone-veneer or warm-toned block wall in a classic profile reads right where a plain modern block looks out of place.",
+      'Several of these neighborhoods sit in city historic districts, so the design should stay in step with the period. There is no HOA to answer to, but there is a look worth protecting — we help you pick a face material and cap that suits a historic home rather than modernizing away its character.',
+      'The lots are older and often narrower, with mature trees and original grading, so even a garden wall needs a proper base to sit level and stay put. We build that base, add drainage behind any wall holding grade, and pull the City of West Palm Beach permit.',
+    ],
+    localNote: 'Older in-town lots have mature tree roots and original grading to work around, and some streets fall in a historic district — we design courtyard and garden walls to the period and build a base that handles the roots and settling.',
+    faqs: [
+      { q: 'What wall style suits a historic El Cid or Flamingo Park home?', a: 'A stone-veneer or warm-toned block wall in a low courtyard or garden profile reads true to the 1920s–40s architecture. We help you choose a face and cap that look original to the house rather than bolted on.' },
+      { q: "Is there an approval process in West Palm Beach's historic neighborhoods?", a: 'There is no HOA, but some streets are in a city historic district where exterior changes are reviewed. We keep the wall design period-appropriate, pull the City of West Palm Beach permit, and handle any historic-district paperwork that applies.' },
+      { q: 'Can you build a low seat wall for a courtyard patio?', a: 'Yes. A low capped seat wall works beautifully in these in-town courtyards — it adds seating and defines the space, and we cap it to match your pavers so it fits the period look.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'delray-beach': {
+    lede: 'On the canal and beach lots around Lake Ida, salt and shifting grade both work on a wall — a sealed face with drainage behind it takes both.',
+    intro: [
+      "Delray's strength is the east side — Lake Ida, the beach district, Del-Ida Park, Tropic Isle — where established homes sit close to the water on canal and coastal lots. On the canal streets of Tropic Isle especially, the grade drops toward the water and the ground stays damp, so a retaining wall has to hold that grade and shed water rather than trap it behind the face.",
+      "This close to the ocean, salt and heavy summer rain wear a wall down fast. We build a segmental block or stone-veneer face, seal it against the salt, and put a full weep-and-drainage system behind any wall holding grade so the soil load and the rain both find a way out instead of pushing on the wall.",
+      'Above the retaining work, a seat wall around a patio or fire pit is a favorite on these coastal lots, and we cap it to match your pavers. The good news on the east side is simplicity — most streets are non-HOA, so approval is usually just the City of Delray Beach permit, which we pull.',
+    ],
+    localNote: 'Canal lots in Tropic Isle and the beach district deal with salt, damp ground and shifting grade — we seal the face against salt and build weep drainage behind any wall holding back the soil.',
+    faqs: [
+      { q: 'My Tropic Isle lot drops toward the canal — will a retaining wall hold it?', a: 'Yes, when it is built for the water. On these canal lots the pressure behind the wall is the real load, so we build a compacted base and a weep-and-drainage system behind the face so damp ground and rain escape instead of pushing the wall out.' },
+      { q: 'Does salt air near the Delray beach hurt a stone or block wall?', a: 'Far less once it is sealed. We seal the wall face so salt and storm spray bead off, and because the wall is built in units over a proper base, any spot that ever weathers near the water can be addressed without tearing out the whole run.' },
+      { q: "I'm on a non-HOA street near Lake Ida — what approval do I need?", a: 'Usually just the city permit. Most Lake Ida and beach-district streets have no HOA, so we simply pull the City of Delray Beach permit, handle any drainage requirement, and get to work on the wall.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'boynton-beach': {
+    lede: "Along the Intracoastal and Boynton's eastern streets the water table runs high and the grade drops to the seawall — a wall here lives or dies on the drainage behind it.",
+    intro: [
+      "Boynton Beach's best hardscape work is on the water and to the east — the Intracoastal waterfront, Harbor Estates, Chapel Hill, Lake Eden. Many of these 1960s–90s homes sit on lots where the grade steps down toward the seawall and the ground stays damp, so a retaining wall has to hold that grade against a high water table without leaning over time.",
+      'Near the Intracoastal, the pressure behind a wall is everything. We build a compacted base for ground that stays wet, a segmental block or stone-veneer face, and a full weep-and-drainage system behind it so water escapes instead of building up and pushing the wall out. Seal the face and it shrugs off the salt too.',
+      'Above the retaining work, a seat wall around a patio or fire pit is a natural add on these waterfront lots, capped to match your pavers. Boynton is a mix — some waterfront pockets are non-HOA, some newer streets run an HOA — so we confirm which applies, prepare the submittal if there is one, and pull the City of Boynton Beach permit either way.',
+    ],
+    localNote: 'Waterfront lots near the Intracoastal sit on a high water table with grade dropping to the seawall — we build the base for damp ground and a weep-drainage system behind every retaining wall so pressure never bulges the face.',
+    faqs: [
+      { q: 'My Boynton home backs onto the Intracoastal — will a retaining wall hold near the seawall?', a: 'It will when it is built for the water table. Near the Intracoastal we build a compacted base for damp ground and a weep-and-drainage system behind the wall, so hydrostatic pressure escapes instead of pushing the face out over time.' },
+      { q: 'Can you add a seat wall around a patio on my waterfront lot?', a: 'Yes, and it suits these lots well. We set a low capped seat wall around the patio or fire pit and match the cap to your pavers so it reads as part of the same design as the rest of the hardscape.' },
+      { q: 'Is there an HOA approval step for a wall in Boynton Beach?', a: 'It depends on your street — waterfront pockets are often non-HOA, while newer communities have one. We check first, prepare the HOA package if it is needed, and pull the City of Boynton Beach permit regardless.' },
+      { q: 'What does a retaining or seating wall cost?', a: 'It depends on the length, height, material and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+};
+
+const local = LOCAL[city.slug];
+const permit = city.permitAuthority.replace('the ', '').replace(/^./, (m) => m.toUpperCase());
+const handles = [
+  `Segmental block or stone-veneer wall on a compacted base built for ${city.name}'s sandy soil`,
+  city.hoa === 'none'
+    ? 'Any city or historic-district review kept period-appropriate'
+    : city.hoa === 'hoa'
+    ? 'Your HOA / architectural review board submittal prepared and shepherded through'
+    : 'HOA or non-HOA — we confirm your street and handle whichever applies',
+  `${permit} permit pulled, with a weep-and-drainage system behind the wall built to local code`,
+];
+
+const data = {
+  seoTitle: `Retaining & Seating Walls in ${city.name}, FL · Perfect Pavers of Palm Beach`,
+  seoDescription: `Retaining and seat walls in ${city.name} — proper base and weep drainage behind the face. ${permit} permit and ${city.hoa === 'none' ? 'district' : 'HOA/ARB'} approval handled. Free on-site visit.`,
+  service: SERVICE,
+  city,
+  lede: local.lede,
+  intro: local.intro,
+  localNote: local.localNote,
+  handles,
+  faqs: local.faqs,
+  heroImg: '/images/local-hero-retaining-seating-walls.jpg',
+  heroAlt: `Retaining and seating wall in ${city.name}, Palm Beach County`,
+  heroBg: '/images/local-hero-retaining-seating-walls.jpg',
+  services: SERVICES,
+  cities: CITY_CHIPS,
+};
+---
+<LocalServiceTemplate {...data} />

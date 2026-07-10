@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CITIES, type City } from '../../data/cities';
+
+export function getStaticPaths() {
+  return CITIES.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props as { city: City };
+
+// The eight services, each with a one-line, city-agnostic descriptor.
+const SERVICES = [
+  { label: 'Driveways', slug: 'driveways', blurb: 'A paver driveway that flexes with the ground instead of cracking like a slab.' },
+  { label: 'Walkways', slug: 'walkways', blurb: 'Front walks and garden paths — even, trip-safe, and matched to the entry.' },
+  { label: 'Patios', slug: 'patios', blurb: 'Back patios built for year-round living, graded to drain away from the house.' },
+  { label: 'Pool decks', slug: 'pool-decks', blurb: 'Cool-underfoot, non-slip decks and coping that shrug off salt and chlorine.' },
+  { label: 'Outdoor living', slug: 'outdoor-living', blurb: 'Outdoor kitchens, fire features and pergolas over one seamless paver floor.' },
+  { label: 'Retaining & seating walls', slug: 'retaining-seating-walls', blurb: 'Seat walls, planters and grade changes with drainage built in behind them.' },
+  { label: 'Natural stone', slug: 'natural-stone', blurb: 'Travertine, marble and shellstone, sealed for South Florida sun and salt.' },
+  { label: 'Clean & seal', slug: 'clean-seal', blurb: 'Restore faded pavers — deep clean, re-sand the joints, and seal.' },
+];
+
+const OTHER_CITIES = CITIES.filter((c) => c.slug !== city.slug);
+
+const permit = city.permitAuthority.replace('the ', '').replace(/^./, (m) => m.toUpperCase());
+const hoaLabel =
+  city.hoa === 'none' ? 'No HOA · city / district review' :
+  city.hoa === 'hoa' ? 'HOA / architectural review board' :
+  'Mixed — HOA on some streets';
+
+const seoTitle = `Paver Services in ${city.name}, FL · Perfect Pavers of Palm Beach`;
+const seoDescription = `Driveways, patios, pool decks, walkways and more in ${city.name}, FL. Proper base, drainage and ${permit} permitting handled. Free on-site visit.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Perfect Pavers of Palm Beach',
+  image: new URL('/apple-touch-icon.png', Astro.site).href,
+  url: new URL(`/service-areas/${city.slug}/`, Astro.site).href,
+  telephone: '+1-561-834-8880',
+  priceRange: '$$',
+  address: { '@type': 'PostalAddress', addressLocality: city.name, addressRegion: 'FL', addressCountry: 'US' },
+  areaServed: { '@type': 'City', name: `${city.name}, FL` },
+};
+---
+<BaseLayout title={seoTitle} description={seoDescription} bodyClass="lg-page">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- ===== HERO ===== -->
+  <section class="sa-hero">
+    <div class="wrap">
+      <nav class="lg-crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span>
+        <a href="/service-areas/">Service areas</a><span>/</span>
+        <span>{city.name}</span>
+      </nav>
+      <p class="lg-eyebrow">Palm Beach County · {city.name}</p>
+      <h1 class="lg-h1">Paver services<br /><em>in {city.name}.</em></h1>
+      <p class="lg-lede">{city.blurb}</p>
+      <div class="lg-hero-cta">
+        <a href="/contact/" class="btn btn-brass">Request a free visit</a>
+        <a href="tel:+15618348880" class="lg-callink">Call (561) 834-8880</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOSSIER ===== -->
+  <div class="wrap">
+    <div class="lg-dossier">
+      <div class="lg-doss-cell">
+        <span class="lg-doss-k">Where we work</span>
+        <span class="lg-doss-v">{city.neighborhoods.join(' · ')}</span>
+      </div>
+      <div class="lg-doss-cell">
+        <span class="lg-doss-k">Typical homes</span>
+        <span class="lg-doss-v">{city.homeEra} · {city.setting}</span>
+      </div>
+      <div class="lg-doss-cell">
+        <span class="lg-doss-k">Approvals</span>
+        <span class="lg-doss-v">{hoaLabel}</span>
+      </div>
+      <div class="lg-doss-cell">
+        <span class="lg-doss-k">Permitting</span>
+        <span class="lg-doss-v">{permit}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SERVICE GRID ===== -->
+  <section class="wrap sa-services">
+    <div class="sa-intro">
+      <span class="lg-eyebrow">What we build in {city.name}</span>
+      <h2 class="lg-h2">Every hardscape, one crew.</h2>
+      <p>{city.hoaNote} We pull the {permit} permit, build the base for local soil and drainage, and hand you an itemized written estimate before anything begins.</p>
+    </div>
+    <div class="sa-grid">
+      {SERVICES.map((s) => (
+        <a class="sa-card" href={`/services/${s.slug}/${city.slug}/`}>
+          <span class="sa-card-label">{s.label}</span>
+          <span class="sa-card-blurb">{s.blurb}</span>
+          <span class="sa-card-go">{s.label} in {city.name} →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== OTHER CITIES ===== -->
+  <section class="wrap sa-cities">
+    <span class="lg-eyebrow">We also serve</span>
+    <div class="lg-chips">
+      {OTHER_CITIES.map((c) => (
+        <a class="lg-chip" href={`/service-areas/${c.slug}/`}>{c.name}</a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="lg-cta">
+    <div class="wrap">
+      <p class="lg-eyebrow" style="color:var(--brass)">Your free on-site visit</p>
+      <h2 class="lg-cta-h">A project in {city.name}? <em>Let's walk it.</em></h2>
+      <p class="lg-cta-p">We come out within a day or two, measure the space, and send an itemized written estimate — no charge, no pressure.</p>
+      <div class="lg-hero-cta">
+        <a href="/contact/" class="btn btn-brass">Request a visit</a>
+        <a href="tel:+15618348880" class="btn btn-ghost" style="color:var(--ivory)">Call (561) 834-8880</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lg-page { background: var(--ivory); }
+
+  .sa-hero { background: var(--green-deep); color: var(--ivory); padding: clamp(46px, 8vw, 92px) 0 clamp(90px, 12vw, 150px); text-align: center; }
+  .lg-crumbs { font-family: var(--sans); font-size: 12px; letter-spacing: .04em; color: rgba(246,241,231,.6); margin-bottom: 26px; }
+  .lg-crumbs a { color: rgba(246,241,231,.8); }
+  .lg-crumbs a:hover { color: var(--ivory); }
+  .lg-crumbs span { margin: 0 9px; opacity: .5; }
+  .lg-eyebrow { font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: var(--brass); }
+  .sa-hero .lg-eyebrow { color: #cBA36a; }
+  .lg-h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(38px, 6.4vw, 76px); line-height: 1.02; margin: 16px 0 0; }
+  .lg-h1 em { color: var(--brass); font-style: italic; }
+  .lg-lede { max-width: 640px; margin: 22px auto 0; font-size: clamp(16px, 2vw, 19px); color: rgba(246,241,231,.82); line-height: 1.6; }
+  .lg-hero-cta { display: flex; gap: 20px; align-items: center; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+  .lg-callink { font-family: var(--sans); font-size: 13px; letter-spacing: .08em; color: var(--ivory); border-bottom: 1px solid rgba(246,241,231,.4); padding-bottom: 3px; }
+  .lg-callink:hover { border-color: var(--brass); }
+
+  .lg-dossier { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--ivory); border: 1px solid var(--line); border-radius: 4px; margin-top: clamp(-70px, -8vw, -110px); position: relative; box-shadow: 0 30px 60px -30px rgba(16,44,36,.4); }
+  .lg-doss-cell { padding: 26px 28px; border-right: 1px solid var(--line); }
+  .lg-doss-cell:last-child { border-right: 0; }
+  .lg-doss-k { display: block; font-family: var(--sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--brass-dark); margin-bottom: 10px; }
+  .lg-doss-v { display: block; font-family: var(--serif); font-size: 18px; line-height: 1.32; color: var(--ink); }
+
+  .sa-services { padding: clamp(50px, 8vw, 90px) 30px clamp(30px, 5vw, 50px); }
+  .sa-intro { max-width: 640px; }
+  .sa-intro .lg-h2 { font-size: clamp(26px, 3.6vw, 38px); margin: 12px 0 14px; }
+  .sa-intro p { font-size: 17px; line-height: 1.7; color: var(--muted); font-weight: 300; }
+  .lg-h2 { font-family: var(--serif); }
+
+  .sa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 40px; }
+  .sa-card { display: flex; flex-direction: column; gap: 10px; padding: 26px 26px 24px; background: #fff; border: 1px solid var(--line); border-radius: 6px; transition: .2s; }
+  .sa-card:hover { border-color: var(--brass); box-shadow: 0 20px 40px -28px rgba(16,44,36,.4); transform: translateY(-2px); }
+  .sa-card-label { font-family: var(--serif); font-size: 22px; color: var(--ink); }
+  .sa-card-blurb { font-size: 15px; line-height: 1.55; color: var(--muted); font-weight: 300; flex: 1; }
+  .sa-card-go { font-family: var(--sans); font-size: 12.5px; letter-spacing: .04em; color: var(--brass-dark); margin-top: 4px; }
+
+  .sa-cities { padding: clamp(20px, 4vw, 40px) 30px clamp(50px, 8vw, 90px); }
+  .lg-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .lg-chip { font-family: var(--sans); font-size: 13.5px; letter-spacing: .02em; padding: 9px 16px; border: 1px solid var(--line); border-radius: 40px; color: var(--ink); transition: .2s; }
+  .lg-chip:hover { border-color: var(--brass); color: var(--brass-dark); }
+
+  .lg-cta { background: var(--green-deep); color: var(--ivory); text-align: center; padding: clamp(56px, 9vw, 104px) 0; }
+  .lg-cta-h { font-family: var(--serif); font-size: clamp(30px, 4.4vw, 50px); margin: 14px 0 0; }
+  .lg-cta-h em { color: var(--brass); font-style: italic; }
+  .lg-cta-p { max-width: 560px; margin: 18px auto 0; color: rgba(246,241,231,.8); font-size: 17px; }
+
+  @media (max-width: 900px) {
+    .lg-dossier { grid-template-columns: 1fr 1fr; }
+    .lg-doss-cell:nth-child(2) { border-right: 0; }
+    .lg-doss-cell:nth-child(1), .lg-doss-cell:nth-child(2) { border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 560px) {
+    .lg-dossier { grid-template-columns: 1fr; margin-top: -60px; }
+    .lg-doss-cell { border-right: 0; border-bottom: 1px solid var(--line); }
+    .lg-doss-cell:last-child { border-bottom: 0; }
+  }
+</style>

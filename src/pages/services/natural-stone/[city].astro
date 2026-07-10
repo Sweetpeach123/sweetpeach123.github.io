@@ -1,0 +1,164 @@
+---
+import LocalServiceTemplate from '../../../components/LocalServiceTemplate.astro';
+import { CITIES, type City } from '../../../data/cities';
+
+export function getStaticPaths() {
+  return CITIES.map((city) => ({ params: { city: city.slug }, props: { city } }));
+}
+
+const { city } = Astro.props as { city: City };
+
+const SERVICE = { name: 'Natural stone hardscapes', label: 'Natural stone', slug: 'natural-stone' };
+
+const SERVICES = [
+  { label: 'Driveways', slug: 'driveways' },
+  { label: 'Walkways', slug: 'walkways' },
+  { label: 'Patios', slug: 'patios' },
+  { label: 'Pool decks', slug: 'pool-decks' },
+  { label: 'Outdoor living', slug: 'outdoor-living' },
+  { label: 'Retaining & seating walls', slug: 'retaining-seating-walls' },
+  { label: 'Natural stone', slug: 'natural-stone' },
+  { label: 'Clean & seal', slug: 'clean-seal' },
+];
+const CITY_CHIPS = CITIES.map((c) => ({ label: c.name, slug: c.slug }));
+
+// ---- Per-city natural-stone copy (uniquely written off each city's real differentiators) ----
+interface Local { lede: string; intro: string[]; localNote: string; faqs: { q: string; a: string }[]; }
+const LOCAL: Record<string, Local> = {
+  'boca-raton': {
+    lede: 'This close to the ocean in East Boca, natural stone reads as the premium choice — but porous travertine and shellstone need sealing against salt air, which is where most installs fall short.',
+    intro: [
+      'Boca Raton is one of South Florida\'s most established addresses, and through East Boca, the Boca Islands and Old Floresta the 1970s–90s homes carry an architecture that natural stone suits far better than a manufactured paver. Travertine, marble and shellstone give a custom, high-end look that a mold-made unit cannot copy, and we help you choose and source the right stone for the house rather than the nearest pallet.',
+      'The catch on the coast is that natural stone is porous, and salt air is relentless here. Unsealed travertine or shellstone will stain, etch and pick up salt within a season or two. We seal every stone against the salt, the afternoon storms and the sun so it holds its color and shrugs off spills, and a tumbled travertine surface stays cool enough to walk barefoot even in August.',
+      'Whether you are on a non-HOA street in East Boca or inside a gated club like Royal Palm Yacht & Country Club, we handle the paperwork — the City of Boca Raton permit, the drainage slope, and the architectural review submittal with a stone palette the club will approve.',
+    ],
+    localNote: "Boca's coastal and canal-front lots put porous stone in constant contact with salt — we seal on install and set the slope so storm water runs to the street or swale, never back toward the house.",
+    faqs: [
+      { q: 'Does salt air near the Boca coast ruin natural stone?', a: 'Only if the stone is left unsealed. Travertine, marble and shellstone are porous, so we seal them on install and reseal on a schedule — sealed stone beads off salt and storm runoff and holds its color for years this close to the ocean.' },
+      { q: 'Do you work inside the gated communities in Boca Raton?', a: 'Yes. We prepare the architectural review board package for gated clubs like Royal Palm Yacht & Country Club with a stone type, finish and color the board will approve, then pull the City of Boca Raton permit once the community signs off.' },
+      { q: 'Is natural stone cooler underfoot than pavers around a coastal pool?', a: 'Tumbled travertine and shellstone stay noticeably cooler than most manufactured pavers in the summer sun, which is a real advantage on the ocean-side decks and patios common in East Boca.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  jupiter: {
+    lede: "Jupiter's gated golf and waterfront communities each run a review board, and natural stone gives you a custom look inside a strict palette — we get the stone approved for you.",
+    intro: [
+      "From Admirals Cove to the Loxahatchee Club, most of Jupiter's target homes are 1990s–2000s builds inside gated golf and waterfront communities. Natural stone is how you set a home apart on a street where every house was built to a similar spec — travertine, marble and flagstone bring a custom, high-end character that a standard community paver simply does not.",
+      'The catch in Jupiter is the architectural review board. Nearly every community here has one, and it decides the color, finish and material you are allowed. We prepare the ARB submittal with the exact stone type, finish and honed-versus-tumbled detail so it clears the first time, then pull the Town of Jupiter permit.',
+      'On the water — the Intracoastal, the inlet, the canals — salt works against porous stone the same way it does on the coast. We seal travertine and shellstone against the salt and the sun, match the stone to the home\'s architecture, and build the base so the terrace holds flat for the long run.',
+    ],
+    localNote: 'Most Jupiter projects run through a community architectural review board before the Town permit — we submit the stone palette and finish for approval, then seal against the waterfront salt.',
+    faqs: [
+      { q: 'Will you get the natural stone approved by my Jupiter community board?', a: 'Yes — that is a standard part of the job here. We prepare the ARB package with the stone type, finish and color, get the community sign-off, and only then source the material and pull the Town of Jupiter permit.' },
+      { q: 'Can natural stone still fit a strict community palette?', a: 'It can. Bring us the ARB guidelines and we spec a travertine, marble or flagstone in an approved color and finish that meets the palette while still reading as a custom, high-end surface unique to your home.' },
+      { q: 'Honed or tumbled finish for a Jupiter waterfront home?', a: 'Tumbled travertine gives a softer, cooler, slip-resistant surface that suits pool decks and waterfront patios; honed marble reads more formal for entries and terraces. We match the finish to the space and the architecture at the visit.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'palm-beach-gardens': {
+    lede: "PGA National, BallenIsles, Frenchman's Creek — the Gardens' golf communities run strict design guidelines, and natural stone earns its keep as the upgrade that clears the committee.",
+    intro: [
+      "Palm Beach Gardens grew up around golf — PGA National, BallenIsles, Frenchman's Creek, Mirasol — and those 1990s–2000s homes have reached the age where the hardscape is ready for a redo. Natural stone is the single biggest lift you can give a terrace or entry in a community where every house is judged against its neighbor, and travertine or marble reads a class above the community paver.",
+      'The design guidelines here are strict. Communities in the Gardens often dictate the color family and finish to keep the streetscape consistent, so the work is choosing a stone that satisfies the committee and still sets your home apart. We build the stone palette, the finish and the pattern into the submittal from the start.',
+      'Under the surface it is the same discipline every time — proper excavation, a compacted base for the sandy soil, and a slope that carries water away. Because natural stone is porous, we seal it against the sun and stains and reseal on a schedule, then pull the City of Palm Beach Gardens permit and prepare the community submittal.',
+    ],
+    localNote: 'Gardens golf communities typically require design-committee approval on stone color and finish before work starts — we prepare that submittal alongside the City permit and seal the stone against the sun.',
+    faqs: [
+      { q: 'Does my Palm Beach Gardens community have to approve natural stone?', a: 'Almost certainly yes — communities like PGA National and BallenIsles run design committees that approve material, color and finish. We prepare and submit that stone package for you, then pull the City permit once it clears.' },
+      { q: 'Why choose natural stone over the community paver here?', a: 'Travertine, marble and flagstone give a custom, high-end look that a mold-made paver cannot match, which matters on a street where curb appeal is judged against every neighbor. We spec a stone that clears the committee and still stands out.' },
+      { q: 'How much upkeep does natural stone need in the Gardens?', a: 'Porous stone needs sealing on install and a reseal every few years to resist sun fade and stains, plus the occasional rinse. That is the trade for the look — and we set you up with the right sealer and schedule.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  wellington: {
+    lede: "Out on Wellington's equestrian acreage the stone terraces run estate-scale, and natural stone is what turns a large hardscape into a statement that fits the property.",
+    intro: [
+      'Wellington is a different kind of stone job. Out on the acreage of Palm Beach Point, the Aero Club and Grand Prix Village, the hardscapes run large — sweeping terraces, entries and pool surrounds on estate lots — and natural stone is what carries that scale. Travertine and flagstone give an estate-grade, custom look across a big footprint that a manufactured paver would only make feel ordinary.',
+      'The scale is the opportunity and the discipline. A large stone terrace needs a base built for the load and the ground movement, and it needs enough material sourced from the same lots to keep the color consistent across the run. We plan the sourcing and the drainage across the whole area so the field reads as one, not a patchwork.',
+      'Because natural stone is porous, we seal it against the Florida sun and stains and match the stone to the home\'s architecture — a rugged flagstone for a ranch-style estate, a refined travertine for a formal one. Many equestrian neighborhoods are non-HOA acreage, so we confirm your rules, then pull the Village of Wellington permit and grade the terrace.',
+    ],
+    localNote: 'Estate-scale stone terraces need material sourced consistently across a large run and a base built for the load — we plan the sourcing and grade the drainage across the full acreage.',
+    faqs: [
+      { q: 'Can you keep the color consistent across a large estate stone terrace?', a: 'Yes — that is the discipline on an acreage job. We source enough travertine or flagstone from the same lots up front so the color reads as one field across a big terrace, rather than a patchwork of dye lots.' },
+      { q: 'Which natural stone suits a Wellington equestrian estate?', a: 'Flagstone brings a rugged, natural look that suits ranch-style estates and larger grounds, while travertine reads more refined for a formal home and pool surround. We match the stone to the architecture at the visit.' },
+      { q: 'Is there an approval step for stone in Wellington?', a: 'It depends on your street — much of the equestrian acreage is non-HOA, while the equestrian villages have their own rules. We confirm which applies, prepare any submittal, and pull the Village of Wellington permit either way.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'west-palm-beach': {
+    lede: 'In El Cid, SoSo and Flamingo Park the homes date to the 1920s–40s, and period-true natural stone fits the Mediterranean architecture where a modern paver never will.',
+    intro: [
+      "West Palm Beach's target streets — El Cid, SoSo, Flamingo Park, Prospect Park — are historic, with Spanish and Mediterranean homes from the 1920s through the 40s. Natural stone belongs here in a way a modern paver does not: warm travertine, marble and flagstone read true to the period, and choosing the right stone lifts the character of the house instead of modernizing it away.",
+      'Several of these neighborhoods sit in city historic districts, so the material and the finish should stay in step with the architecture. There is no HOA to answer to, but there is a look worth protecting — we help you pick a stone, a tone and a pattern that suit a 1920s–40s home rather than fighting it.',
+      'The lots are older and often narrower, with mature trees and original grading, so the base work matters. Because natural stone is porous, we seal it against the sun and stains and reseal on a schedule, then excavate, set the slope away from the house, and pull the City of West Palm Beach permit.',
+    ],
+    localNote: 'Older in-town lots have mature tree roots and original grading to work around, and some streets fall in a historic district — we choose a period-true stone and build the base to handle the roots and settling.',
+    faqs: [
+      { q: 'What natural stone suits a historic El Cid or Flamingo Park home?', a: 'Warm-toned travertine, marble and flagstone in a classic pattern read true to the 1920s–40s Spanish and Mediterranean architecture. We help you choose a stone and finish that looks original to the house rather than bolted on.' },
+      { q: "Is there an approval process in West Palm Beach's historic neighborhoods?", a: 'There is no HOA, but some streets are in a city historic district where exterior changes are reviewed. We keep the stone choice period-appropriate, pull the City of West Palm Beach permit, and handle any historic-district paperwork that applies.' },
+      { q: 'Does natural stone hold up on an older in-town lot?', a: 'It does, when the base is right. We build a proper compacted base around the mature roots and original grading, then seal the porous stone against sun and stains so a period-true surface lasts on an older lot.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'delray-beach': {
+    lede: 'Around Lake Ida and the beach the salt air is constant, and a sealed natural stone surface takes it while giving an established home a premium, custom look.',
+    intro: [
+      "Delray's strength is the east side — Lake Ida, the beach district, Del-Ida Park — where established homes from the 1950s through 80s sit close to the water. These coastal streets have a character of their own, and natural stone suits them: travertine, marble and shellstone give a premium, custom look that reads a step above a manufactured paver.",
+      'This close to the ocean, salt and heavy summer rain are hard on porous stone. Unsealed travertine or shellstone stains and etches fast; we seal every stone against the salt, the storms and the sun so it beads off spills and holds its color, and a tumbled surface stays cool enough to walk barefoot by the pool. An occasional rinse and reseal keeps it looking new.',
+      'The good news on the east side is simplicity — most of these streets are non-HOA, so approval is usually just the city permit. We pull the City of Delray Beach permit, build the base for the sandy coastal soil, match the stone to the home, and grade the drainage away from it.',
+    ],
+    localNote: 'Coastal east-side lots put porous stone against constant salt and high summer rain — we seal on install and reseal on a schedule, and set the slope to move heavy rain to the swale or street.',
+    faqs: [
+      { q: 'Does salt air near the Delray beach hurt natural stone?', a: 'Only if it is left unsealed. Travertine and shellstone are porous, so we seal them on install and reseal on a schedule — sealed stone beads off salt and storm runoff and holds its color this close to the water.' },
+      { q: "I'm on a non-HOA street near Lake Ida — what approval do I need for stone?", a: 'Usually just the city permit. Most of the Lake Ida and beach-district streets have no HOA, so we simply pull the City of Delray Beach permit, handle any drainage requirement, and get to work on the stone.' },
+      { q: 'Is natural stone cooler by the pool than pavers?', a: 'Tumbled travertine and shellstone stay noticeably cooler underfoot than most manufactured pavers in the summer sun, which is a real advantage on the beach-district and Lake Ida pool decks.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+  'boynton-beach': {
+    lede: "Along the Intracoastal and Boynton's eastern streets, salt and a high water table both work on porous stone — sealed and properly based, natural stone handles them.",
+    intro: [
+      "Boynton Beach's best hardscape work is on the water and to the east — the Intracoastal waterfront, Harbor Estates, Chapel Hill, Lake Eden. Many of these homes are 1960s–90s builds ready for an upgrade, and natural stone gives them a premium, custom look: travertine, marble and shellstone read a class above the paver the original builder used.",
+      'Near the Intracoastal, salt and a high water table both work against porous stone. We build the base for ground that stays damp, seal the travertine and shellstone against the salt and the sun so they hold their color, and set the drainage so summer downpours run off instead of pooling on the terrace.',
+      'Boynton is a mix — some waterfront pockets are non-HOA, some newer streets run an HOA. We confirm which applies, match the stone to the home\'s architecture, prepare the HOA submittal if there is one, and pull the City of Boynton Beach permit either way.',
+    ],
+    localNote: 'Waterfront lots near the Intracoastal sit on a higher water table and constant salt — we build the base for damp ground, seal the porous stone, and grade so heavy rain drains away from the home.',
+    faqs: [
+      { q: 'My Boynton home backs onto the Intracoastal — will the salt and water table affect natural stone?', a: 'Both matter, and both are manageable. We build a solid, well-compacted base for the high water table and seal the porous travertine or shellstone against the salt on install, so the stone holds flat and keeps its color by the water.' },
+      { q: 'Is there an HOA approval step for stone in Boynton Beach?', a: 'It depends on your street — waterfront pockets are often non-HOA, while newer communities have one. We check first, prepare the HOA stone submittal if it is needed, and pull the City of Boynton Beach permit regardless.' },
+      { q: 'Which natural stone suits a 1960s–90s Boynton home?', a: 'Travertine and marble bring a premium, custom look that lifts an older waterfront home a class above its original paver. We match the stone type, tone and finish to the architecture at the on-site visit.' },
+      { q: 'What does a natural stone hardscape cost?', a: 'It depends on the stone, the area and site prep, which is why the on-site visit and written estimate are free and itemized. Financing through Wisetack is available so the budget does not decide the timeline.' },
+    ],
+  },
+};
+
+const local = LOCAL[city.slug];
+const permit = city.permitAuthority.replace('the ', '').replace(/^./, (m) => m.toUpperCase());
+const handles = [
+  `Choosing and sourcing the right travertine, marble, shellstone or flagstone for ${city.name}'s homes, over a compacted base built for the sandy soil`,
+  city.hoa === 'none'
+    ? 'Any city or historic-district review kept period-appropriate on stone type and finish'
+    : city.hoa === 'hoa'
+    ? 'Your HOA / architectural review board stone palette prepared and shepherded through'
+    : 'HOA or non-HOA — we confirm your street and handle whichever applies',
+  `${permit} permit pulled, with the porous stone sealed against salt and sun and drainage built to local code`,
+];
+
+const data = {
+  seoTitle: `Natural Stone Hardscapes in ${city.name}, FL · Perfect Pavers of Palm Beach`,
+  seoDescription: `Travertine, marble & flagstone hardscapes in ${city.name} — sourced, sealed and set. ${permit} permit and ${city.hoa === 'none' ? 'district' : 'HOA/ARB'} approval handled. Free on-site visit.`,
+  service: SERVICE,
+  city,
+  lede: local.lede,
+  intro: local.intro,
+  localNote: local.localNote,
+  handles,
+  faqs: local.faqs,
+  heroImg: '/images/local-hero-natural-stone.jpg',
+  heroAlt: `Natural stone hardscape in ${city.name}, Palm Beach County`,
+  heroBg: '/images/local-hero-natural-stone.jpg',
+  services: SERVICES,
+  cities: CITY_CHIPS,
+};
+---
+<LocalServiceTemplate {...data} />
