@@ -1,5 +1,6 @@
 ---
 title: "Pool Deck Pavers in South Florida: Heat, Slip & Material Guide"
+seoTitle: "Pool Deck Pavers in South Florida | Perfect Pavers"
 description: "A South Florida buyer's guide to pool deck pavers: how color drives barefoot heat, what wet slip ratings mean, how porous stone handles salt and chlorine, and why permits are city-specific."
 slug: "pool-deck-pavers-south-florida"
 pubDate: 2026-06-30

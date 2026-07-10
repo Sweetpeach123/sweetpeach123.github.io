@@ -100,7 +100,7 @@ nav.menu .drop a:hover{background:var(--ivory-2);color:var(--brass-dark)}
 
 section.block{padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px)}
 .sec-head{max-width:640px;margin-bottom:clamp(32px,4.4vw,54px)}
-.sec-head h2{font-size:clamp(32px,4.6vw,56px);margin:16px 0 0}
+.sec-head h2,.sec-head h1{font-size:clamp(32px,4.6vw,56px);margin:16px 0 0}
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
 .sec-num{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--brass-dark)}
 

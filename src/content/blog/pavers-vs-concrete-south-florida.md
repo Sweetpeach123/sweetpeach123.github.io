@@ -1,5 +1,6 @@
 ---
 title: "Pavers vs. Concrete in South Florida: Which Is Better for Your Driveway, Patio & Pool Deck?"
+seoTitle: "Pavers vs. Concrete in South Florida · Which Wins?"
 description: "A balanced pavers vs concrete comparison for Broward and Palm Beach homeowners: cracking, repairs, strength, UV fade, salt air, drainage and resale, framed for South Florida."
 slug: "pavers-vs-concrete-south-florida"
 pubDate: 2026-07-07
