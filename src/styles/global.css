@@ -241,6 +241,10 @@ footer{background:#0C211B;color:rgba(246,241,231,.78)}
 .reveal-ready .pf-grid .pf.is-in,
 .reveal-ready .port-grid .pcard.is-in{opacity:1}
 
+/* Blog article cards: an unhurried, gentle reveal — slower and softer than the rest */
+.reveal-ready .blog-grid .pf{transform:translateY(22px);transition:opacity 1.7s cubic-bezier(.22,.9,.28,1),transform 1.7s cubic-bezier(.22,.9,.28,1)}
+.reveal-ready .blog-grid .pf.is-in{transform:none}
+
 .sticky-call{display:none}
 
 /* Back-to-top button — fixed bottom-left, fades in once you scroll down */
