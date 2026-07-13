@@ -138,8 +138,8 @@ section.block{padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,10
 .promise .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;padding:clamp(56px,8vw,96px) 40px}
 .promise h2{font-size:clamp(30px,3.8vw,46px);color:var(--ivory)}
 .promise .lede{opacity:.85;font-weight:300;margin-top:20px;font-size:17px}
-.promise ul{list-style:none;display:grid;gap:22px}
-.promise li{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding-bottom:22px;border-bottom:1px solid var(--line-light)}
+.promise ul{list-style:none;display:grid;gap:0}
+.promise li{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding-top:22px;padding-bottom:22px;border-bottom:1px solid var(--line-light)}
 .promise li .mk{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--brass)}
 .promise li b{font-weight:500;font-size:16px}
 .promise li p{font-size:17px;opacity:.82;font-weight:300;margin-top:5px;line-height:1.6}
